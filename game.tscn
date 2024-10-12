@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://164y6euup4fn"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_2xxen"]
+[ext_resource type="PackedScene" uid="uid://djsuct8txu1nx" path="res://joystick.tscn" id="1_f4k73"]
+[ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://player.tscn" id="3_8rj2j"]
+[ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://map.tscn" id="4_r751a"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_2xxen")
+
+[node name="Joystick" parent="." instance=ExtResource("1_f4k73")]
+modulate = Color(1, 1, 1, 0.588235)
+z_index = 1
+position = Vector2(159, 476)
+metadata/_edit_group_ = true
+
+[node name="Player" parent="." instance=ExtResource("3_8rj2j")]
+z_index = 1
+scale = Vector2(0.2, 0.2)
+
+[node name="Map" parent="." instance=ExtResource("4_r751a")]
+position = Vector2(-121, 759)
+scale = Vector2(0.5, 0.5)

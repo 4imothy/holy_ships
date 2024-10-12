@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://djsuct8txu1nx"]
+
+[ext_resource type="Script" path="res://joystick.gd" id="1_uncjw"]
+[ext_resource type="Texture2D" uid="uid://d22hq20vq1mek" path="res://static/grey_circle.svg" id="1_v7f2g"]
+[ext_resource type="Script" path="res://knob.gd" id="2_l7jln"]
+[ext_resource type="Texture2D" uid="uid://bg0a4fe8v7d2g" path="res://static/grey_circle_outline.svg" id="2_rfxru"]
+
+[sub_resource type="GDScript" id="GDScript_vsp76"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6acyk"]
+
+[sub_resource type="GDScript" id="GDScript_k0dek"]
+script/source = "extends TouchScreenButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Joystick" type="Node2D"]
+script = ExtResource("1_uncjw")
+
+[node name="knob" type="Sprite2D" parent="."]
+texture = ExtResource("1_v7f2g")
+script = ExtResource("2_l7jln")
+
+[node name="ring" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_rfxru")
+script = SubResource("GDScript_vsp76")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+scale = Vector2(15, 15)
+shape = SubResource("CircleShape2D_6acyk")
+script = SubResource("GDScript_k0dek")
