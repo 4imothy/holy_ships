@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="godot_first"
-run/main_scene="res://game.tscn"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 
 [display]
 
 window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="godot_first"
 
 [input_devices]
 

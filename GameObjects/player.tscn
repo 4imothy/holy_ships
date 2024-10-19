@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://dcqleymus211v"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_88tep"]
-[ext_resource type="Shader" path="res://player.gdshader" id="2_6gdgr"]
-[ext_resource type="Texture2D" uid="uid://c2ihhw0fputjx" path="res://static/astronaut.png" id="2_xrwcj"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_88tep"]
+[ext_resource type="Shader" path="res://GameObjects/player.gdshader" id="2_6gdgr"]
+[ext_resource type="Texture2D" uid="uid://c2ihhw0fputjx" path="res://Assets/astronaut.png" id="2_xrwcj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gmv3n"]
 shader = ExtResource("2_6gdgr")
