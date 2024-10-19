@@ -1,5 +1,7 @@
 extends Control
 
+@export var ip_line_edit: LineEdit
+@export var status_label: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,11 +14,13 @@ func _process(delta: float) -> void:
 
 
 func _on_host_button_pressed() -> void:
-	pass # Replace with function body.
+	Lobby.create_game()
 
 
 func _on_join_button_pressed() -> void:
-	pass # Replace with function body.
+	status_label.text = "Connection Status: Connecting..."
+	if ip_line_edit:
+		Lobby.join_game(ip_line_edit.text)
 
 
 func _on_start_button_pressed() -> void:

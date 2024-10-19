@@ -70,7 +70,7 @@ shadow_offset = Vector2(5, 5)
 font = ExtResource("3_bthpn")
 font_size = 18
 
-[node name="LobbyMenu" type="Control"]
+[node name="LobbyMenu" type="Control" node_paths=PackedStringArray("ip_line_edit", "status_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,6 +78,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qnikp")
+ip_line_edit = NodePath("HBoxContainer2/IPLineEdit")
+status_label = NodePath("StatusLabel")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
