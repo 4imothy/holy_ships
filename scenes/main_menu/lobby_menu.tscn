@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpp0olixilexb"]
+[gd_scene load_steps=14 format=3 uid="uid://bpp0olixilexb"]
 
-[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_rxv82"]
+[ext_resource type="Script" path="res://scripts/lobby_menu.gd" id="1_qnikp"]
 [ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://Assets/menu_background.jpg" id="2_2a0on"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://Assets/8bit-Font/PressStart2P-vaV7.ttf" id="3_bthpn"]
 
@@ -37,14 +37,49 @@ corner_radius_bottom_left = 16
 shadow_size = 10
 shadow_offset = Vector2(5, 5)
 
-[node name="LobbyMenu" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vy7xv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h87x7"]
+bg_color = Color(0.149558, 0.204784, 0.561486, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loyym"]
+bg_color = Color(0.0827821, 0.119793, 0.363213, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wf3p"]
+bg_color = Color(0.202576, 0.272896, 0.705924, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_thw6r"]
+font = ExtResource("3_bthpn")
+font_size = 18
+
+[node name="LobbyMenu" type="Control" node_paths=PackedStringArray("ip_line_edit", "status_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rxv82")
+script = ExtResource("1_qnikp")
+ip_line_edit = NodePath("HBoxContainer2/IPLineEdit")
+status_label = NodePath("StatusLabel")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -110,14 +145,18 @@ vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 300.0
-offset_top = -99.0
-offset_right = 870.0
-offset_bottom = -44.0
+offset_left = -249.5
+offset_top = -93.0
+offset_right = 249.5
+offset_bottom = -38.0
+grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
 
 [node name="HostButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -131,3 +170,71 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_bv64x")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Host"
+
+[node name="JoinButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_bthpn")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vy7xv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h87x7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_loyym")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7wf3p")
+text = "Join"
+
+[node name="StartButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_bthpn")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fcdpr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bv64x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
+text = "Start
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -15.0
+offset_right = 200.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="IPLineEdit" type="LineEdit" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "Enter IP Address"
+alignment = 1
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Connection Status: ..."
+label_settings = SubResource("LabelSettings_thw6r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/ExitLobbyButton" to="." method="_on_exit_lobby_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

@@ -14,6 +14,10 @@ config/name="godot_first"
 run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 
+[autoload]
+
+Lobby="*res://scripts/lobby.gd"
+
 [display]
 
 window/stretch/mode="viewport"
