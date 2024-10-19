@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=3 uid="uid://mb32hps3uwxd"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_bc2pa"]
+[ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://Assets/menu_background.jpg" id="2_2ibmo"]
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://Assets/8bit-Font/PressStart2P-vaV7.ttf" id="3_gv07s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgeep"]
+texture = ExtResource("2_2ibmo")
+modulate_color = Color(0.351563, 0.351563, 0.351563, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fcdpr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bv64x"]
+bg_color = Color(0.149558, 0.204784, 0.561486, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4pd0"]
+bg_color = Color(0.0827821, 0.119793, 0.363213, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_und21"]
+bg_color = Color(0.202576, 0.272896, 0.705924, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bc2pa")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.00249)
+theme_override_styles/panel = SubResource("StyleBoxTexture_lgeep")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = 239.0
+offset_right = 228.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ExitOptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_gv07s")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fcdpr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bv64x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
+text = "Back
+"
+
+[node name="GameTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.0
+offset_top = -306.0
+offset_right = 308.0
+offset_bottom = -198.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("3_gv07s")
+theme_override_font_sizes/font_size = 48
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.0
+offset_top = -197.0
+offset_right = 367.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Holy Ships! is a LAN co-op multiplayer mobile phone game. 
+
+Titan (your home) is dying rapidly. The only hope is a race to Europa, where a drifter located in the town of Pancea may be able to help. However, the journey to get here is no easy task. This is where the game begins. 
+
+You will need to cooperate and communicate effectively to outsteer obstacles and maintain/repair your aging spacecraft. 
+
+Good luck, have fun, and work together!
+ (More Options To Come)"
+
+[connection signal="pressed" from="VBoxContainer/ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]

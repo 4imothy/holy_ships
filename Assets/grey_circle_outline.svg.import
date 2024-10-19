@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgwfgb3ustxot"
-path="res://.godot/imported/map_tileset.png-ce15cc3636d45392e404c9de084ee75b.ctex"
+uid="uid://bg0a4fe8v7d2g"
+path="res://.godot/imported/grey_circle_outline.svg-cce7ec2ada61c730b1ae536b2b243055.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://static/map_tileset.png"
-dest_files=["res://.godot/imported/map_tileset.png-ce15cc3636d45392e404c9de084ee75b.ctex"]
+source_file="res://Assets/grey_circle_outline.svg"
+dest_files=["res://.godot/imported/grey_circle_outline.svg-cce7ec2ada61c730b1ae536b2b243055.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
