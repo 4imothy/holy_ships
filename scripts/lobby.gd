@@ -1,3 +1,5 @@
+### lobby = Multiplayer Manager Singleton ###
+
 extends Node
 
 signal player_connected(peer_id, player_info)
@@ -22,7 +24,8 @@ func create_game():
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT, MAX_CONNECTIONS)
 	if error:
-		return error
+		print(error)
+		return false
 	
 	multiplayer.multiplayer_peer = peer
 	
@@ -33,7 +36,8 @@ func join_game(address):
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_client(address, PORT)
 	if error:
-		return error
+		print(error)
+		return false
 	
 	multiplayer.multiplayer_peer = peer
 	
