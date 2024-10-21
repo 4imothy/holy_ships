@@ -12,7 +12,7 @@ var joystick_instance
 var SCREEN_SIZE
 const PLAYER_SPEED: int = 200
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	SCREEN_SIZE = get_viewport_rect().size
 	owner_id = name.to_int()
 	set_multiplayer_authority(owner_id)
@@ -26,6 +26,8 @@ func _ready() -> void:
 	get_tree().current_scene.add_child.call_deferred(joystick_instance)
 
 func _physics_process(delta: float) -> void:
+	if multiplayer.multiplayer_peer == null:
+		return
 	if owner_id != multiplayer.get_unique_id():
 		return
 		
@@ -49,6 +51,8 @@ func _physics_process(delta: float) -> void:
 	position = position.clamp(sprite_size / 2, SCREEN_SIZE - sprite_size / 2)
 	
 func _process(delta: float) -> void:
+	if multiplayer.multiplayer_peer == null:
+		return
 	if owner_id != multiplayer.get_unique_id():
 		return
 		
@@ -58,7 +62,7 @@ func _process(delta: float) -> void:
 	
 	joystick_instance.global_position.x = global_position.x - (SCREEN_SIZE.x / 5)
 	joystick_instance.global_position.y = global_position.y + (SCREEN_SIZE.y / 7)
-	
+
 	if abs(velocity.x) > abs(velocity.y):
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_h = velocity.x < 0
