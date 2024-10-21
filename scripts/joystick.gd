@@ -11,7 +11,7 @@ var holding_finger_pos: Vector2
 func _ready() -> void:
 	var ring = $ring
 	var ring_size = ring.texture.get_size()
-	MAX_DRAG_DISTANCE = (ring_size.x * ring.scale.x) / 2.5
+	MAX_DRAG_DISTANCE = (ring_size.x * ring.scale.x) / 4
 	DEAD_ZONE = MAX_DRAG_DISTANCE / 7
 	
 func _process(delta: float):
