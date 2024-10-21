@@ -1,15 +1,18 @@
+### lobby = Multiplayer Manager Singleton ###
+
 extends Node
 
 signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
 
-const PORT = 7000
+const PORT = 4587
 const MAX_CONNECTIONS = 2
 
 var players = {}
 
 var player_info = {"name": "Name"}
+#@onready var peer = ENetMultiplayerPeer.new()     
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -22,20 +25,24 @@ func create_game():
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT, MAX_CONNECTIONS)
 	if error:
-		return error
+		print(error)
+		return false
 	
 	multiplayer.multiplayer_peer = peer
 	
 	players[1] = player_info
 	player_connected.emit(1, player_info)
+	return true
 	
 func join_game(address):
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_client(address, PORT)
 	if error:
-		return error
+		print(error)
+		return false
 	
 	multiplayer.multiplayer_peer = peer
+	return true
 	
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)

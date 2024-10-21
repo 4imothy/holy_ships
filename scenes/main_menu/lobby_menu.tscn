@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpp0olixilexb"]
+[gd_scene load_steps=15 format=3 uid="uid://bpp0olixilexb"]
 
 [ext_resource type="Script" path="res://scripts/lobby_menu.gd" id="1_qnikp"]
 [ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://Assets/menu_background.jpg" id="2_2a0on"]
+[ext_resource type="PackedScene" uid="uid://164y6euup4fn" path="res://scenes/level_00/game.tscn" id="2_skm8c"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://Assets/8bit-Font/PressStart2P-vaV7.ttf" id="3_bthpn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgeep"]
@@ -70,18 +71,32 @@ shadow_offset = Vector2(5, 5)
 font = ExtResource("3_bthpn")
 font_size = 18
 
-[node name="LobbyMenu" type="Control" node_paths=PackedStringArray("ip_line_edit", "status_label")]
+[node name="LevelManager" type="Node" node_paths=PackedStringArray("ui", "level_container", "ip_line_edit", "status_label", "not_connected_hbox", "host_hbox")]
+script = ExtResource("1_qnikp")
+ui = NodePath("LobbyMenu")
+level_container = NodePath("Level")
+level_scene = ExtResource("2_skm8c")
+ip_line_edit = NodePath("LobbyMenu/HBoxContainer2/IPLineEdit")
+status_label = NodePath("LobbyMenu/StatusLabel")
+not_connected_hbox = NodePath("LobbyMenu/NotConnectedHBox")
+host_hbox = NodePath("LobbyMenu/HostHBox")
+
+[node name="Level" type="Node" parent="."]
+
+[node name="LevelSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/level_00/game.tscn")
+spawn_path = NodePath("../Level")
+spawn_limit = 1
+
+[node name="LobbyMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qnikp")
-ip_line_edit = NodePath("HBoxContainer2/IPLineEdit")
-status_label = NodePath("StatusLabel")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="LobbyMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +106,7 @@ grow_vertical = 2
 scale = Vector2(1, 1.00249)
 theme_override_styles/panel = SubResource("StyleBoxTexture_lgeep")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="LobbyMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -106,7 +121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="ExitLobbyButton" type="Button" parent="VBoxContainer"]
+[node name="ExitLobbyButton" type="Button" parent="LobbyMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -119,7 +134,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Back
 "
 
-[node name="LobbyTitle" type="Label" parent="."]
+[node name="LobbyTitle" type="Label" parent="LobbyMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -143,7 +158,7 @@ text = "Lobby"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="NotConnectedHBox" type="HBoxContainer" parent="LobbyMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -158,7 +173,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15
 
-[node name="HostButton" type="Button" parent="HBoxContainer"]
+[node name="HostButton" type="Button" parent="LobbyMenu/NotConnectedHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -171,7 +186,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Host"
 
-[node name="JoinButton" type="Button" parent="HBoxContainer"]
+[node name="JoinButton" type="Button" parent="LobbyMenu/NotConnectedHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -184,7 +199,23 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_loyym")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7wf3p")
 text = "Join"
 
-[node name="StartButton" type="Button" parent="HBoxContainer"]
+[node name="HostHBox" type="HBoxContainer" parent="LobbyMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.5
+offset_top = -93.0
+offset_right = 249.5
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="StartButton" type="Button" parent="LobbyMenu/HostHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -198,7 +229,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Start
 "
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="HBoxContainer2" type="HBoxContainer" parent="LobbyMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -213,14 +244,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15
 
-[node name="IPLineEdit" type="LineEdit" parent="HBoxContainer2"]
+[node name="IPLineEdit" type="LineEdit" parent="LobbyMenu/HBoxContainer2"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 text = "127.0.0.1"
 placeholder_text = "Enter IP Address"
 alignment = 1
 
-[node name="StatusLabel" type="Label" parent="."]
+[node name="StatusLabel" type="Label" parent="LobbyMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -234,7 +265,7 @@ label_settings = SubResource("LabelSettings_thw6r")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/ExitLobbyButton" to="." method="_on_exit_lobby_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="LobbyMenu/VBoxContainer/ExitLobbyButton" to="." method="_on_exit_lobby_button_pressed"]
+[connection signal="pressed" from="LobbyMenu/NotConnectedHBox/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="LobbyMenu/NotConnectedHBox/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="LobbyMenu/HostHBox/StartButton" to="." method="_on_start_button_pressed"]
