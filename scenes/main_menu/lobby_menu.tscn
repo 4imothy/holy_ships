@@ -71,8 +71,9 @@ shadow_offset = Vector2(5, 5)
 font = ExtResource("3_bthpn")
 font_size = 18
 
-[node name="LevelManager" type="Node" node_paths=PackedStringArray("level_container", "ip_line_edit", "status_label", "not_connected_hbox", "host_hbox")]
+[node name="LevelManager" type="Node" node_paths=PackedStringArray("ui", "level_container", "ip_line_edit", "status_label", "not_connected_hbox", "host_hbox")]
 script = ExtResource("1_qnikp")
+ui = NodePath("LobbyMenu")
 level_container = NodePath("Level")
 level_scene = ExtResource("2_skm8c")
 ip_line_edit = NodePath("LobbyMenu/HBoxContainer2/IPLineEdit")

@@ -1,5 +1,6 @@
 extends Node
 
+@export var ui: Control
 @export var level_container: Node
 @export var level_scene: PackedScene
 @export var ip_line_edit: LineEdit
@@ -11,11 +12,12 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	multiplayer.connection_failed.connect(_on_connection_failed)
-	multiplayer.connection_failed.connect(_on_connected_to_server)
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
 
 ### Button Presses ###
 func _on_host_button_pressed() -> void:
 	not_connected_hbox.hide()
+	status_label.text = "Connection Status: Trying to Host"
 	if not Lobby.create_game():
 		not_connected_hbox.show()
 		status_label.text = "Connection Status: Failed to Host"
@@ -30,11 +32,17 @@ func _on_join_button_pressed() -> void:
 	if ip_line_edit:
 		Lobby.join_game(ip_line_edit.text)
 
-
 func _on_start_button_pressed() -> void:
+	hide_menu.rpc()
 	change_level.call_deferred(level_scene)
 
 func change_level(scene):
+	# Clear out old scene from memory
+	for child in level_container.get_children():
+		level_container.remove_child(child)
+		child.queue_free()
+	
+	# Load in new scene
 	level_container.add_child(scene.instantiate())
 
 func _on_exit_lobby_button_pressed() -> void:
@@ -48,3 +56,8 @@ func _on_connection_failed():
 	
 func _on_connected_to_server():
 	status_label.text = "Connection Status: Connected!"
+
+### RPCS ###
+@rpc("call_local", "authority", "reliable")
+func hide_menu():
+	ui.hide()
