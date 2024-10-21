@@ -1,18 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=4 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
-[ext_resource type="PackedScene" uid="uid://djsuct8txu1nx" path="res://GameObjects/joystick.tscn" id="2_464lg"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://GameObjects/player.tscn" id="3_2g0rx"]
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://scenes/level_00/map.tscn" id="4_tlabt"]
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points")]
 script = ExtResource("1_blgyt")
+player_scene = ExtResource("3_2g0rx")
+players_container = NodePath("---Players---/PlayersContainer")
+spawn_points = [NodePath("---Players---/SpawnPoint_0"), NodePath("---Players---/SpawnPoint_1")]
 
-[node name="Player" parent="." instance=ExtResource("3_2g0rx")]
-z_index = 1
-scale = Vector2(0.2, 0.2)
-joystick = ExtResource("2_464lg")
+[node name="---Environment---" type="Node" parent="."]
 
-[node name="Map" parent="." instance=ExtResource("4_tlabt")]
+[node name="Map" parent="---Environment---" instance=ExtResource("4_tlabt")]
+z_index = -1
 position = Vector2(-121, 759)
 scale = Vector2(0.5, 0.5)
+
+[node name="---Players---" type="Node" parent="."]
+
+[node name="Player" parent="---Players---" instance=ExtResource("3_2g0rx")]
+z_index = 1
+scale = Vector2(0.2, 0.2)
+
+[node name="PlayersContainer" type="Node2D" parent="---Players---"]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="---Players---"]
+_spawnable_scenes = PackedStringArray("res://GameObjects/player.tscn")
+spawn_path = NodePath("../PlayersContainer")
+spawn_limit = 2
+
+[node name="SpawnPoint_0" type="Node2D" parent="---Players---"]
+position = Vector2(485, 362)
+
+[node name="SpawnPoint_1" type="Node2D" parent="---Players---"]
+position = Vector2(568, 363)

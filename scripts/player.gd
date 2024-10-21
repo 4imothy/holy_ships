@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var game = $".."
+@onready var game = $"../.."
 @onready var collision = $CollisionShape2D
 
 @export var joystick: PackedScene
@@ -8,14 +8,16 @@ extends CharacterBody2D
 
 var camera_instance
 var joystick_instance
+var SCREEN_SIZE
 
 func _ready() -> void:
+	SCREEN_SIZE = get_viewport_rect().size
 	camera_instance = player_camera.instantiate()
 	get_tree().current_scene.add_child.call_deferred(camera_instance)
 	
 	joystick_instance = joystick.instantiate()
 	get_tree().current_scene.add_child.call_deferred(joystick_instance)
-	
+
 func _physics_process(delta: float) -> void:
 	var s_dir = joystick_instance.scaled_direction
 	if s_dir:
@@ -34,15 +36,15 @@ func _physics_process(delta: float) -> void:
 	var texture = sprite_frames.get_frame_texture("walk", 0)
 	var texture_size = texture.get_size()
 	var sprite_size = texture_size * $AnimatedSprite2D.get_scale()
-	position = position.clamp(sprite_size / 2, game.SCREEN_SIZE - sprite_size / 2)
+	position = position.clamp(sprite_size / 2, SCREEN_SIZE - sprite_size / 2)
 	
 func _process(delta: float) -> void:
 	# Have the HUD follow the player
 	camera_instance.global_position.x = global_position.x
 	camera_instance.global_position.y = global_position.y
 	
-	joystick_instance.global_position.x = global_position.x - (game.SCREEN_SIZE.x / 5)
-	joystick_instance.global_position.y = global_position.y + (game.SCREEN_SIZE.y / 7)
+	joystick_instance.global_position.x = global_position.x - (SCREEN_SIZE.x / 5)
+	joystick_instance.global_position.y = global_position.y + (SCREEN_SIZE.y / 7)
 	
 	if abs(velocity.x) > abs(velocity.y):
 		$AnimatedSprite2D.animation = "walk"
