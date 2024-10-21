@@ -8,15 +8,10 @@
 [node name="game" type="Node2D"]
 script = ExtResource("1_blgyt")
 
-[node name="Joystick" parent="." instance=ExtResource("2_464lg")]
-modulate = Color(1, 1, 1, 0.588235)
-z_index = 1
-position = Vector2(159, 476)
-metadata/_edit_group_ = true
-
 [node name="Player" parent="." instance=ExtResource("3_2g0rx")]
 z_index = 1
 scale = Vector2(0.2, 0.2)
+joystick = ExtResource("2_464lg")
 
 [node name="Map" parent="." instance=ExtResource("4_tlabt")]
 position = Vector2(-121, 759)
