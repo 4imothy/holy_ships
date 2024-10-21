@@ -19,10 +19,6 @@ scale = Vector2(0.5, 0.5)
 
 [node name="---Players---" type="Node" parent="."]
 
-[node name="Player" parent="---Players---" instance=ExtResource("3_2g0rx")]
-z_index = 1
-scale = Vector2(0.2, 0.2)
-
 [node name="PlayersContainer" type="Node2D" parent="---Players---"]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="---Players---"]

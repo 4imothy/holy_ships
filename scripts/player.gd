@@ -6,12 +6,19 @@ extends CharacterBody2D
 @export var joystick: PackedScene
 @export var player_camera: PackedScene
 
+var owner_id = 1
 var camera_instance
 var joystick_instance
 var SCREEN_SIZE
+const PLAYER_SPEED: int = 200
 
 func _ready() -> void:
 	SCREEN_SIZE = get_viewport_rect().size
+	owner_id = name.to_int()
+	set_multiplayer_authority(owner_id)
+	if owner_id != multiplayer.get_unique_id():
+		return
+		
 	camera_instance = player_camera.instantiate()
 	get_tree().current_scene.add_child.call_deferred(camera_instance)
 	
@@ -19,9 +26,12 @@ func _ready() -> void:
 	get_tree().current_scene.add_child.call_deferred(joystick_instance)
 
 func _physics_process(delta: float) -> void:
+	if owner_id != multiplayer.get_unique_id():
+		return
+		
 	var s_dir = joystick_instance.scaled_direction
 	if s_dir:
-		velocity = s_dir * game.PLAYER_SPEED
+		velocity = s_dir * PLAYER_SPEED
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
@@ -39,6 +49,9 @@ func _physics_process(delta: float) -> void:
 	position = position.clamp(sprite_size / 2, SCREEN_SIZE - sprite_size / 2)
 	
 func _process(delta: float) -> void:
+	if owner_id != multiplayer.get_unique_id():
+		return
+		
 	# Have the HUD follow the player
 	camera_instance.global_position.x = global_position.x
 	camera_instance.global_position.y = global_position.y
