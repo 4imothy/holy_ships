@@ -2,9 +2,16 @@ extends CharacterBody2D
 
 @onready var game = $".."
 @onready var joystick = $"../Joystick"
-@onready var map = $"../Map"
 @onready var collision = $CollisionShape2D
 
+@export var player_camera: PackedScene
+
+var camera_instance
+
+func _ready() -> void:
+	camera_instance = player_camera.instantiate()
+	get_tree().current_scene.add_child.call_deferred(camera_instance)
+	
 func _physics_process(delta: float) -> void:
 	var s_dir = joystick.scaled_direction
 	if s_dir:
@@ -24,11 +31,11 @@ func _physics_process(delta: float) -> void:
 	var texture_size = texture.get_size()
 	var sprite_size = texture_size * $AnimatedSprite2D.get_scale()
 	position = position.clamp(sprite_size / 2, game.SCREEN_SIZE - sprite_size / 2)
-
-func _ready() -> void:
-	pass
 	
 func _process(delta: float) -> void:
+	camera_instance.global_position.x = global_position.x
+	camera_instance.global_position.y = global_position.y
+	
 	if abs(velocity.x) > abs(velocity.y):
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_h = velocity.x < 0
