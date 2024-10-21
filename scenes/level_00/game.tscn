@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=9 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://GameObjects/player.tscn" id="3_2g0rx"]
+[ext_resource type="PackedScene" path="res://GameObjects/fire.tscn" id="4_l4ty5"]
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://scenes/level_00/map.tscn" id="4_tlabt"]
+[ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
+[ext_resource type="Shader" path="res://GameObjects/fire.gdshader" id="6_m1h0i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g53u"]
+shader = ExtResource("6_m1h0i")
+shader_parameter/progress = 0.0
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points")]
 script = ExtResource("1_blgyt")
@@ -16,6 +25,19 @@ spawn_points = [NodePath("---Players---/SpawnPoint_0"), NodePath("---Players---/
 z_index = -1
 position = Vector2(-121, 759)
 scale = Vector2(0.5, 0.5)
+
+[node name="fire" parent="---Environment---" instance=ExtResource("4_l4ty5")]
+material = SubResource("ShaderMaterial_52d86")
+position = Vector2(45, 297)
+rotation = -1.5709
+scale = Vector2(0.843422, 1.30381)
+autoplay = "default"
+frame_progress = 0.608811
+script = ExtResource("5_roxxf")
+shader_material = SubResource("ShaderMaterial_2g53u")
+
+[node name="Timer" type="Timer" parent="---Environment---/fire"]
+wait_time = 5.0
 
 [node name="---Players---" type="Node" parent="."]
 
@@ -31,3 +53,5 @@ position = Vector2(485, 362)
 
 [node name="SpawnPoint_1" type="Node2D" parent="---Players---"]
 position = Vector2(568, 363)
+
+[connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
