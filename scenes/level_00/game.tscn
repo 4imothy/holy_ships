@@ -23,7 +23,7 @@ spawn_points = [NodePath("---Players---/SpawnPoint_0"), NodePath("---Players---/
 
 [node name="Map" parent="---Environment---" instance=ExtResource("4_tlabt")]
 z_index = -1
-position = Vector2(-121, 759)
+position = Vector2(550, 350)
 scale = Vector2(0.5, 0.5)
 
 [node name="fire" parent="---Environment---" instance=ExtResource("4_l4ty5")]
