@@ -2,15 +2,13 @@ extends CharacterBody2D
 
 @onready var game = $"../.."
 @onready var collision = $CollisionShape2D
-@onready var joystick = $PlayerCamera/Joystick
-@onready var player_camera = $PlayerCamera
 
-#@export var joystick: PackedScene
-#@export var player_camera: PackedScene
+@export var joystick: PackedScene
+@export var player_camera: PackedScene
 
 var owner_id = 1
-#var camera_instance
-#var joystick_instance
+var camera_instance
+var joystick_instance
 var SCREEN_SIZE
 const PLAYER_SPEED: int = 200
 
@@ -21,11 +19,11 @@ func _enter_tree() -> void:
 	if owner_id != multiplayer.get_unique_id():
 		return
 		
-	#camera_instance = player_camera.instantiate()
-	#get_tree().current_scene.add_child.call_deferred(camera_instance)
-	#
-	#joystick_instance = joystick.instantiate()
-	#get_tree().current_scene.add_child.call_deferred(joystick_instance)
+	camera_instance = player_camera.instantiate()
+	get_tree().current_scene.add_child.call_deferred(camera_instance)
+	
+	joystick_instance = joystick.instantiate()
+	get_tree().current_scene.add_child.call_deferred(joystick_instance)
 
 func _physics_process(delta: float) -> void:
 	if multiplayer.multiplayer_peer == null:
@@ -33,9 +31,7 @@ func _physics_process(delta: float) -> void:
 	if owner_id != multiplayer.get_unique_id():
 		return
 		
-	#var s_dir = joystick_instance.scaled_direction
-	var s_dir = joystick.scaled_direction
-	
+	var s_dir = joystick_instance.scaled_direction
 	if s_dir:
 		velocity = s_dir * PLAYER_SPEED
 	else:
@@ -61,11 +57,11 @@ func _process(delta: float) -> void:
 		return
 		
 	# Have the HUD follow the player
-	#camera_instance.global_position.x = global_position.x
-	#camera_instance.global_position.y = global_position.y
-	#
-	#joystick_instance.global_position.x = global_position.x - (SCREEN_SIZE.x / 5)
-	#joystick_instance.global_position.y = global_position.y + (SCREEN_SIZE.y / 7)
+	camera_instance.global_position.x = global_position.x
+	camera_instance.global_position.y = global_position.y
+	
+	joystick_instance.global_position.x = global_position.x - (SCREEN_SIZE.x / 5)
+	joystick_instance.global_position.y = global_position.y + (SCREEN_SIZE.y / 7)
 
 	if abs(velocity.x) > abs(velocity.y):
 		$AnimatedSprite2D.animation = "walk"

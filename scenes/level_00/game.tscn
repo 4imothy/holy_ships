@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://GameObjects/player.tscn" id="3_2g0rx"]
-[ext_resource type="PackedScene" uid="uid://brfvy70xweir5" path="res://GameObjects/fire.tscn" id="4_l4ty5"]
+[ext_resource type="PackedScene" path="res://GameObjects/fire.tscn" id="4_l4ty5"]
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://scenes/level_00/map.tscn" id="4_tlabt"]
 [ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
 [ext_resource type="Shader" path="res://GameObjects/fire.gdshader" id="6_m1h0i"]
