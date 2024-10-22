@@ -1,13 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dcqleymus211v"]
+[gd_scene load_steps=20 format=3 uid="uid://dcqleymus211v"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_88tep"]
-[ext_resource type="Shader" path="res://GameObjects/player.gdshader" id="2_6gdgr"]
-[ext_resource type="PackedScene" uid="uid://djsuct8txu1nx" path="res://GameObjects/joystick.tscn" id="2_t77ng"]
-[ext_resource type="PackedScene" uid="uid://ckkx27mb7wlv5" path="res://GameObjects/player_camera.tscn" id="2_wynsg"]
+[ext_resource type="PackedScene" uid="uid://ckkx27mb7wlv5" path="res://GameObjects/UI.tscn" id="2_trmls"]
 [ext_resource type="Texture2D" uid="uid://c2ihhw0fputjx" path="res://Assets/astronaut.png" id="2_xrwcj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gmv3n"]
-shader = ExtResource("2_6gdgr")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wmg66"]
 atlas = ExtResource("2_xrwcj")
@@ -130,8 +127,7 @@ properties/2/replication_mode = 1
 position = Vector2(535, 385)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_88tep")
-joystick = ExtResource("2_t77ng")
-player_camera = ExtResource("2_wynsg")
+UI = ExtResource("2_trmls")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

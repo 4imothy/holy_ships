@@ -4,7 +4,7 @@ extends Node2D
 @export var players_container: Node2D
 @export var spawn_points: Array[Node2D]
 
-const PLAYER_SPEED: int = 200
+const PLAYER_SPEED: int = 300
 var SCREEN_SIZE: Vector2
 var next_spawn_point_index = 0
 
