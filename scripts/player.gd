@@ -52,19 +52,18 @@ func _process(delta: float) -> void:
 	if owner_id != multiplayer.get_unique_id():
 		return
 		
-	# Have the HUD follow the player
 	camera.global_position.x = global_position.x
 	camera.global_position.y = global_position.y
 	
 	
 	if abs(velocity.x) > abs(velocity.y):
-		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.animation = 'walk'
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	elif abs(velocity.y) > abs(velocity.x):
 		if (velocity.y > 0):
-			$AnimatedSprite2D.animation = "down"
+			$AnimatedSprite2D.animation = 'down'
 		else:
-			$AnimatedSprite2D.animation = "up"
+			$AnimatedSprite2D.animation = 'up'
 		$AnimatedSprite2D.flip_h = false
 	if velocity:
 		$AnimatedSprite2D.play()
