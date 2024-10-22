@@ -3,12 +3,11 @@ extends CharacterBody2D
 @onready var game = $"../.."
 @onready var collision = $CollisionShape2D
 
-@export var joystick: PackedScene
-@export var player_camera: PackedScene
+@export var UI: PackedScene
 
 var owner_id = 1
-var camera_instance
-var joystick_instance
+var camera
+var joystick
 var SCREEN_SIZE
 const PLAYER_SPEED: int = 200
 
@@ -18,12 +17,21 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(owner_id)
 	if owner_id != multiplayer.get_unique_id():
 		return
-		
-	camera_instance = player_camera.instantiate()
-	get_tree().current_scene.add_child.call_deferred(camera_instance)
 	
-	joystick_instance = joystick.instantiate()
-	get_tree().current_scene.add_child.call_deferred(joystick_instance)
+	camera = UI.instantiate()
+	get_tree().current_scene.add_child.call_deferred(camera)
+	joystick = camera.get_node("Joystick")
+	joystick.position = Vector2(-get_viewport().get_size().x / 6, get_viewport().get_size().y / 8) 
+	
+func _ready() -> void:
+	# this shader stuff doesn't look very good
+	return
+	var shader_material = ShaderMaterial.new()
+	shader_material.shader = load("res://GameObjects/player.gdshader")
+	shader_material.set_shader_parameter("tint_color", Color(0.0, 0.0, 1.0))
+	# this doesn't properly set the value in the shader I think but can
+	# worry about that if we actually want to use this method to tint
+	$AnimatedSprite2D.material = shader_material
 
 func _physics_process(delta: float) -> void:
 	if multiplayer.multiplayer_peer == null:
@@ -31,24 +39,12 @@ func _physics_process(delta: float) -> void:
 	if owner_id != multiplayer.get_unique_id():
 		return
 		
-	var s_dir = joystick_instance.scaled_direction
+	var s_dir = joystick.scaled_direction
 	if s_dir:
 		velocity = s_dir * PLAYER_SPEED
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
-	# TODO this isn't really doing what I want player is still
-	# a good distance from the screen when walking
-	# we might delete this as the ship won't be as big as the screen though
-	# so I am not worrying too much about that now
-	var radius = collision.shape.radius
-	var height = collision.shape.height
-	var half_size = Vector2(radius, height)
-	var sprite_frames = $AnimatedSprite2D.sprite_frames
-	var texture = sprite_frames.get_frame_texture("walk", 0)
-	var texture_size = texture.get_size()
-	var sprite_size = texture_size * $AnimatedSprite2D.get_scale()
-	position = position.clamp(sprite_size / 2, SCREEN_SIZE - sprite_size / 2)
 	
 func _process(delta: float) -> void:
 	if multiplayer.multiplayer_peer == null:
@@ -57,12 +53,10 @@ func _process(delta: float) -> void:
 		return
 		
 	# Have the HUD follow the player
-	camera_instance.global_position.x = global_position.x
-	camera_instance.global_position.y = global_position.y
+	camera.global_position.x = global_position.x
+	camera.global_position.y = global_position.y
 	
-	joystick_instance.global_position.x = global_position.x - (SCREEN_SIZE.x / 5)
-	joystick_instance.global_position.y = global_position.y + (SCREEN_SIZE.y / 7)
-
+	
 	if abs(velocity.x) > abs(velocity.y):
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_h = velocity.x < 0
