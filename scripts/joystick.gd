@@ -15,16 +15,15 @@ func _ready() -> void:
 	DEAD_ZONE = MAX_DRAG_DISTANCE / 7
 	
 func _process(delta: float):
-	scaled_direction = _scaled_direction($TouchScreenButton.is_pressed(), 
-											  touch_pos, delta)
+	scaled_direction = _scaled_direction(delta)
 	
 func _input(event):
 	if event is InputEventScreenTouch or event is InputEventScreenDrag:
 		if $TouchScreenButton.is_pressed():
 			touch_pos = make_input_local(event).position
 
-func _scaled_direction(pressing: bool, touch_pos: Vector2, delta: float) -> Vector2:
-	if pressing:
+func _scaled_direction(delta: float) -> Vector2:
+	if $TouchScreenButton.is_pressed():
 		if touch_pos.length() <= MAX_DRAG_DISTANCE:
 			knob.position = touch_pos
 		else:
