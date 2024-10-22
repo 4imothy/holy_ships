@@ -130,8 +130,6 @@ properties/2/replication_mode = 1
 position = Vector2(535, 385)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_88tep")
-joystick = ExtResource("2_t77ng")
-player_camera = ExtResource("2_wynsg")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -147,3 +145,10 @@ metadata/_edit_group_ = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_otnge")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("2_wynsg")]
+zoom = Vector2(2.5, 2.5)
+
+[node name="Joystick" parent="PlayerCamera" instance=ExtResource("2_t77ng")]
+position = Vector2(-724, 328)
+scale = Vector2(1, 1)

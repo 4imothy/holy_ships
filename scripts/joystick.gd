@@ -5,6 +5,7 @@ var MAX_DRAG_DISTANCE: float
 var DEAD_ZONE: float
 
 @onready var knob = $knob
+@onready var camera = $".."
 
 var holding_finger_pos: Vector2
 
