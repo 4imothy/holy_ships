@@ -1,18 +1,14 @@
 extends CharacterBody2D
 
 @onready var game = $"../.."
-@onready var collision = $CollisionShape2D
-
 @export var UI: PackedScene
 
 var owner_id = 1
 var camera
 var joystick
-var SCREEN_SIZE
 const PLAYER_SPEED: int = 200
 
 func _enter_tree() -> void:
-	SCREEN_SIZE = get_viewport_rect().size
 	owner_id = name.to_int()
 	set_multiplayer_authority(owner_id)
 	if owner_id != multiplayer.get_unique_id():
@@ -25,6 +21,7 @@ func _enter_tree() -> void:
 	
 func _ready() -> void:
 	# this shader stuff doesn't look very good
+	$Feet.add_to_group('feet')
 	return
 	var shader_material = ShaderMaterial.new()
 	shader_material.shader = load("res://GameObjects/player.gdshader")

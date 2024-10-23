@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dcqleymus211v"]
+[gd_scene load_steps=21 format=3 uid="uid://dcqleymus211v"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_88tep"]
 [ext_resource type="PackedScene" uid="uid://ckkx27mb7wlv5" path="res://GameObjects/UI.tscn" id="2_trmls"]
@@ -112,6 +112,9 @@ animations = [{
 radius = 28.0
 height = 128.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03xu8"]
+size = Vector2(48, 16)
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_otnge"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -137,9 +140,15 @@ sprite_frames = SubResource("SpriteFrames_j6f1o")
 animation = &"walk"
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ew2w4")
 metadata/_edit_group_ = true
+
+[node name="Feet" type="Area2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="Feet"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_03xu8")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_otnge")
