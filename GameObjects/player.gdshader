@@ -4,6 +4,8 @@ const float MIN_SUIT = 0.6;
 const float MAX_DIST = 0.06;
 const float BLEND_FACTOR = 0.5;
 
+uniform vec3 tint;
+
 void fragment() {
     vec4 tex_color = texture(TEXTURE, UV);
 
@@ -15,8 +17,7 @@ void fragment() {
     bool sim_colors = (abs(r - g) >= MAX_DIST) && (abs(r - b) >= MAX_DIST);
 
     if (!(skin && sim_colors)) {
-        vec3 blue_tint = vec3(0.0, 0.0, 1.0);
-        tex_color.rgb = mix(tex_color.rgb, blue_tint, BLEND_FACTOR);
+        tex_color.rgb = mix(tex_color.rgb, tint, BLEND_FACTOR);
     }
 
     COLOR = tex_color;

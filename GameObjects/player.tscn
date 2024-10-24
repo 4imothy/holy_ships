@@ -1,13 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dcqleymus211v"]
+[gd_scene load_steps=21 format=3 uid="uid://dcqleymus211v"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_88tep"]
-[ext_resource type="Shader" path="res://GameObjects/player.gdshader" id="2_6gdgr"]
-[ext_resource type="PackedScene" uid="uid://djsuct8txu1nx" path="res://GameObjects/joystick.tscn" id="2_t77ng"]
-[ext_resource type="PackedScene" uid="uid://ckkx27mb7wlv5" path="res://GameObjects/player_camera.tscn" id="2_wynsg"]
+[ext_resource type="PackedScene" uid="uid://ckkx27mb7wlv5" path="res://GameObjects/UI.tscn" id="2_trmls"]
 [ext_resource type="Texture2D" uid="uid://c2ihhw0fputjx" path="res://Assets/astronaut.png" id="2_xrwcj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gmv3n"]
-shader = ExtResource("2_6gdgr")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wmg66"]
 atlas = ExtResource("2_xrwcj")
@@ -112,38 +109,48 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ew2w4"]
-radius = 28.0
-height = 128.0
+radius = 12.0
+height = 42.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03xu8"]
+size = Vector2(15, 5)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_otnge"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("AnimatedSprite2D:animation")
+properties/0/replication_mode = 2
+properties/1/path = NodePath("AnimatedSprite2D:flip_h")
 properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("AnimatedSprite2D:flip_h")
+properties/1/replication_mode = 2
+properties/2/path = NodePath("AnimatedSprite2D:frame")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
+properties/3/path = NodePath("AnimatedSprite2D:animation")
+properties/3/spawn = true
+properties/3/replication_mode = 2
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(535, 385)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_88tep")
-joystick = ExtResource("2_t77ng")
-player_camera = ExtResource("2_wynsg")
+UI = ExtResource("2_trmls")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_gmv3n")
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_j6f1o")
 animation = &"walk"
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ew2w4")
 metadata/_edit_group_ = true
+
+[node name="Feet" type="Area2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="Feet"]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_03xu8")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_otnge")

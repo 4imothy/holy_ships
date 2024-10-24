@@ -4,12 +4,10 @@ extends Node2D
 @export var players_container: Node2D
 @export var spawn_points: Array[Node2D]
 
-const PLAYER_SPEED: int = 200
-var SCREEN_SIZE: Vector2
+const PLAYER_SPEED: int = 300
 var next_spawn_point_index = 0
 
 func _ready() -> void:
-	SCREEN_SIZE = get_viewport_rect().size
 	if not multiplayer.is_server():
 		return
 	elif multiplayer.is_server():

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://GameObjects/player.tscn" id="3_2g0rx"]
-[ext_resource type="PackedScene" path="res://GameObjects/fire.tscn" id="4_l4ty5"]
+[ext_resource type="PackedScene" uid="uid://brfvy70xweir5" path="res://GameObjects/fire.tscn" id="4_l4ty5"]
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://scenes/level_00/map.tscn" id="4_tlabt"]
 [ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
 [ext_resource type="Shader" path="res://GameObjects/fire.gdshader" id="6_m1h0i"]
@@ -23,7 +23,7 @@ spawn_points = [NodePath("---Players---/SpawnPoint_0"), NodePath("---Players---/
 
 [node name="Map" parent="---Environment---" instance=ExtResource("4_tlabt")]
 z_index = -1
-position = Vector2(-121, 759)
+position = Vector2(550, 350)
 scale = Vector2(0.5, 0.5)
 
 [node name="fire" parent="---Environment---" instance=ExtResource("4_l4ty5")]
