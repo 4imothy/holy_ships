@@ -28,11 +28,11 @@ scale = Vector2(0.5, 0.5)
 
 [node name="fire" parent="---Environment---" instance=ExtResource("4_l4ty5")]
 material = SubResource("ShaderMaterial_52d86")
-position = Vector2(45, 297)
+position = Vector2(60, 287)
 rotation = -1.5709
 scale = Vector2(0.843422, 1.30381)
 autoplay = "default"
-frame_progress = 0.608811
+frame_progress = 0.130795
 script = ExtResource("5_roxxf")
 shader_material = SubResource("ShaderMaterial_2g53u")
 
