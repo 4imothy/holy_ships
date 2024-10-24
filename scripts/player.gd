@@ -6,7 +6,7 @@ extends CharacterBody2D
 var owner_id = 1
 var camera
 var joystick
-const PLAYER_SPEED: int = 200
+const PLAYER_SPEED: int = 300
 
 func _enter_tree() -> void:
 	owner_id = name.to_int()
