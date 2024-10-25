@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://i3ujir1dm8pj"]
+[gd_scene load_steps=6 format=3 uid="uid://i3ujir1dm8pj"]
 
 [ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://Assets/map_tileset.png" id="1_04887"]
 [ext_resource type="Script" path="res://GameObjects/pressure_plate.gd" id="1_eux5g"]
+[ext_resource type="PackedScene" uid="uid://cn3sa3dvuk1xv" path="res://GameObjects/label.tscn" id="3_xdyt4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k4ll3"]
 custom_solver_bias = 0.325
@@ -9,12 +10,14 @@ radius = 18.0
 height = 54.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dbpvu"]
-properties/0/path = NodePath(".:frame")
+properties/0/path = NodePath("Sprite2D:frame")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="Area2D" type="Area2D"]
+[node name="PressurePlate" type="Area2D" node_paths=PackedStringArray("sprite", "pp_label")]
 script = ExtResource("1_eux5g")
+sprite = NodePath("Sprite2D")
+pp_label = NodePath("Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_04887")
@@ -26,8 +29,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_k4ll3")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-root_path = NodePath("../Sprite2D")
 replication_config = SubResource("SceneReplicationConfig_dbpvu")
+
+[node name="Label" parent="." instance=ExtResource("3_xdyt4")]
+offset_right = 1.0
+offset_bottom = 8.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
