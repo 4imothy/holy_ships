@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://mb32hps3uwxd"]
+[gd_scene load_steps=10 format=3 uid="uid://mb32hps3uwxd"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_bc2pa"]
 [ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://Assets/Background/menu_background.jpg" id="2_2ibmo"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://Assets/8bit-Font/PressStart2P-vaV7.ttf" id="3_gv07s"]
+[ext_resource type="AudioStream" uid="uid://lcbev3lmqlql" path="res://Assets/sound/short_beep.mp3" id="4_knc6r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgeep"]
 texture = ExtResource("2_2ibmo")
@@ -84,6 +85,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Back
 "
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ExitOptionsButton"]
+offset_right = 454.0
+offset_bottom = 76.0
+
 [node name="OptionsTitle" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -131,4 +136,9 @@ You will need to cooperate and communicate effectively to outsteer obstacles and
 Good luck, have fun, and work together!
  (More Options To Come)"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(349, 280)
+stream = ExtResource("4_knc6r")
+
 [connection signal="pressed" from="VBoxContainer/ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/ExitOptionsButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
