@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.3", "Mobile")
 [autoload]
 
 Lobby="*res://scripts/lobby.gd"
+MainMenuMusic="*res://scenes/global/main_menu_music.tscn"
 
 [display]
 
