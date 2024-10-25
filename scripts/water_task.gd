@@ -11,18 +11,11 @@ func _ready():
 	# Connect the "animation_finished" signal of the AnimatedSprite2D
 	water_bucket.animation_finished.connect(_on_animation_finished)
 
-	# Ensure the animation is paused at the start
-	water_bucket.play()
-	water_bucket.stop()  # Switching to stop after play to set the initial frame correctly
-
 func _on_button_down():
-	# Resume playing the animation from the current frame when the button is held down
 	water_bucket.play()
 
 func _on_button_up():
-	# Pause the animation when the button is released
-	water_bucket.stop()
+	water_bucket.pause()
 
 func _on_animation_finished():
-	# Print message when animation is done
 	print("Animation done")
