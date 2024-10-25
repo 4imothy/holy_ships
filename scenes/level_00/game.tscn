@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=13 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://GameObjects/player.tscn" id="3_2g0rx"]
@@ -7,8 +7,9 @@
 [ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
 [ext_resource type="Shader" path="res://GameObjects/fire.gdshader" id="6_m1h0i"]
 [ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://Assets/TransparentSpaceBackground.png" id="8_1xfr8"]
-[ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://Assets/SpaceBackground3.png" id="8_c3vgs"]
+[ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://Assets/Background/SpaceBackground3.png" id="8_c3vgs"]
 [ext_resource type="Script" path="res://scenes/level_00/parallax_layer.gd" id="8_r1lig"]
+[ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://Assets/sound/background_music_hs.mp3" id="10_ehvcv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -35,7 +36,7 @@ position = Vector2(65, 286)
 rotation = -1.5709
 scale = Vector2(0.843422, 1.30381)
 autoplay = "default"
-frame_progress = 0.608811
+frame_progress = 0.130795
 script = ExtResource("5_roxxf")
 shader_material = SubResource("ShaderMaterial_2g53u")
 
@@ -59,6 +60,11 @@ script = ExtResource("8_r1lig")
 
 [node name="Sprite2D" type="Sprite2D" parent="---Environment---/ParallaxBackground/ParallaxLayer2"]
 texture = ExtResource("8_1xfr8")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="---Environment---"]
+stream = ExtResource("10_ehvcv")
+volume_db = -10.0
+autoplay = true
 
 [node name="---Players---" type="Node" parent="."]
 

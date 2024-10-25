@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp00sqp5a1o8w"]
+[gd_scene load_steps=11 format=3 uid="uid://bp00sqp5a1o8w"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_od2rn"]
-[ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://Assets/menu_background.jpg" id="2_bh4ij"]
+[ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://Assets/Background/menu_background.jpg" id="2_bh4ij"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://Assets/8bit-Font/PressStart2P-vaV7.ttf" id="3_aqv0u"]
-[ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://Assets/spaceship_logo.png" id="4_rf6vh"]
+[ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://Assets/Background/spaceship_logo.png" id="4_rf6vh"]
+[ext_resource type="AudioStream" uid="uid://lcbev3lmqlql" path="res://Assets/sound/short_beep.mp3" id="5_6t7wa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgeep"]
 texture = ExtResource("2_bh4ij")
@@ -84,6 +85,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Start Game
 "
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/StartButton"]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 69.0
+
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -97,6 +103,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Options
 "
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OptionsButton"]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 69.0
+
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -108,6 +119,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_bv64x")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Exit"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ExitButton"]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 69.0
 
 [node name="SpaceshipLogo" type="Sprite2D" parent="VBoxContainer"]
 position = Vector2(596, -77)
@@ -139,6 +155,14 @@ text = "Holy Ships!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(349, 280)
+stream = ExtResource("5_6t7wa")
+volume_db = -15.0
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/StartButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/OptionsButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/ExitButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
