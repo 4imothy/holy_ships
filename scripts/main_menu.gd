@@ -1,5 +1,6 @@
 extends Control
 
+@onready var beeper = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,7 +9,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
 
 func _on_start_button_pressed() -> void:
 	print("Start Button Pressed")
@@ -23,3 +23,7 @@ func _on_options_button_pressed() -> void:
 func _on_exit_button_pressed() -> void:
 	print("Exit Button Pressed")
 	get_tree().quit()
+
+
+func _on_texture_rect_mouse_entered() -> void:
+	beeper.play()

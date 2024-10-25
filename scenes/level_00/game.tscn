@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://Assets/TransparentSpaceBackground.png" id="8_1xfr8"]
 [ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://Assets/Background/SpaceBackground3.png" id="8_c3vgs"]
 [ext_resource type="Script" path="res://scenes/level_00/parallax_layer.gd" id="8_r1lig"]
-[ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://Assets/Background/background_music_hs.mp3" id="10_ehvcv"]
+[ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://Assets/sound/background_music_hs.mp3" id="10_ehvcv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 

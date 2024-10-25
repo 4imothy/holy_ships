@@ -8,6 +8,7 @@ extends Node
 @export var not_connected_hbox: HBoxContainer
 @export var host_hbox: HBoxContainer
 
+@onready var beeper = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -66,3 +67,7 @@ func hide_menu():
 @rpc("call_local", "authority", "reliable")
 func stop_menu_music():
 	MainMenuMusic.stop_music()
+
+
+func _on_texture_rect_mouse_entered() -> void:
+	beeper.play()
