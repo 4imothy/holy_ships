@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://k31juk35qsaa"]
+[gd_scene load_steps=19 format=4 uid="uid://b5x7c4ml4cuvp"]
 
 [ext_resource type="Texture2D" uid="uid://dr2d4kig5vn7x" path="res://Assets/buckets.png" id="1_0hf8q"]
 [ext_resource type="Script" path="res://scripts/water_task.gd" id="1_uk5qj"]
