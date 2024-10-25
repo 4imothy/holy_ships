@@ -86,6 +86,7 @@ text = "Back
 "
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/ExitOptionsButton"]
+layout_mode = 0
 offset_right = 454.0
 offset_bottom = 76.0
 

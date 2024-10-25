@@ -136,6 +136,7 @@ text = "Back
 "
 
 [node name="TextureRect" type="TextureRect" parent="LobbyMenu/VBoxContainer/ExitLobbyButton"]
+layout_mode = 0
 offset_right = 460.0
 offset_bottom = 69.0
 
@@ -192,6 +193,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Host"
 
 [node name="TextureRect" type="TextureRect" parent="LobbyMenu/NotConnectedHBox/HostButton"]
+layout_mode = 0
 offset_right = 243.0
 offset_bottom = 64.0
 
@@ -209,6 +211,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7wf3p")
 text = "Join"
 
 [node name="TextureRect" type="TextureRect" parent="LobbyMenu/NotConnectedHBox/JoinButton"]
+layout_mode = 0
 offset_right = 237.0
 offset_bottom = 60.0
 
@@ -243,6 +246,7 @@ text = "Start
 "
 
 [node name="TextureRect" type="TextureRect" parent="LobbyMenu/HostHBox/StartButton"]
+layout_mode = 0
 offset_right = 499.0
 offset_bottom = 57.0
 

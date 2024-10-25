@@ -104,6 +104,7 @@ text = "Options
 "
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/OptionsButton"]
+layout_mode = 0
 offset_right = 460.0
 offset_bottom = 69.0
 
@@ -120,6 +121,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Exit"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/ExitButton"]
+layout_mode = 0
 offset_right = 460.0
 offset_bottom = 69.0
 
@@ -156,6 +158,7 @@ vertical_alignment = 1
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(349, 280)
 stream = ExtResource("5_6t7wa")
+volume_db = -15.0
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
