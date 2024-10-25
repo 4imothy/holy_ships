@@ -130,7 +130,6 @@ properties/3/spawn = true
 properties/3/replication_mode = 2
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(535, 385)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_88tep")
 UI = ExtResource("2_trmls")
