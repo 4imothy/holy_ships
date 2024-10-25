@@ -36,7 +36,7 @@ position = Vector2(65, 286)
 rotation = -1.5709
 scale = Vector2(0.843422, 1.30381)
 autoplay = "default"
-frame_progress = 0.608811
+frame_progress = 0.130795
 script = ExtResource("5_roxxf")
 shader_material = SubResource("ShaderMaterial_2g53u")
 
