@@ -70,3 +70,8 @@ func _on_server_disconnceted():
 	multiplayer.multiplayer_peer = null
 	players.clear()
 	server_disconnected.emit()
+	
+# For Debugging
+#func _process(delta):
+	#print(players)
+	
