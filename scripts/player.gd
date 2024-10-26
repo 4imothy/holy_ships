@@ -15,10 +15,8 @@ func _enter_tree() -> void:
 	
 	camera = UI.instantiate()
 	joystick = camera.get_node("Joystick")
-	joystick.position = Vector2(-get_viewport().get_size().x / 4, get_viewport().get_size().y / 5) 
 	add_child.call_deferred(camera)
 
-	
 func _ready() -> void:
 	# this shader stuff doesn't look very good
 	$Feet.add_to_group('feet')

@@ -18,7 +18,7 @@ func _ready() -> void:
 		# Listeners (Subscribe to Events)			
 		multiplayer.peer_connected.connect(add_player) # Added for late joiners (not sure how it works)
 		multiplayer.peer_disconnected.connect(delete_player)
-    _start_music()
+	_start_music()
 
 func _process(delta):
 	if multiplayer.is_server() and music_started:
