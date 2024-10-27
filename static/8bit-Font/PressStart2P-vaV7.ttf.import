@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dka1g6k5vpcco"
-path="res://.godot/imported/PressStart2P-vaV7.ttf-2fda8da8dd6a1e5555c30889e8b7b18c.fontdata"
+path="res://.godot/imported/PressStart2P-vaV7.ttf-732ddcff2442e48faa0c81ee9fddda8e.fontdata"
 
 [deps]
 
-source_file="res://assets/8bit-Font/PressStart2P-vaV7.ttf"
-dest_files=["res://.godot/imported/PressStart2P-vaV7.ttf-2fda8da8dd6a1e5555c30889e8b7b18c.fontdata"]
+source_file="res://static/8bit-Font/PressStart2P-vaV7.ttf"
+dest_files=["res://.godot/imported/PressStart2P-vaV7.ttf-732ddcff2442e48faa0c81ee9fddda8e.fontdata"]
 
 [params]
 

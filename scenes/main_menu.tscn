@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://bp00sqp5a1o8w"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_od2rn"]
-[ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://assets/background/menu_background.jpg" id="2_bh4ij"]
+[ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://static/background/menu_background.jpg" id="2_bh4ij"]
 [ext_resource type="PackedScene" uid="uid://mb32hps3uwxd" path="res://scenes/options_menu.tscn" id="2_sks7e"]
 [ext_resource type="PackedScene" uid="uid://383gtl7ftag0" path="res://scenes/lobby_menu.tscn" id="3_57ui8"]
-[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://assets/8bit-Font/PressStart2P-vaV7.ttf" id="3_aqv0u"]
-[ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://assets/background/spaceship_logo.png" id="4_rf6vh"]
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="3_aqv0u"]
+[ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="4_rf6vh"]
 [ext_resource type="PackedScene" uid="uid://cy4aexa3idkox" path="res://scenes/game_container.tscn" id="4_wc5hr"]
-[ext_resource type="AudioStream" uid="uid://lcbev3lmqlql" path="res://assets/sound/short_beep.mp3" id="5_6t7wa"]
-[ext_resource type="AudioStream" uid="uid://byj4f61hxqxhf" path="res://assets/sound/main_menu_music_hs.mp3" id="6_wbn7o"]
+[ext_resource type="AudioStream" uid="uid://lcbev3lmqlql" path="res://static/sound/short_beep.mp3" id="5_6t7wa"]
+[ext_resource type="AudioStream" uid="uid://byj4f61hxqxhf" path="res://static/sound/main_menu_music_hs.mp3" id="6_wbn7o"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgeep"]
 texture = ExtResource("2_bh4ij")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://djsuct8txu1nx"]
 
 [ext_resource type="Script" path="res://scripts/joystick.gd" id="1_3fbnt"]
-[ext_resource type="Texture2D" uid="uid://d22hq20vq1mek" path="res://assets/grey_circle.svg" id="2_3ocdd"]
-[ext_resource type="Texture2D" uid="uid://bg0a4fe8v7d2g" path="res://assets/grey_circle_outline.svg" id="3_k2qwx"]
+[ext_resource type="Texture2D" uid="uid://d22hq20vq1mek" path="res://static/grey_circle.svg" id="2_3ocdd"]
+[ext_resource type="Texture2D" uid="uid://bg0a4fe8v7d2g" path="res://static/grey_circle_outline.svg" id="3_k2qwx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6acyk"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cn3sa3dvuk1xv"]
 
-[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://assets/8bit-Font/PressStart2P-vaV7.ttf" id="1_av435"]
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="1_av435"]
 
 [node name="Label" type="Label"]
 anchors_preset = 15

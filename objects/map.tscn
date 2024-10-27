@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://duniemp01a8h3"]
 
 [ext_resource type="PackedScene" uid="uid://i3ujir1dm8pj" path="res://objects/pressure_plate.tscn" id="2_r1du8"]
-[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://assets/map_tileset.png" id="2_ywt80"]
+[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://static/map_tileset.png" id="2_ywt80"]
 [ext_resource type="PackedScene" uid="uid://dvd1qvggik20d" path="res://objects/door.tscn" id="3_7pgbi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4nh5"]

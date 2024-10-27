@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://objects/map.tscn" id="4_tlabt"]
 [ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
 [ext_resource type="Shader" path="res://objects/fire.gdshader" id="6_m1h0i"]
-[ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://assets/TransparentSpaceBackground.png" id="8_1xfr8"]
-[ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://assets/background/SpaceBackground3.png" id="8_c3vgs"]
+[ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://static/TransparentSpaceBackground.png" id="8_1xfr8"]
+[ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://static/background/SpaceBackground3.png" id="8_c3vgs"]
 [ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="8_r1lig"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://i3ujir1dm8pj"]
 
-[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://assets/map_tileset.png" id="1_04887"]
+[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://static/map_tileset.png" id="1_04887"]
 [ext_resource type="Script" path="res://scripts/pressure_plate.gd" id="1_eux5g"]
 [ext_resource type="PackedScene" uid="uid://cn3sa3dvuk1xv" path="res://objects/label.tscn" id="3_xdyt4"]
 
