@@ -12,7 +12,6 @@ const MAX_CONNECTIONS = 2
 var players = {}
 
 var player_info = {"name": "Name"}
-#@onready var peer = ENetMultiplayerPeer.new()     
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)

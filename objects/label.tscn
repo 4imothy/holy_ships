@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn3sa3dvuk1xv"]
+
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="1_av435"]
+
+[node name="Label" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1151.0
+offset_bottom = -638.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.956863, 0.709804, 0.313726, 1)
+theme_override_fonts/font = ExtResource("1_av435")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1

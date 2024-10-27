@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvd1qvggik20d"]
+
+[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://static/map_tileset.png" id="1_uslws"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_wdyok"]
+[ext_resource type="PackedScene" uid="uid://cn3sa3dvuk1xv" path="res://objects/label.tscn" id="2_cijhw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clqfm"]
+size = Vector2(41, 52)
+
+[node name="Door" type="Area2D" node_paths=PackedStringArray("rdoor_label", "rdoor", "ldoor")]
+position = Vector2(100, 0)
+script = ExtResource("1_wdyok")
+rdoor_label = NodePath("Door/Right/Label")
+rdoor = NodePath("Door/Right")
+ldoor = NodePath("Door/Left")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_clqfm")
+
+[node name="Door" type="Sprite2D" parent="."]
+texture = ExtResource("1_uslws")
+region_enabled = true
+region_rect = Rect2(256, 576, 64, 64)
+
+[node name="Left" type="Sprite2D" parent="Door"]
+z_index = -1
+texture = ExtResource("1_uslws")
+region_enabled = true
+region_rect = Rect2(320, 576, 64, 64)
+
+[node name="Label" parent="Door/Left" instance=ExtResource("2_cijhw")]
+offset_left = -20.0
+offset_top = -10.0
+offset_right = -64.0
+offset_bottom = -51.0
+text = "GA
+TE"
+
+[node name="Right" type="Sprite2D" parent="Door"]
+z_index = -1
+position = Vector2(4, 0)
+texture = ExtResource("1_uslws")
+region_enabled = true
+region_rect = Rect2(384, 576, 64, 64)
+
+[node name="Label" parent="Door/Right" instance=ExtResource("2_cijhw")]
+offset_left = 5.0
+offset_top = 7.0
+offset_right = -51.0
+offset_bottom = -49.0
+
+[node name="Behind" type="Sprite2D" parent="Door"]
+z_index = -2
+texture = ExtResource("1_uslws")
+region_enabled = true
+region_rect = Rect2(448, 576, 64, 64)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
