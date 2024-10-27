@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=13 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://static/TransparentSpaceBackground.png" id="8_1xfr8"]
 [ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://static/background/SpaceBackground3.png" id="8_c3vgs"]
 [ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="8_r1lig"]
+[ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://static/sound/background_music_hs.mp3" id="10_hlujy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -62,6 +63,7 @@ layer_speed = 9
 texture = ExtResource("8_1xfr8")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="---Environment---"]
+stream = ExtResource("10_hlujy")
 
 [node name="---Players---" type="Node" parent="."]
 

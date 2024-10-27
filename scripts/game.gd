@@ -18,7 +18,7 @@ func _ready() -> void:
 		# Listeners (Subscribe to Events)			
 		multiplayer.peer_connected.connect(add_player) # Added for late joiners (not sure how it works)
 		multiplayer.peer_disconnected.connect(delete_player)
-		# _start_music()
+		_start_music()
 
 func _process(delta):
 	return
@@ -59,14 +59,11 @@ func _on_multiplayer_spawner_spawned(node: Node) -> void:
 
 ### Music Synchronization Functions ###
 func _start_music():
-	# Only start the music on the server
 	if multiplayer.is_server():
-		music_player.volume_db = -100
-	music_player.play()
-	music_started = true
-		# Broadcast the music state to all clients
-	# rpc("sync_music", music_player.get_playback_position())
-	# print("Server started music, broadcasting to clients")
+		music_player.play()
+		music_started = true
+	rpc("sync_music", music_player.get_playback_position())
+	print("Server started music, broadcasting to clients")
 
 @rpc("any_peer", "reliable")
 func sync_music(position):
