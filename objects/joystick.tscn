@@ -7,7 +7,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6acyk"]
 
 [node name="Joystick" type="Node2D"]
-scale = Vector2(0.3, 0.3)
 script = ExtResource("1_3fbnt")
 
 [node name="knob" type="Sprite2D" parent="."]

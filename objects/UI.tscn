@@ -6,5 +6,4 @@
 zoom = Vector2(1.5, 1.5)
 
 [node name="Joystick" parent="." instance=ExtResource("1_tpdl1")]
-position = Vector2(-209, 85)
 scale = Vector2(0.5, 0.5)
