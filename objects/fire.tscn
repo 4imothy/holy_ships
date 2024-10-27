@@ -124,7 +124,6 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 position = Vector2(-2, -71)
-scale = Vector2(7.64062, 6.33462)
 sprite_frames = SubResource("SpriteFrames_q1f0b")
 frame = 3
 frame_progress = 0.817236
