@@ -1,15 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=12 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
-[ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://GameObjects/player.tscn" id="3_2g0rx"]
-[ext_resource type="PackedScene" uid="uid://brfvy70xweir5" path="res://GameObjects/fire.tscn" id="4_l4ty5"]
-[ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://scenes/level_00/map.tscn" id="4_tlabt"]
+[ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
+[ext_resource type="PackedScene" uid="uid://brfvy70xweir5" path="res://objects/fire.tscn" id="4_l4ty5"]
+[ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://objects/map.tscn" id="4_tlabt"]
 [ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
-[ext_resource type="Shader" path="res://GameObjects/fire.gdshader" id="6_m1h0i"]
-[ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://Assets/TransparentSpaceBackground.png" id="8_1xfr8"]
-[ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://Assets/Background/SpaceBackground3.png" id="8_c3vgs"]
-[ext_resource type="Script" path="res://scenes/level_00/parallax_layer.gd" id="8_r1lig"]
-[ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://Assets/sound/background_music_hs.mp3" id="10_ehvcv"]
+[ext_resource type="Shader" path="res://objects/fire.gdshader" id="6_m1h0i"]
+[ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://assets/TransparentSpaceBackground.png" id="8_1xfr8"]
+[ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://assets/background/SpaceBackground3.png" id="8_c3vgs"]
+[ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="8_r1lig"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -17,11 +16,12 @@
 shader = ExtResource("6_m1h0i")
 shader_parameter/progress = 0.0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points", "music_player")]
 script = ExtResource("1_blgyt")
 player_scene = ExtResource("3_2g0rx")
 players_container = NodePath("---Players---/PlayersContainer")
 spawn_points = [NodePath("---Players---/SpawnPoint_0"), NodePath("---Players---/SpawnPoint_1")]
+music_player = NodePath("---Environment---/BackgroundMusic")
 
 [node name="---Environment---" type="Node" parent="."]
 
@@ -62,18 +62,15 @@ script = ExtResource("8_r1lig")
 texture = ExtResource("8_1xfr8")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="---Environment---"]
-stream = ExtResource("10_ehvcv")
-volume_db = -10.0
-autoplay = true
 
 [node name="---Players---" type="Node" parent="."]
 
 [node name="PlayersContainer" type="Node2D" parent="---Players---"]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="---Players---"]
-_spawnable_scenes = PackedStringArray("res://GameObjects/player.tscn")
+_spawnable_scenes = PackedStringArray("res://objects/player.tscn")
 spawn_path = NodePath("../PlayersContainer")
-spawn_limit = 2
+spawn_limit = 1
 
 [node name="SpawnPoint_0" type="Node2D" parent="---Players---"]
 position = Vector2(485, 362)

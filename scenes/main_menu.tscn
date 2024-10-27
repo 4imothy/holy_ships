@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bp00sqp5a1o8w"]
+[gd_scene load_steps=15 format=3 uid="uid://bp00sqp5a1o8w"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_od2rn"]
-[ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://Assets/Background/menu_background.jpg" id="2_bh4ij"]
-[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://Assets/8bit-Font/PressStart2P-vaV7.ttf" id="3_aqv0u"]
-[ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://Assets/Background/spaceship_logo.png" id="4_rf6vh"]
-[ext_resource type="AudioStream" uid="uid://lcbev3lmqlql" path="res://Assets/sound/short_beep.mp3" id="5_6t7wa"]
+[ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://assets/background/menu_background.jpg" id="2_bh4ij"]
+[ext_resource type="PackedScene" uid="uid://mb32hps3uwxd" path="res://scenes/options_menu.tscn" id="2_sks7e"]
+[ext_resource type="PackedScene" uid="uid://383gtl7ftag0" path="res://scenes/lobby_menu.tscn" id="3_57ui8"]
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://assets/8bit-Font/PressStart2P-vaV7.ttf" id="3_aqv0u"]
+[ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://assets/background/spaceship_logo.png" id="4_rf6vh"]
+[ext_resource type="PackedScene" uid="uid://cy4aexa3idkox" path="res://scenes/game_container.tscn" id="4_wc5hr"]
+[ext_resource type="AudioStream" uid="uid://lcbev3lmqlql" path="res://assets/sound/short_beep.mp3" id="5_6t7wa"]
+[ext_resource type="AudioStream" uid="uid://byj4f61hxqxhf" path="res://assets/sound/main_menu_music_hs.mp3" id="6_wbn7o"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgeep"]
 texture = ExtResource("2_bh4ij")
@@ -39,7 +43,7 @@ corner_radius_bottom_left = 16
 shadow_size = 10
 shadow_offset = Vector2(5, 5)
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("beeper", "main_menu_music")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,6 +51,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_od2rn")
+beeper = NodePath("Beeper")
+main_menu_music = NodePath("MenuBackgroundMusic")
+options_menu = ExtResource("2_sks7e")
+lobby_menu = ExtResource("3_57ui8")
+game_container = ExtResource("4_wc5hr")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -155,10 +164,13 @@ text = "Holy Ships!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Beeper" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(349, 280)
 stream = ExtResource("5_6t7wa")
 volume_db = -15.0
+
+[node name="MenuBackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_wbn7o")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
