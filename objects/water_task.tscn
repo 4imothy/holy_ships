@@ -1,32 +1,32 @@
 [gd_scene load_steps=19 format=4 uid="uid://cfnjf0vp16e0u"]
 
-[ext_resource type="Texture2D" uid="uid://dr2d4kig5vn7x" path="res://Assets/buckets.png" id="1_0hf8q"]
-[ext_resource type="Script" path="res://scripts/water_task.gd" id="1_uk5qj"]
-[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://Assets/map_tileset.png" id="2_k1if8"]
-[ext_resource type="Texture2D" uid="uid://b63gl3wkbfbde" path="res://Assets/PBP-V2.png" id="3_bnvji"]
+[ext_resource type="Script" path="res://scripts/water_task.gd" id="1_4qycx"]
+[ext_resource type="Texture2D" uid="uid://dr2d4kig5vn7x" path="res://assets/buckets.png" id="2_rigxq"]
+[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://assets/map_tileset.png" id="3_4ql7u"]
+[ext_resource type="Texture2D" uid="uid://b63gl3wkbfbde" path="res://assets/PBP-V2.png" id="4_4m4gx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klp4m"]
-atlas = ExtResource("1_0hf8q")
+atlas = ExtResource("2_rigxq")
 region = Rect2(0, 0, 178, 157)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fc0jo"]
-atlas = ExtResource("1_0hf8q")
+atlas = ExtResource("2_rigxq")
 region = Rect2(178, 0, 178, 157)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k12ce"]
-atlas = ExtResource("1_0hf8q")
+atlas = ExtResource("2_rigxq")
 region = Rect2(356, 0, 178, 157)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxbqg"]
-atlas = ExtResource("1_0hf8q")
+atlas = ExtResource("2_rigxq")
 region = Rect2(534, 0, 178, 157)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtk45"]
-atlas = ExtResource("1_0hf8q")
+atlas = ExtResource("2_rigxq")
 region = Rect2(712, 0, 178, 157)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a4062"]
-atlas = ExtResource("1_0hf8q")
+atlas = ExtResource("2_rigxq")
 region = Rect2(890, 0, 178, 157)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nm8ra"]
@@ -56,7 +56,7 @@ animations = [{
 }]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3udk3"]
-texture = ExtResource("2_k1if8")
+texture = ExtResource("3_4ql7u")
 1:0/0 = 0
 2:0/0 = 0
 5:0/0 = 0
@@ -1985,21 +1985,21 @@ sources/4 = SubResource("TileSetAtlasSource_3udk3")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hux5c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u0a65"]
-texture = ExtResource("3_bnvji")
+texture = ExtResource("4_4m4gx")
 region_rect = Rect2(110, 15, 36, 18)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o61v4"]
-texture = ExtResource("3_bnvji")
+texture = ExtResource("4_4m4gx")
 region_rect = Rect2(158, 18, 36, 15)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yxwfa"]
-texture = ExtResource("3_bnvji")
+texture = ExtResource("4_4m4gx")
 region_rect = Rect2(110, 15, 36, 18)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(115, 69)
 scale = Vector2(0.820132, 0.730751)
-script = ExtResource("1_uk5qj")
+script = ExtResource("1_4qycx")
 
 [node name="WaterBucket" type="AnimatedSprite2D" parent="."]
 position = Vector2(435.296, 257.27)

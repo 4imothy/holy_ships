@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvd1qvggik20d"]
 
-[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://Assets/map_tileset.png" id="1_uslws"]
-[ext_resource type="Script" path="res://GameObjects/door.gd" id="1_wdyok"]
-[ext_resource type="PackedScene" uid="uid://cn3sa3dvuk1xv" path="res://GameObjects/label.tscn" id="2_cijhw"]
+[ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://assets/map_tileset.png" id="1_uslws"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_wdyok"]
+[ext_resource type="PackedScene" uid="uid://cn3sa3dvuk1xv" path="res://objects/label.tscn" id="2_cijhw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_clqfm"]
 size = Vector2(41, 52)

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr2d4kig5vn7x"
-path="res://.godot/imported/buckets.png-f86d03347d5df98af38fd4b9ce3c8714.ctex"
+path="res://.godot/imported/buckets.png-849c2af6aacc1ddc4e2e49ca02cf9f97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/buckets.png"
-dest_files=["res://.godot/imported/buckets.png-f86d03347d5df98af38fd4b9ce3c8714.ctex"]
+source_file="res://assets/buckets.png"
+dest_files=["res://.godot/imported/buckets.png-849c2af6aacc1ddc4e2e49ca02cf9f97.ctex"]
 
 [params]
 

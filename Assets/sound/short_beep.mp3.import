@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://lcbev3lmqlql"
-path="res://.godot/imported/short_beep.mp3-bffea1c9cd2ba1cb0c4f16574783393a.mp3str"
+path="res://.godot/imported/short_beep.mp3-7b2b1293612af936eca1178c167f33bd.mp3str"
 
 [deps]
 
-source_file="res://Assets/sound/short_beep.mp3"
-dest_files=["res://.godot/imported/short_beep.mp3-bffea1c9cd2ba1cb0c4f16574783393a.mp3str"]
+source_file="res://assets/sound/short_beep.mp3"
+dest_files=["res://.godot/imported/short_beep.mp3-7b2b1293612af936eca1178c167f33bd.mp3str"]
 
 [params]
 

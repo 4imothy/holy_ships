@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf310i3my8qew"
-path="res://.godot/imported/Fire+Sparks-Sheet.png-87d06d9512a836f6ff6720182d277b42.ctex"
+path="res://.godot/imported/Fire+Sparks-Sheet.png-c4201963fca3f4a6d3d7bde3b363ffaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Fire+Sparks-Sheet.png"
-dest_files=["res://.godot/imported/Fire+Sparks-Sheet.png-87d06d9512a836f6ff6720182d277b42.ctex"]
+source_file="res://assets/Fire+Sparks-Sheet.png"
+dest_files=["res://.godot/imported/Fire+Sparks-Sheet.png-c4201963fca3f4a6d3d7bde3b363ffaf.ctex"]
 
 [params]
 

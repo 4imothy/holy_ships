@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://djsuct8txu1nx"]
+
+[ext_resource type="Script" path="res://scripts/joystick.gd" id="1_3fbnt"]
+[ext_resource type="Texture2D" uid="uid://d22hq20vq1mek" path="res://assets/grey_circle.svg" id="2_3ocdd"]
+[ext_resource type="Texture2D" uid="uid://bg0a4fe8v7d2g" path="res://assets/grey_circle_outline.svg" id="3_k2qwx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6acyk"]
+
+[node name="Joystick" type="Node2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_3fbnt")
+
+[node name="knob" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_3ocdd")
+
+[node name="ring" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("3_k2qwx")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+scale = Vector2(15, 15)
+shape = SubResource("CircleShape2D_6acyk")

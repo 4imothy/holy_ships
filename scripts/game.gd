@@ -4,7 +4,7 @@ extends Node2D
 @export var players_container: Node2D
 @export var spawn_points: Array[Node2D]
 
-@onready var music_player = $"---Environment---/BackgroundMusic"
+@export var music_player: AudioStreamPlayer2D
 
 const PLAYER_SPEED: int = 300
 var next_spawn_point_index = 0
@@ -18,9 +18,10 @@ func _ready() -> void:
 		# Listeners (Subscribe to Events)			
 		multiplayer.peer_connected.connect(add_player) # Added for late joiners (not sure how it works)
 		multiplayer.peer_disconnected.connect(delete_player)
-	_start_music()
+		# _start_music()
 
 func _process(delta):
+	return
 	if multiplayer.is_server() and music_started:
 		# Periodically send the music state to keep things in sync
 		rpc("sync_music", music_player.get_playback_position())
@@ -60,11 +61,12 @@ func _on_multiplayer_spawner_spawned(node: Node) -> void:
 func _start_music():
 	# Only start the music on the server
 	if multiplayer.is_server():
-		music_player.play()
-		music_started = true
+		music_player.volume_db = -100
+	music_player.play()
+	music_started = true
 		# Broadcast the music state to all clients
-		rpc("sync_music", music_player.get_playback_position())
-		print("Server started music, broadcasting to clients")
+	# rpc("sync_music", music_player.get_playback_position())
+	# print("Server started music, broadcasting to clients")
 
 @rpc("any_peer", "reliable")
 func sync_music(position):
