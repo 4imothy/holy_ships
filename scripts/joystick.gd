@@ -37,7 +37,7 @@ func _scaled_direction(delta: float) -> Vector2:
 			var angle = touch_pos.angle()
 			knob.position.x = cos(angle) * max_drag_distance
 			knob.position.y = sin(angle) * max_drag_distance
-		return calc_scaled_direction()
+		return calc_scaled_direction_4d()
 	else:
 		knob.position = lerp(knob.position, Vector2(0,0), 
 							   delta * max_drag_distance / 10)
@@ -53,4 +53,16 @@ func calc_scaled_direction() -> Vector2:
 	dist = abs(dif)
 	if dist >= dead_zone:
 		s_dir.y = dif / max_drag_distance
+	return s_dir
+	
+func calc_scaled_direction_4d() -> Vector2:
+	var s_dir := Vector2.ZERO
+	var dif = knob.global_position - global_position
+	var dist  = abs(dif)
+
+	if dist.x >= dead_zone and dist.x > dist.y:
+		s_dir.x = sign(dif.x) * (dist.x / max_drag_distance)
+	elif dist.y >= dead_zone and dist.y > dist.x:
+		s_dir.y = sign(dif.y) * (dist.y / max_drag_distance)
+	
 	return s_dir
