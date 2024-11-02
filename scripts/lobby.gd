@@ -8,6 +8,7 @@ signal server_disconnected
 
 const PORT = 4587
 const MAX_CONNECTIONS = 2
+const HOST_ID = 1
 
 var players = {}
 
@@ -29,8 +30,8 @@ func create_game():
 	
 	multiplayer.multiplayer_peer = peer
 	
-	players[1] = player_info
-	player_connected.emit(1, player_info)
+	players[HOST_ID] = player_info
+	player_connected.emit(HOST_ID, player_info)
 	return true
 	
 func join_game(address):

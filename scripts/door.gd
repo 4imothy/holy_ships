@@ -17,7 +17,6 @@ var rdoor_original_position: Vector2
 var ldoor_original_position: Vector2
 
 func _ready():
-	# Store the original positions of the doors
 	rdoor_original_position = rdoor.position
 	ldoor_original_position = ldoor.position
 
@@ -31,8 +30,6 @@ func close():
 	open_door = false
 
 func _process(delta: float):
-	# if multiplayer.get_unique_id() != 1:
-		# return
 	if open_door:
 		if rdoor.position.x < rdoor_original_position.x + target_offset:
 			rdoor.position.x += door_speed * delta
