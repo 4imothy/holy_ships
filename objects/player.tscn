@@ -130,6 +130,7 @@ properties/3/spawn = true
 properties/3/replication_mode = 2
 
 [node name="Player" type="CharacterBody2D"]
+platform_floor_layers = 4294967294
 script = ExtResource("1_88tep")
 UI = ExtResource("2_trmls")
 metadata/_edit_group_ = true

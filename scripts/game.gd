@@ -6,13 +6,12 @@ extends Node2D
 
 @export var music_player: AudioStreamPlayer2D
 
-const PLAYER_SPEED: int = 300
 var next_spawn_point_index = 0
 var music_started = false  # Track if music has started
 
 func _ready() -> void:
 	if multiplayer.is_server():
-		add_player(1)
+		add_player(Lobby.HOST_ID)
 		for id in multiplayer.get_peers():
 			add_player(id)		
 		# Listeners (Subscribe to Events)			
@@ -37,7 +36,7 @@ func _exit_tree(): # Built in Function
 func add_player(id):
 	var player_instance = player_scene.instantiate()
 	player_instance.name = str(id)
-	if id == 1:
+	if id == Lobby.HOST_ID:
 		player_instance.position = get_spawn_point()
 	players_container.add_child(player_instance)
 	
@@ -49,9 +48,7 @@ func delete_player(id):
 	
 func get_spawn_point():
 	var spawn_point = spawn_points[next_spawn_point_index].position
-	next_spawn_point_index += 1 # TODO do %
-	if next_spawn_point_index >= len(spawn_points):
-		next_spawn_point_index = 0
+	next_spawn_point_index = (next_spawn_point_index + 1) % len(spawn_points)
 	return spawn_point
 
 func _on_multiplayer_spawner_spawned(node: Node) -> void:

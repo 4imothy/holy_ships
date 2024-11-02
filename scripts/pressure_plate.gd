@@ -1,7 +1,3 @@
-# TODO the area entered and probably a bunch of other code is happening
-# on all machines when it can really just happen on host and get shared
-# TODO fix the player count to be shared or only run on Host? If 
-# doors are closing when one player gets off out of two
 extends Area2D
 
 const PIXEL_DIM = 64
