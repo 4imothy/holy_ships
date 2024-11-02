@@ -2391,16 +2391,8 @@ door = NodePath("../Door2")
 position = Vector2(672, 0)
 door = NodePath("../Door")
 
-[node name="Door" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("3_7pgbi")]
+[node name="Door" parent="." instance=ExtResource("3_7pgbi")]
 position = Vector2(160, -256)
-spawn_point = NodePath("Spawnpoint")
 
-[node name="Spawnpoint" type="Node2D" parent="Door"]
-position = Vector2(0, -100)
-
-[node name="Door2" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("3_7pgbi")]
+[node name="Door2" parent="." instance=ExtResource("3_7pgbi")]
 position = Vector2(160, -64)
-spawn_point = NodePath("Spawnpoint")
-
-[node name="Spawnpoint" type="Node2D" parent="Door2"]
-position = Vector2(0, -99)
