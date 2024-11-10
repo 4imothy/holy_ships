@@ -3,7 +3,6 @@ extends Node2D
 @export var player_scene: PackedScene
 @export var players_container: Node2D
 @export var spawn_points: Array[Node2D]
-
 @export var music_player: AudioStreamPlayer2D
 
 var next_spawn_point_index = 0
