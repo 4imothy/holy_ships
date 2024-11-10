@@ -8,11 +8,11 @@ signal server_disconnected
 
 const PORT = 4587
 const MAX_CONNECTIONS = 2
+const HOST_ID = 1
 
 var players = {}
 
 var player_info = {"name": "Name"}
-#@onready var peer = ENetMultiplayerPeer.new()     
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -30,8 +30,8 @@ func create_game():
 	
 	multiplayer.multiplayer_peer = peer
 	
-	players[1] = player_info
-	player_connected.emit(1, player_info)
+	players[HOST_ID] = player_info
+	player_connected.emit(HOST_ID, player_info)
 	return true
 	
 func join_game(address):

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckkx27mb7wlv5"]
+
+[ext_resource type="PackedScene" uid="uid://djsuct8txu1nx" path="res://objects/joystick.tscn" id="1_tpdl1"]
+
+[node name="UI" type="Camera2D"]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Joystick" parent="." instance=ExtResource("1_tpdl1")]
+scale = Vector2(0.5, 0.5)

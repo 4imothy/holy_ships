@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
-@onready var game = $"../.."
 @export var UI: PackedScene
 
-var owner_id = 1
+var owner_id
 var camera
 var joystick
 const PLAYER_SPEED: int = 300
@@ -15,10 +14,9 @@ func _enter_tree() -> void:
 		return
 	
 	camera = UI.instantiate()
-	get_tree().current_scene.add_child.call_deferred(camera)
 	joystick = camera.get_node("Joystick")
-	joystick.position = Vector2(-get_viewport().get_size().x / 6, get_viewport().get_size().y / 8) 
-	
+	add_child.call_deferred(camera)
+
 func _ready() -> void:
 	# this shader stuff doesn't look very good
 	$Feet.add_to_group('feet')
@@ -30,7 +28,7 @@ func _ready() -> void:
 	# worry about that if we actually want to use this method to tint
 	$AnimatedSprite2D.material = shader_material
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if multiplayer.multiplayer_peer == null:
 		return
 	if owner_id != multiplayer.get_unique_id():
@@ -43,15 +41,11 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	move_and_slide()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if multiplayer.multiplayer_peer == null:
 		return
 	if owner_id != multiplayer.get_unique_id():
 		return
-		
-	camera.global_position.x = global_position.x
-	camera.global_position.y = global_position.y
-	
 	
 	if abs(velocity.x) > abs(velocity.y):
 		$AnimatedSprite2D.animation = 'walk'

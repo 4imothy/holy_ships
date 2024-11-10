@@ -1,14 +1,13 @@
 extends Node
 
-@export var ui: Control
-@export var level_container: Node
-@export var level_scene: PackedScene
 @export var ip_line_edit: LineEdit
 @export var status_label: Label
 @export var not_connected_hbox: HBoxContainer
 @export var host_hbox: HBoxContainer
 
-@onready var beeper = $AudioStreamPlayer2D
+@onready var main_menu = $".."
+
+var beeper = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,22 +33,11 @@ func _on_join_button_pressed() -> void:
 		Lobby.join_game(ip_line_edit.text)
 
 func _on_start_button_pressed() -> void:
-	hide_menu.rpc()
-	stop_menu_music.rpc()
-	change_level.call_deferred(level_scene)
-
-func change_level(scene):
-	# Clear out old scene from memory
-	for child in level_container.get_children():
-		level_container.remove_child(child)
-		child.queue_free()
-	
-	# Load in new scene
-	level_container.add_child(scene.instantiate())
+	main_menu.start_game()
 
 func _on_exit_lobby_button_pressed() -> void:
-	print("Exit Lobby Menu Button Pressed")
-	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
+	beeper.play()
+	queue_free()
 	
 ### Helper Functions ###
 func _on_connection_failed():
@@ -58,16 +46,8 @@ func _on_connection_failed():
 	
 func _on_connected_to_server():
 	status_label.text = "Connection Status: Connected!"
-
-### RPCS ###
-@rpc("call_local", "authority", "reliable")
-func hide_menu():
-	ui.hide()
-
-@rpc("call_local", "authority", "reliable")
-func stop_menu_music():
-	MainMenuMusic.stop_music()
-
-
+	
+# TODO change all buttons to touchscreen buttons 
+# no hovering on mobile phones so remove that
 func _on_texture_rect_mouse_entered() -> void:
 	beeper.play()
