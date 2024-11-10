@@ -36,6 +36,7 @@ func _on_start_button_pressed() -> void:
 	main_menu.start_game()
 
 func _on_exit_lobby_button_pressed() -> void:
+	beeper.play()
 	queue_free()
 	
 ### Helper Functions ###

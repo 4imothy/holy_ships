@@ -5,6 +5,7 @@ extends Control
 
 @export var options_menu: PackedScene
 @export var lobby_menu: PackedScene
+@export var credits: PackedScene
 @export var game_container: PackedScene
 
 # Called when the node enters the scene tree for the first time.
@@ -34,3 +35,8 @@ func _on_exit_button_pressed() -> void:
 
 func _on_texture_rect_mouse_entered() -> void:
 	beeper.play()
+
+func _on_credits_button_pressed() -> void:
+	var credits = credits.instantiate()
+	credits.beeper = beeper
+	add_child(credits)

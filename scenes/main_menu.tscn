@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bp00sqp5a1o8w"]
+[gd_scene load_steps=16 format=3 uid="uid://bp00sqp5a1o8w"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_od2rn"]
 [ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://static/background/menu_background.jpg" id="2_bh4ij"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://383gtl7ftag0" path="res://scenes/lobby_menu.tscn" id="3_57ui8"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="3_aqv0u"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="4_rf6vh"]
+[ext_resource type="PackedScene" uid="uid://bxofw8l14noc7" path="res://scenes/credits.tscn" id="4_sfqjc"]
 [ext_resource type="PackedScene" uid="uid://cy4aexa3idkox" path="res://scenes/game_container.tscn" id="4_wc5hr"]
 [ext_resource type="AudioStream" uid="uid://lcbev3lmqlql" path="res://static/sound/short_beep.mp3" id="5_6t7wa"]
 [ext_resource type="AudioStream" uid="uid://byj4f61hxqxhf" path="res://static/sound/main_menu_music_hs.mp3" id="6_wbn7o"]
@@ -55,6 +56,7 @@ beeper = NodePath("Beeper")
 main_menu_music = NodePath("MenuBackgroundMusic")
 options_menu = ExtResource("2_sks7e")
 lobby_menu = ExtResource("3_57ui8")
+credits = ExtResource("4_sfqjc")
 game_container = ExtResource("4_wc5hr")
 
 [node name="Panel" type="Panel" parent="."]
@@ -117,7 +119,7 @@ layout_mode = 0
 offset_right = 460.0
 offset_bottom = 69.0
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -127,9 +129,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_fcdpr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bv64x")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
-text = "Exit"
+text = "Credits"
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ExitButton"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CreditsButton"]
 layout_mode = 0
 offset_right = 460.0
 offset_bottom = 69.0
@@ -176,5 +178,5 @@ stream = ExtResource("6_wbn7o")
 [connection signal="mouse_entered" from="VBoxContainer/StartButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/OptionsButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/ExitButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/CreditsButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
