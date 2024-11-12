@@ -8,6 +8,12 @@ extends Control
 @export var credits: PackedScene
 @export var game_container: PackedScene
 
+const MUTE_AUDIO = false
+
+func _init():
+	if MUTE_AUDIO:
+		AudioServer.set_bus_mute(0, true)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	main_menu_music.play()
