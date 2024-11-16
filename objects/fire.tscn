@@ -122,7 +122,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+[node name="Fire" type="AnimatedSprite2D"]
 position = Vector2(-2, -71)
 sprite_frames = SubResource("SpriteFrames_q1f0b")
 frame = 3

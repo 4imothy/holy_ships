@@ -6,6 +6,7 @@ var elapsed_time = 0.0
 
 # Reference to the ShaderMaterial
 @export var shader_material: ShaderMaterial
+@export var timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +14,8 @@ func _ready():
 		shader_material.set("shader_parameter/progress", 1.0)
 		visible = false
 		print("Timer started")
-		$Timer.start()
+		timer.start()
+	timer.timeout.connect(_on_timer_timeout)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
