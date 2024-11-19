@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=15 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://static/background/SpaceBackground3.png" id="8_c3vgs"]
 [ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="8_r1lig"]
 [ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://static/sound/background_music_hs.mp3" id="10_hlujy"]
+[ext_resource type="PackedScene" uid="uid://b6opiimt54nue" path="res://objects/healthbar.tscn" id="11_5311y"]
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="12_samud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -79,6 +81,34 @@ position = Vector2(485, 362)
 
 [node name="SpawnPoint_1" type="Node2D" parent="---Players---"]
 position = Vector2(568, 363)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("11_5311y")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 32.0
+offset_right = 400.0
+offset_bottom = 72.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -181.0
+offset_top = 89.0
+offset_right = 183.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
+theme_override_fonts/font = ExtResource("12_samud")
+theme_override_font_sizes/font_size = 26
+text = "Spaceship Wear"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
