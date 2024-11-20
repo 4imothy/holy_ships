@@ -26,6 +26,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="godot_first"
 
+[global_group]
+
+player=""
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true

@@ -10,23 +10,24 @@ var elapsed_time = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if shader_material:
-		shader_material.set("shader_parameter/progress", 1.0)
-		visible = false
-		print("Timer started")
-		timer.start()
-	timer.timeout.connect(_on_timer_timeout)
+	visible = true
+	#if shader_material:
+		#shader_material.set("shader_parameter/progress", 1.0)
+		#visible = false
+		#print("Timer started")
+		#timer.start()
+	#timer.timeout.connect(_on_timer_timeout)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if visible and elapsed_time < reveal_duration:
-		elapsed_time += delta
-		var progress = 1.0 - min(elapsed_time / reveal_duration, 1.0)
-		if shader_material:
-			shader_material.set("shader_parameter/progress", progress)
+#func _process(delta: float) -> void:
+	#if visible and elapsed_time < reveal_duration:
+		#elapsed_time += delta
+		#var progress = 1.0 - min(elapsed_time / reveal_duration, 1.0)
+		#if shader_material:
+			#shader_material.set("shader_parameter/progress", progress)
 
-func _on_timer_timeout():
-	visible = true
-	elapsed_time = 0.0
-	if shader_material:
-		shader_material.set("shader_parameter/progress", 1.0)
+#func _on_timer_timeout():
+	#visible = true
+	#elapsed_time = 0.0
+	#if shader_material:
+		#shader_material.set("shader_parameter/progress", 1.0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bowdmc0wstu5l"]
+[gd_scene load_steps=7 format=3 uid="uid://ovac6acatlog"]
 
 [ext_resource type="Script" path="res://scripts/computer.gd" id="1_gikmk"]
 [ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://static/map_tileset.png" id="1_i5p50"]
