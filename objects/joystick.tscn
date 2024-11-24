@@ -14,7 +14,7 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_3ocdd")
 
 [node name="ring" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_k2qwx")
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
