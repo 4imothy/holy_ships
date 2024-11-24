@@ -17,13 +17,7 @@ func _ready() -> void:
 		# Listeners (Subscribe to Events)			
 		multiplayer.peer_connected.connect(add_player) # Added for late joiners (not sure how it works)
 		multiplayer.peer_disconnected.connect(delete_player)
-		# _start_music()
-
-func _process(delta):
-	return
-	if multiplayer.is_server() and music_started:
-		# Periodically send the music state to keep things in sync
-		rpc("sync_music", music_player.get_playback_position())
+	start_music()
 		
 func _exit_tree(): # Built in Function
 	if multiplayer.multiplayer_peer == null or not multiplayer.is_server():
@@ -55,27 +49,7 @@ func _on_multiplayer_spawner_spawned(node: Node) -> void:
 	node.position = get_spawn_point()  
 
 ### Music Synchronization Functions ###
-func _start_music():
-	if multiplayer.is_server():
+func start_music():
+	if not multiplayer.is_server():
 		music_player.play()
-		music_started = true
-	rpc("sync_music", music_player.get_playback_position())
-	print("Server started music, broadcasting to clients")
-
-@rpc("any_peer", "reliable")
-func sync_music(position):
-	# If the music is playing but the position is off, adjust it
-	if music_player.is_playing():
-		var current_position = music_player.get_playback_position()
-		# Allow a small tolerance for position differences to avoid unnecessary seeks
-		if abs(current_position - position) > .6:
-			music_player.seek(position)
-	else:
-		# If the music is not playing, start it at the correct position
-		music_player.play(position)
-
-func _sync_music_with_client(client_id):
-	# Send current music state to the specific client
-	var music_position = music_player.get_playback_position()
-	rpc_id(client_id, "sync_music", music_position)
-	print("Server sent music sync to client", client_id, "at position:", music_position)
+	music_started = true
