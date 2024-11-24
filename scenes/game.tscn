@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=16 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://static/background/SpaceBackground3.png" id="8_c3vgs"]
 [ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="8_r1lig"]
 [ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://static/sound/background_music_hs.mp3" id="10_hlujy"]
+[ext_resource type="Script" path="res://scenes/sound_effect_player.gd" id="11_ewf1w"]
+[ext_resource type="AudioStream" uid="uid://coavngkrhi0ra" path="res://static/sound/effects/pp_step.wav" id="12_4ynue"]
+[ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -79,6 +82,17 @@ position = Vector2(485, 362)
 
 [node name="SpawnPoint_1" type="Node2D" parent="---Players---"]
 position = Vector2(568, 363)
+
+[node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player")]
+script = ExtResource("11_ewf1w")
+pp_stepped_player = NodePath("PPStep")
+pp_release_player = NodePath("PPRelease")
+
+[node name="PPStep" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
+stream = ExtResource("12_4ynue")
+
+[node name="PPRelease" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
+stream = ExtResource("13_q2k2x")
 
 [connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

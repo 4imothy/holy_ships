@@ -50,6 +50,5 @@ func _on_multiplayer_spawner_spawned(node: Node) -> void:
 
 ### Music Synchronization Functions ###
 func start_music():
-	if not multiplayer.is_server():
-		music_player.play()
+	music_player.play()
 	music_started = true
