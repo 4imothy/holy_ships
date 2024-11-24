@@ -7,3 +7,6 @@ func set_text(text: String) -> void:
 	
 func set_gate(number: int) -> void:
 	label.text = 'Gate ' + str(number)
+
+func set_done() -> void:
+	label.text = 'Done'
