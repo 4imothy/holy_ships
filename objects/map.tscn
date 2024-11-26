@@ -2528,5 +2528,5 @@ shader_material = SubResource("ShaderMaterial_lkew3")
 position = Vector2(550, -100)
 
 [node name="WaterBucket" parent="." instance=ExtResource("9_ivo4j")]
-position = Vector2(-479, -90)
+position = Vector2(-480, -86)
 scale = Vector2(2.06711, 1.5338)

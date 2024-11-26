@@ -1,13 +1,18 @@
 extends Node2D
 
+var is_full = false  # Tracks whether the bucket is full
+
 func _ready() -> void:
-	$AnimatedSprite2D.animation = 'empty'
+	$AnimatedSprite2D.animation = "empty"
 	print("Water bucket ready")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group('player'):
-		print("Player has touched the water bucket!")
-		_show_water_task(body)
+	if body.is_in_group("player"):
+		if is_full:
+			print("The water bucket is already full. Task cannot be accessed.")
+		else:
+			print("Player has touched the water bucket!")
+			_show_water_task(body)
 
 func _show_water_task(player: Node2D) -> void:
 	var ui_node = player.camera
@@ -32,8 +37,9 @@ func _monitor_task_completion(water_task: Node2D) -> void:
 	task_timer.timeout.connect(func() -> void:
 		if water_task.get("is_complete"):  # Check the is_complete property
 			water_task.visible = false
-			$AnimatedSprite2D.animation = 'full'
-			print("WaterTask is complete and now hidden.")
+			$AnimatedSprite2D.animation = "full"
+			is_full = true  # Mark the bucket as full
+			print("WaterTask is complete. Bucket is now full.")
 			task_timer.queue_free()  # Remove the timer once done
 	)
 
