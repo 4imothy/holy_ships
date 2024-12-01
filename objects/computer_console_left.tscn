@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cexr4kfaelchr"]
+
+[ext_resource type="Texture2D" uid="uid://dlfshi41f6a8g" path="res://static/console_s.png" id="1_brohq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grdpc"]
+size = Vector2(94, 8)
+
+[node name="ComputerConsoleLeft" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_brohq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-15, -6)
+shape = SubResource("RectangleShape2D_grdpc")

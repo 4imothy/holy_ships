@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=18 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -11,9 +11,9 @@
 [ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="8_r1lig"]
 [ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://static/sound/background_music_hs.mp3" id="10_hlujy"]
 [ext_resource type="PackedScene" uid="uid://b6opiimt54nue" path="res://objects/healthbar.tscn" id="11_5311y"]
-[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="12_samud"]
 [ext_resource type="Script" path="res://scenes/sound_effect_player.gd" id="11_ewf1w"]
 [ext_resource type="AudioStream" uid="uid://coavngkrhi0ra" path="res://static/sound/effects/pp_step.wav" id="12_4ynue"]
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="12_samud"]
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
@@ -56,6 +56,7 @@ motion_mirroring = Vector2(3000, 0)
 script = ExtResource("8_r1lig")
 
 [node name="Sprite2D" type="Sprite2D" parent="---Environment---/ParallaxBackground/ParallaxLayer"]
+scale = Vector2(3, 3)
 texture = ExtResource("8_c3vgs")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="---Environment---/ParallaxBackground"]
@@ -66,6 +67,7 @@ layer_speed = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="---Environment---/ParallaxBackground/ParallaxLayer2"]
 position = Vector2(-2, 7)
+scale = Vector2(3, 3)
 texture = ExtResource("8_1xfr8")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="---Environment---"]
@@ -113,6 +115,7 @@ theme_override_font_sizes/font_size = 26
 text = "Spaceship Wear"
 horizontal_alignment = 1
 vertical_alignment = 1
+
 [node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player")]
 script = ExtResource("11_ewf1w")
 pp_stepped_player = NodePath("PPStep")

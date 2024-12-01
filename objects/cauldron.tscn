@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhj40bqllyfm2"]
+
+[ext_resource type="Texture2D" uid="uid://cdbms8epcjxi7" path="res://static/empty_cauldron.png" id="1_hkxeo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fuxlp"]
+radius = 73.3333
+height = 146.667
+
+[node name="Cauldron" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_hkxeo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(3.33333, 23.3333)
+shape = SubResource("CapsuleShape2D_fuxlp")
