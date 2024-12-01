@@ -12,6 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://4nhyt85vmq10" path="res://static/sound/background_music_hs.mp3" id="10_hlujy"]
 [ext_resource type="PackedScene" uid="uid://b6opiimt54nue" path="res://objects/healthbar.tscn" id="11_5311y"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="12_samud"]
+[ext_resource type="Script" path="res://scenes/sound_effect_player.gd" id="11_ewf1w"]
+[ext_resource type="AudioStream" uid="uid://coavngkrhi0ra" path="res://static/sound/effects/pp_step.wav" id="12_4ynue"]
+[ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -110,6 +113,16 @@ theme_override_font_sizes/font_size = 26
 text = "Spaceship Wear"
 horizontal_alignment = 1
 vertical_alignment = 1
+[node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player")]
+script = ExtResource("11_ewf1w")
+pp_stepped_player = NodePath("PPStep")
+pp_release_player = NodePath("PPRelease")
+
+[node name="PPStep" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
+stream = ExtResource("12_4ynue")
+
+[node name="PPRelease" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
+stream = ExtResource("13_q2k2x")
 
 [connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

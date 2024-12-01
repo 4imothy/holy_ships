@@ -1,5 +1,7 @@
 extends Area2D
 
+signal pp_step
+
 const PIXEL_DIM = 64
 var player_count = 0
 @export var sprite: Sprite2D
@@ -24,6 +26,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if !area.is_in_group('feet'):
 		return
 	if player_count == 0:
+		SignalBus.pp_step.emit()
 		if opens_door:
 			parent.open()
 		if part_of_puzzle:
@@ -36,6 +39,7 @@ func _on_area_exited(area: Area2D) -> void:
 		return
 	player_count -= 1
 	if player_count == 0:
+		SignalBus.pp_release.emit()
 		if opens_door:
 			parent.close()
 		shift_sprite_region(-1)

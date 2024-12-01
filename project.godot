@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.3", "Mobile")
 
 Utils="*res://scripts/Utils.gd"
 Lobby="*res://scripts/lobby.gd"
+SignalBus="*res://scripts/signal_bus.gd"
 
 [display]
 
