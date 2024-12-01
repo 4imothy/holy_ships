@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=20 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -14,7 +14,9 @@
 [ext_resource type="Script" path="res://scenes/sound_effect_player.gd" id="11_ewf1w"]
 [ext_resource type="AudioStream" uid="uid://coavngkrhi0ra" path="res://static/sound/effects/pp_step.wav" id="12_4ynue"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="12_samud"]
+[ext_resource type="Texture2D" uid="uid://cjbplf205o1bn" path="res://static/background/loading_frame.png" id="13_bg705"]
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
+[ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -116,6 +118,67 @@ text = "Spaceship Wear"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Progress" type="Node" parent="CanvasLayer"]
+
+[node name="LoadingFrame" type="Sprite2D" parent="CanvasLayer/Progress"]
+position = Vector2(303, 593)
+scale = Vector2(5, 5)
+texture = ExtResource("13_bg705")
+
+[node name="ProgressMarker" type="Sprite2D" parent="CanvasLayer/Progress/LoadingFrame"]
+position = Vector2(-16.3333, -0.333344)
+rotation = 0.767945
+scale = Vector2(0.0166667, 0.0166667)
+texture = ExtResource("14_oo0jy")
+
+[node name="ProgressLabel" type="Label" parent="CanvasLayer/Progress"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -574.0
+offset_top = 582.0
+offset_right = -376.0
+offset_bottom = 608.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
+theme_override_fonts/font = ExtResource("12_samud")
+theme_override_font_sizes/font_size = 22
+text = "Progress:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartLabel" type="Label" parent="CanvasLayer/Progress"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -373.0
+offset_top = 620.0
+offset_right = -338.0
+offset_bottom = 627.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
+theme_override_fonts/font = ExtResource("12_samud")
+theme_override_font_sizes/font_size = 7
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndLabel" type="Label" parent="CanvasLayer/Progress"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -212.0
+offset_top = 619.0
+offset_right = -163.0
+offset_bottom = 626.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
+theme_override_fonts/font = ExtResource("12_samud")
+theme_override_font_sizes/font_size = 7
+text = "Panacea"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player")]
 script = ExtResource("11_ewf1w")
 pp_stepped_player = NodePath("PPStep")
@@ -126,6 +189,9 @@ stream = ExtResource("12_4ynue")
 
 [node name="PPRelease" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("13_q2k2x")
+
+[node name="LoadingFrame" type="Sprite2D" parent="."]
+texture = ExtResource("13_bg705")
 
 [connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
