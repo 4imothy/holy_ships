@@ -2,10 +2,17 @@ extends CharacterBody2D
 
 @export var UI: PackedScene
 
+# For Player
 var owner_id
 var camera
 var joystick
 const PLAYER_SPEED: int = 300
+
+# For Inventory
+@onready var CurrentItemHolder = $CurrentItem
+@onready var items = $CurrentItem.get_children()
+var item_sprites = []
+var chosen_sprite: String = "" 
 
 func _enter_tree() -> void:
 	owner_id = name.to_int()
@@ -18,6 +25,12 @@ func _enter_tree() -> void:
 	add_child.call_deferred(camera)
 
 func _ready() -> void:
+	# Light Weight Inventory Set Up (Vending, Buckets)
+	for item in items:
+		if item is Sprite2D:
+			item.visible = false
+			item_sprites.append(item)
+			
 	# this shader stuff doesn't look very good
 	$Feet.add_to_group('feet')
 	return
@@ -60,3 +73,14 @@ func _process(_delta: float) -> void:
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
+		
+func toggle_random_item() -> void:
+	# Set all to inactive first
+	for sprite in item_sprites:
+		sprite.visible = false
+
+	# Select a random sprite and make it visible
+	if item_sprites.size() > 0:
+		var random_sprite = item_sprites[randi() % item_sprites.size()]
+		random_sprite.visible = true
+		chosen_sprite = random_sprite.name

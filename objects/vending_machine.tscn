@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dokbkye5upbed"]
+
+[ext_resource type="Script" path="res://scripts/vending_machine.gd" id="1_m3xp0"]
+[ext_resource type="Texture2D" uid="uid://cvowka06slrsk" path="res://static/vendingmachine.png" id="2_kahvy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fx40"]
+size = Vector2(45.9999, 42.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qa84"]
+size = Vector2(84.5, 59.625)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1wy08"]
+
+[node name="VendingMachine" type="Node2D"]
+script = ExtResource("1_m3xp0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_kahvy")
+
+[node name="Collider" type="StaticBody2D" parent="Sprite2D"]
+scale = Vector2(1.25, 1.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Collider"]
+position = Vector2(5.68845e-05, -15)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_8fx40")
+
+[node name="VendingArea" type="Area2D" parent="."]
+position = Vector2(0, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VendingArea"]
+position = Vector2(0, 10.1875)
+shape = SubResource("RectangleShape2D_2qa84")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1wy08")
+
+[connection signal="area_entered" from="VendingArea" to="." method="_on_vending_area_area_entered"]

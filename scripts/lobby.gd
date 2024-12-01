@@ -48,7 +48,7 @@ func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
 	pass
 	
-@rpc("any_peer", "reliable", )
+@rpc("any_peer", "reliable")
 func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
 	players[new_player_id] = new_player_info

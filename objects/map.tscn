@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=4 uid="uid://duniemp01a8h3"]
+[gd_scene load_steps=12 format=4 uid="uid://duniemp01a8h3"]
 
 [ext_resource type="PackedScene" uid="uid://i3ujir1dm8pj" path="res://objects/pressure_plate.tscn" id="2_r1du8"]
 [ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://static/map_tileset.png" id="2_ywt80"]
 [ext_resource type="PackedScene" uid="uid://dvd1qvggik20d" path="res://objects/door.tscn" id="3_7pgbi"]
 [ext_resource type="PackedScene" uid="uid://dnii2ewqahu3u" path="res://objects/pressure_plate_puzzle.tscn" id="4_07iin"]
 [ext_resource type="PackedScene" uid="uid://bowdmc0wstu5l" path="res://objects/computer.tscn" id="4_wvl4n"]
+[ext_resource type="PackedScene" uid="uid://dokbkye5upbed" path="res://objects/vending_machine.tscn" id="6_qb2y4"]
+[ext_resource type="PackedScene" uid="uid://dhj40bqllyfm2" path="res://objects/cauldron.tscn" id="7_jkf8y"]
+[ext_resource type="PackedScene" uid="uid://cexr4kfaelchr" path="res://objects/computer_console_left.tscn" id="8_d6svj"]
+[ext_resource type="PackedScene" uid="uid://c5kvycm1ffdu8" path="res://objects/computer_console_right.tscn" id="9_5fay7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4nh5"]
 texture = ExtResource("2_ywt80")
@@ -2510,3 +2514,17 @@ opens_door = true
 
 [node name="Computer" parent="." instance=ExtResource("4_wvl4n")]
 position = Vector2(550, -100)
+
+[node name="VendingMachine" parent="." instance=ExtResource("6_qb2y4")]
+position = Vector2(-352, -123)
+
+[node name="Cauldron" parent="." instance=ExtResource("7_jkf8y")]
+z_index = 2
+position = Vector2(227, 320)
+
+[node name="ComputerConsoleLeft" parent="." instance=ExtResource("8_d6svj")]
+position = Vector2(107, 203)
+scale = Vector2(1.1, 1.1)
+
+[node name="ComputerConsoleRight" parent="." instance=ExtResource("9_5fay7")]
+position = Vector2(168, 216)
