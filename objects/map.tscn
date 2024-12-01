@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://duniemp01a8h3"]
+[gd_scene load_steps=9 format=4 uid="uid://duniemp01a8h3"]
 
 [ext_resource type="PackedScene" uid="uid://i3ujir1dm8pj" path="res://objects/pressure_plate.tscn" id="2_r1du8"]
 [ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://static/map_tileset.png" id="2_ywt80"]
 [ext_resource type="PackedScene" uid="uid://dvd1qvggik20d" path="res://objects/door.tscn" id="3_7pgbi"]
 [ext_resource type="PackedScene" uid="uid://dnii2ewqahu3u" path="res://objects/pressure_plate_puzzle.tscn" id="4_07iin"]
 [ext_resource type="PackedScene" uid="uid://bowdmc0wstu5l" path="res://objects/computer.tscn" id="4_wvl4n"]
+[ext_resource type="PackedScene" uid="uid://dokbkye5upbed" path="res://objects/vending_machine.tscn" id="6_qb2y4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4nh5"]
 texture = ExtResource("2_ywt80")
@@ -2510,3 +2511,6 @@ opens_door = true
 
 [node name="Computer" parent="." instance=ExtResource("4_wvl4n")]
 position = Vector2(550, -100)
+
+[node name="VendingMachine" parent="." instance=ExtResource("6_qb2y4")]
+position = Vector2(-352, -123)

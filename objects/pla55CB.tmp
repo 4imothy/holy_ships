@@ -131,17 +131,8 @@ properties/2/replication_mode = 2
 properties/3/path = NodePath("AnimatedSprite2D:animation")
 properties/3/spawn = true
 properties/3/replication_mode = 2
-properties/4/path = NodePath("CurrentItem/WaterBottle:visible")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("CurrentItem/TeaBottle:visible")
-properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath("CurrentItem/CokeBottle:visible")
-properties/6/spawn = true
-properties/6/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 platform_floor_layers = 4294967292
 platform_wall_layers = 1
@@ -171,19 +162,16 @@ replication_config = SubResource("SceneReplicationConfig_otnge")
 [node name="CurrentItem" type="Node2D" parent="."]
 
 [node name="WaterBottle" type="Sprite2D" parent="CurrentItem"]
-visible = false
 position = Vector2(0, -35)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("6_y5rg6")
 
 [node name="TeaBottle" type="Sprite2D" parent="CurrentItem"]
-visible = false
 position = Vector2(0, -35)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_u8d44")
 
 [node name="CokeBottle" type="Sprite2D" parent="CurrentItem"]
-visible = false
 position = Vector2(0, -35)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("5_tc6xd")

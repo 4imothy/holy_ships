@@ -62,6 +62,7 @@ script = ExtResource("8_r1lig")
 layer_speed = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="---Environment---/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(-2, 7)
 texture = ExtResource("8_1xfr8")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="---Environment---"]

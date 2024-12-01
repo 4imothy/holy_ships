@@ -173,6 +173,7 @@ volume_db = -15.0
 
 [node name="MenuBackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_wbn7o")
+volume_db = -80.0
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
