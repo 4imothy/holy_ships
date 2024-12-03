@@ -19,8 +19,8 @@ func _set_health(new_health):
 	
 	if health <= 0:
 		health = 0
-		#TODO: Send EndGame Signal
-		queue_free()
+		print("GAME OVER")
+		return
 		
 	if health < prev_health:
 		timer.start()
