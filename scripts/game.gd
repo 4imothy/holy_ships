@@ -41,6 +41,15 @@ func _decrement_health():
 		# Synchronize health with clients
 		rpc("sync_health", new_health)
 
+func _increment_health(amount):
+	if multiplayer.is_server():
+		# Get the current health from the health bar, decrement it, and set the new value
+		var current_health = healthbar.health
+		var new_health = current_health + amount
+		healthbar._set_health(new_health)
+		# Synchronize health with clients
+		rpc("sync_health", new_health)
+
 @rpc("any_peer", "reliable")
 func sync_health(new_health):
 	healthbar._set_health(new_health)
