@@ -74,7 +74,12 @@ func _process(_delta: float) -> void:
 	else:
 		$AnimatedSprite2D.stop()
 		
-func toggle_random_item() -> void:
+func toggle_random_item_on() -> void:
+	if multiplayer.multiplayer_peer == null:
+		return
+	if owner_id != multiplayer.get_unique_id():
+		return
+		
 	# Set all to inactive first
 	for sprite in item_sprites:
 		sprite.visible = false
@@ -84,3 +89,15 @@ func toggle_random_item() -> void:
 		var random_sprite = item_sprites[randi() % item_sprites.size()]
 		random_sprite.visible = true
 		chosen_sprite = random_sprite.name
+
+func toggle_off_chosen_sprite() -> void:
+	if multiplayer.multiplayer_peer == null:
+		return
+	if owner_id != multiplayer.get_unique_id():
+		return
+		
+	for sprite in item_sprites:
+		sprite.visible = false
+	
+	chosen_sprite = ""
+	
