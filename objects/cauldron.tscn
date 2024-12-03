@@ -19,7 +19,7 @@ radius = 73.3333
 height = 146.667
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0u1wi"]
-size = Vector2(127.125, 96.9063)
+size = Vector2(143, 92)
 
 [node name="Cauldron" type="Node2D"]
 script = ExtResource("1_0bdca")

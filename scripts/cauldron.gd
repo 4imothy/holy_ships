@@ -11,9 +11,8 @@ extends Node2D
 	$"Progress/CauldronScreen/Slot 3"
 ]
 
-# Off shows empty cauldron, On shows what CAULDRON_STATE is active
+# Cauldron Sprites
 @onready var CAULDRON_FILL_TOGGLE = $Sprite2D/OnStates
-
 @onready var CAULDRON_STATES = [
 	$"Sprite2D/OnStates/Filled Blue",	# Water Bottle
 	$"Sprite2D/OnStates/Filled Red",	# Coke Bottle
@@ -21,6 +20,7 @@ extends Node2D
 	$"Sprite2D/OnStates/Filled Purple",	# Puzzle Complete
 	$"Sprite2D/OnStates/Filled Green",  # When an item is placed in that has no matches
 ]
+@onready var cauldron_screen = $Progress/CauldronScreen
 
 # Bottle options
 const BOTTLE_OPTIONS = ["WaterBottle", "CokeBottle", "TeaBottle"]
@@ -140,9 +140,12 @@ func check_for_matches(sprite: String) -> void:
 			break
 
 	if all_matched:
+		# ALL PLAYERS EXECUTE THE FOLLOWING CODE
 		print("All slots matched! Minigame complete.")
 		cauldron_complete = true
 		CAULDRON_FILL_TOGGLE.visible = true
 		CAULDRON_STATES[CAULDRON_STATES.size() - 2].visible = true
-		# Trigger minigame completion logic here ALL 
-		# (PLAYERS GET HERE AND RUN THIS)
+		cauldron_screen.on = false
+		
+		if multiplayer.is_server():
+			SignalBus.increase_health.emit(20)
