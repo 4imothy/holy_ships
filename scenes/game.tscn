@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=22 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://cjbplf205o1bn" path="res://static/background/loading_frame.png" id="13_bg705"]
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
+[ext_resource type="VideoStream" path="res://static/end_game_success.ogv" id="18_ke76b"]
+[ext_resource type="VideoStream" path="res://static/end_game_failed.ogv" id="19_udu8l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -131,14 +133,35 @@ rotation = 0.767945
 scale = Vector2(0.0166667, 0.0166667)
 texture = ExtResource("14_oo0jy")
 
+[node name="ProgressMarker2" type="Sprite2D" parent="CanvasLayer/Progress/LoadingFrame"]
+visible = false
+position = Vector2(-5.4, -0.399995)
+rotation = 0.767945
+scale = Vector2(0.0166667, 0.0166667)
+texture = ExtResource("14_oo0jy")
+
+[node name="ProgressMarker3" type="Sprite2D" parent="CanvasLayer/Progress/LoadingFrame"]
+visible = false
+position = Vector2(5.6, -0.399995)
+rotation = 0.767945
+scale = Vector2(0.0166667, 0.0166667)
+texture = ExtResource("14_oo0jy")
+
+[node name="ProgressMarker4" type="Sprite2D" parent="CanvasLayer/Progress/LoadingFrame"]
+visible = false
+position = Vector2(17.4, -0.599996)
+rotation = 0.767945
+scale = Vector2(0.0166667, 0.0166667)
+texture = ExtResource("14_oo0jy")
+
 [node name="ProgressLabel" type="Label" parent="CanvasLayer/Progress"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -574.0
-offset_top = 582.0
-offset_right = -376.0
-offset_bottom = 608.0
+offset_left = -560.0
+offset_top = 546.0
+offset_right = -362.0
+offset_bottom = 572.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
@@ -151,15 +174,16 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -373.0
-offset_top = 620.0
-offset_right = -338.0
-offset_bottom = 627.0
+offset_left = -444.0
+offset_top = 612.0
+offset_right = -374.0
+offset_bottom = 626.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 7
-text = "Start"
+theme_override_font_sizes/font_size = 14
+text = "Titan
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -167,15 +191,16 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -212.0
-offset_top = 619.0
-offset_right = -163.0
-offset_bottom = 626.0
+offset_left = -180.0
+offset_top = 607.0
+offset_right = -54.0
+offset_bottom = 638.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 7
-text = "Panacea"
+theme_override_font_sizes/font_size = 14
+text = "Europa
+(Panacea)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -192,6 +217,24 @@ stream = ExtResource("13_q2k2x")
 
 [node name="LoadingFrame" type="Sprite2D" parent="."]
 texture = ExtResource("13_bg705")
+
+[node name="End Game" type="Node" parent="."]
+
+[node name="Success" type="SubViewport" parent="End Game"]
+size = Vector2i(1920, 1080)
+
+[node name="Success" type="VideoStreamPlayer" parent="End Game/Success"]
+offset_right = 1920.0
+offset_bottom = 1088.0
+stream = ExtResource("18_ke76b")
+
+[node name="Fail" type="SubViewport" parent="End Game"]
+size = Vector2i(640, 360)
+
+[node name="Fail" type="VideoStreamPlayer" parent="End Game/Fail"]
+offset_right = 640.0
+offset_bottom = 368.0
+stream = ExtResource("19_udu8l")
 
 [connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

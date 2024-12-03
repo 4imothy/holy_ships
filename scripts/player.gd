@@ -6,7 +6,7 @@ extends CharacterBody2D
 var owner_id
 var camera
 var joystick
-const PLAYER_SPEED: int = 300
+const PLAYER_SPEED: int = 400
 
 # For Inventory
 @onready var CurrentItemHolder = $CurrentItem
