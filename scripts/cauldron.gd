@@ -18,10 +18,9 @@ var slot_choices = []  # Holds the random bottle choice for each slot
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Ready on peer:", multiplayer.get_unique_id())
 	# Only the server initializes the slots
 	if multiplayer.is_server():
-		initialize_slots()
+		call_deferred("initialize_slots")
 
 func initialize_slots() -> void:
 	# Randomly assign a bottle type to each slot
@@ -38,15 +37,11 @@ func initialize_slots() -> void:
 		slot.get_node("CheckSymbol").visible = false
 
 	# Sync the choices to all clients
-	#rpc("slot_choices", slot_choices)
-	print(slot_choices)
 	rpc("sync_slot_choices", slot_choices)
-	print("WHY NO CALL")
 	
-@rpc("any_peer")
+@rpc("any_peer", "call_remote")
 func sync_slot_choices(choices: Array) -> void:
-	print(multiplayer.get_unique_id())
-	print("asdfasdfasfdsaf")
+	# ONLY RUNS ON PEER (NOT HOST SERVER)
 	slot_choices = choices # Sync the lists to be the same
 	
 	# Adjust visibility for all players
@@ -65,24 +60,27 @@ func _on_dropping_area_area_entered(body: Area2D) -> void:
 		print(player_node.get_multiplayer_authority())
 		if player_node.multiplayer.get_unique_id() == player_node.get_multiplayer_authority():
 			print("Player entered zone with sprite:", player_node.chosen_sprite)
-			append_to_list(player_node.chosen_sprite)
-			if player_node.has_method("toggle_off_chosen_sprite"):
-				player_node.toggle_off_chosen_sprite()
+			if player_node.chosen_sprite != "":
+				append_to_list(player_node.chosen_sprite)
+				if player_node.has_method("toggle_off_chosen_sprite"):
+					player_node.toggle_off_chosen_sprite()
 				
 @rpc("any_peer")  # RPC that all players can call
 func append_to_list(sprite: String) -> void:
 	deposited_items.append(sprite)
 	print("Updated deposited_items:", deposited_items)
-	rpc("deposited_items", deposited_items)  # Sync list to all players
+	rpc("sync_my_list", deposited_items)  # Sync list to all players
 	
 	# Now that all players have the same list, we can check for a match
 	check_for_matches(sprite)
+	rpc("check_for_matches", sprite)
 		
 @rpc("any_peer")
 func sync_my_list(updated_list: Array) -> void:
 	deposited_items = updated_list
 	print("Synchronized deposited_items:", deposited_items)
 
+@rpc("any_peer")
 func check_for_matches(sprite: String) -> void:
 	for i in range(SLOT_PATHS.size()):
 		var slot = SLOT_PATHS[i]
@@ -100,4 +98,5 @@ func check_for_matches(sprite: String) -> void:
 
 	if all_matched:
 		print("All slots matched! Minigame complete.")
-		# Trigger minigame completion logic here
+		# Trigger minigame completion logic here ALL 
+		# (PLAYERS GET HERE AND RUN THIS)
