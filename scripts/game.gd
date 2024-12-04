@@ -8,6 +8,9 @@ extends Node2D
 @onready var healthbar = $CanvasLayer/HealthBar
 @onready var decrement_timer = Timer.new()  # Create a timer instance
 @onready var periodic_explosion_timer = Timer.new()
+@onready var progress_timer = Timer.new() # Every time this hits 0, increment progress
+
+var progress = 0
 
 var next_spawn_point_index = 0
 var music_started = false  # Track if music has started
@@ -41,11 +44,29 @@ func _ready() -> void:
 		
 		SignalBus.increase_health.connect(_increment_health)
 		
+		# Set up periodic sporadic explosion timer
 		periodic_explosion_timer.one_shot = false
 		periodic_explosion_timer.wait_time = 5
 		periodic_explosion_timer.connect("timeout", Callable(self, "_on_explosion_timeout"))
 		add_child(periodic_explosion_timer)
 		periodic_explosion_timer.start()
+		
+		# Set up progress timer
+		progress_timer.one_shot = false
+		progress_timer.wait_time = 35
+		progress_timer.connect("timeout", Callable(self, "_on_progress_timeout"))
+		add_child(progress_timer)
+		progress_timer.start()
+		
+		### TODO: _on_progress_timeout TO INCREMENT progress INT VAR
+		### TODO: progress INT VAR update moves the icon over in the bottom left corner
+		### TODO: progress = 4 means we trigger the end game successfully
+			### STRETCH TODO: CHANGE THE MUSIC, AND THE SPEED OF DECLINE OR SOMETHING
+		### TODO: then we spit back to main menu after final cutscene, end multiplayer session
+		### TODO: IF OUR DECREMENT HEALTH HITS 0 OR BELOW, WE NEED ENDGAME SCENE TO PLAY
+		### TODO: then we spit back to main menu after final cutscene, end multiplayer session
+		
+		
 		
 	start_music()
 	
