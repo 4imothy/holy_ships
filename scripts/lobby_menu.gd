@@ -1,6 +1,6 @@
 extends Node
 
-@export var ip_line_edit: LineEdit
+#@export var ip_line_edit: LineEdit
 @export var status_label: Label
 @export var not_connected_hbox: HBoxContainer
 @export var host_hbox: HBoxContainer
@@ -8,6 +8,7 @@ extends Node
 @onready var main_menu = $".."
 
 var beeper = null
+var ip_line_edit = "127.0.0.1"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,7 +31,7 @@ func _on_join_button_pressed() -> void:
 	not_connected_hbox.hide()
 	status_label.text = "Connection Status: Connecting..."
 	if ip_line_edit:
-		Lobby.join_game(ip_line_edit.text)
+		Lobby.join_game(ip_line_edit)
 
 func _on_start_button_pressed() -> void:
 	main_menu.start_game()
