@@ -13,3 +13,5 @@ Game Background: [url=https://deep-fold.itch.io/space-background-generator]Deep-
 Menu Music: [url=https://pixabay.com/music/video-games-8-bit-retro-game-music-233964/]moodmode[/url]
 
 Game Music: [url=https://pixabay.com/music/video-games-8-bit-space-123218/]Purrsahfef[/url]
+
+Health Bar: [url=https://adwitr.itch.io/pixel-health-bar-asset-pack-2/]adwitr[/url]
