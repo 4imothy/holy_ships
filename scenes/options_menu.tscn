@@ -51,6 +51,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -5.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.00249)
@@ -64,12 +66,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -226.0
-offset_top = 239.0
+offset_top = 104.0
 offset_right = 228.0
-offset_bottom = 305.0
+offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
+
+[node name="Volume_Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="Volume" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+min_value = -80.0
+max_value = 0.0
+
+[node name="Mute_Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mute"
+
+[node name="Mute" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="ExitOptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -120,13 +138,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -367.0
-offset_top = -197.0
-offset_right = 367.0
-offset_bottom = 226.0
+offset_left = -334.0
+offset_top = -203.0
+offset_right = 391.0
+offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 24
+scale = Vector2(0.998221, 0.995781)
+theme_override_font_sizes/normal_font_size = 16
 text = "Holy Ships! is a LAN co-op multiplayer mobile phone game. 
 
 Titan (your home) is dying rapidly. The only hope is a race to Europa, where a drifter located in the town of Pancea may be able to help. However, the journey to get here is no easy task. This is where the game begins. 
@@ -136,5 +155,7 @@ You will need to cooperate and communicate effectively to outsteer obstacles and
 Good luck, have fun, and work together!
  (More Options To Come)"
 
+[connection signal="value_changed" from="VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="VBoxContainer/Mute" to="." method="_on_mute_toggled"]
 [connection signal="pressed" from="VBoxContainer/ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/ExitOptionsButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]

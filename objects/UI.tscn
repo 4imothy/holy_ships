@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckkx27mb7wlv5"]
 
-[ext_resource type="Script" path="res://scenes/UI.gd" id="1_hk8xl"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_hk8xl"]
 [ext_resource type="PackedScene" uid="uid://djsuct8txu1nx" path="res://objects/joystick.tscn" id="1_tpdl1"]
 
 [node name="UI" type="Camera2D"]
