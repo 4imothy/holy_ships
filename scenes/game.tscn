@@ -75,6 +75,7 @@ texture = ExtResource("8_1xfr8")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="---Environment---"]
 stream = ExtResource("10_hlujy")
+bus = &"Music"
 
 [node name="---Players---" type="Node" parent="."]
 
@@ -188,16 +189,16 @@ explosion_player = NodePath("Explosion")
 
 [node name="PPStep" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("12_4ynue")
+bus = &"Sound Effects"
 
 [node name="PPRelease" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("13_q2k2x")
+bus = &"Sound Effects"
 
 [node name="Explosion" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("18_f30x5")
 volume_db = 10.0
-
-[node name="LoadingFrame" type="Sprite2D" parent="."]
-texture = ExtResource("13_bg705")
+bus = &"Sound Effects"
 
 [connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

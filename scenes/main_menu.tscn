@@ -170,9 +170,11 @@ vertical_alignment = 1
 position = Vector2(349, 280)
 stream = ExtResource("5_6t7wa")
 volume_db = -15.0
+bus = &"Music"
 
 [node name="MenuBackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_wbn7o")
+bus = &"Music"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]

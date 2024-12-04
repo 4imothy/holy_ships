@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://static/background/menu_background.jpg" id="2_2ibmo"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="3_gv07s"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgeep"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4y7vq"]
 texture = ExtResource("2_2ibmo")
 modulate_color = Color(0.351563, 0.351563, 0.351563, 1)
 
@@ -46,17 +46,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bc2pa")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -5.0
-offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.00249)
-theme_override_styles/panel = SubResource("StyleBoxTexture_lgeep")
+theme_override_styles/panel = SubResource("StyleBoxTexture_4y7vq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -66,31 +64,51 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -226.0
-offset_top = 104.0
+offset_top = -124.0
 offset_right = 228.0
-offset_bottom = 304.0
+offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Volume_Label" type="Label" parent="VBoxContainer"]
+[node name="Music_Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Volume"
+text = "Music Volue"
 
-[node name="Volume" type="HSlider" parent="VBoxContainer"]
+[node name="Music_Slider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
 min_value = -80.0
 max_value = 0.0
 
-[node name="Mute_Label" type="Label" parent="VBoxContainer"]
+[node name="SFX_Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Mute"
+text = "Sound Effets Volume"
+
+[node name="SFX_Slider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+min_value = -80.0
+max_value = 0.0
 
 [node name="Mute" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+text = "Mute"
+flat = true
 
-[node name="ExitOptionsButton" type="Button" parent="VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Mute"]
+show_behind_parent = true
+layout_mode = 0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 31.0
+color = Color(0.72549, 0.560784, 0.709804, 0.345098)
+
+[node name="ExitOptionsButton" type="Button" parent="."]
 layout_mode = 2
+offset_left = 350.0
+offset_top = 409.0
+offset_right = 804.0
+offset_bottom = 461.0
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_gv07s")
@@ -101,11 +119,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Back
 "
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ExitOptionsButton"]
-layout_mode = 0
-offset_right = 454.0
-offset_bottom = 76.0
 
 [node name="OptionsTitle" type="Label" parent="."]
 layout_mode = 1
@@ -132,6 +145,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -155,7 +169,7 @@ You will need to cooperate and communicate effectively to outsteer obstacles and
 Good luck, have fun, and work together!
  (More Options To Come)"
 
-[connection signal="value_changed" from="VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Music_Slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFX_Slider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/Mute" to="." method="_on_mute_toggled"]
-[connection signal="pressed" from="VBoxContainer/ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/ExitOptionsButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="pressed" from="ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]
