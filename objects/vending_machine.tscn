@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1m13roygl87p"]
+[gd_scene load_steps=7 format=3 uid="uid://b1m13roygl87p"]
 
 [ext_resource type="Script" path="res://scripts/vending_machine.gd" id="1_m3xp0"]
 [ext_resource type="Texture2D" uid="uid://cvowka06slrsk" path="res://static/vendingmachine.png" id="2_kahvy"]
+[ext_resource type="AudioStream" uid="uid://c6dkpkkk1ythi" path="res://static/sound/effects/vending_sound.mp3" id="3_sw1a6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fx40"]
 size = Vector2(45.9999, 42.0001)
@@ -11,8 +12,9 @@ size = Vector2(84.5, 59.625)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1wy08"]
 
-[node name="VendingMachine" type="Node2D"]
+[node name="VendingMachine" type="Node2D" node_paths=PackedStringArray("vending_sound_player")]
 script = ExtResource("1_m3xp0")
+vending_sound_player = NodePath("VendingSoundPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
@@ -32,6 +34,11 @@ position = Vector2(0, 18)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VendingArea"]
 position = Vector2(0, 10.1875)
 shape = SubResource("RectangleShape2D_2qa84")
+
+[node name="VendingSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sw1a6")
+volume_db = 7.0
+max_distance = 1000.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_1wy08")
