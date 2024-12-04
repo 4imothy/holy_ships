@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=21 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cjbplf205o1bn" path="res://static/background/loading_frame.png" id="13_bg705"]
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
+[ext_resource type="AudioStream" uid="uid://c2uuowymlxl5v" path="res://static/sound/effects/explosion.mp3" id="18_f30x5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
@@ -179,16 +180,21 @@ text = "Panacea"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player")]
+[node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player", "explosion_player")]
 script = ExtResource("11_ewf1w")
 pp_stepped_player = NodePath("PPStep")
 pp_release_player = NodePath("PPRelease")
+explosion_player = NodePath("Explosion")
 
 [node name="PPStep" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("12_4ynue")
 
 [node name="PPRelease" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("13_q2k2x")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
+stream = ExtResource("18_f30x5")
+volume_db = 10.0
 
 [node name="LoadingFrame" type="Sprite2D" parent="."]
 texture = ExtResource("13_bg705")

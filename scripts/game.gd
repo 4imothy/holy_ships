@@ -7,6 +7,7 @@ extends Node2D
 
 @onready var healthbar = $CanvasLayer/HealthBar
 @onready var decrement_timer = Timer.new()  # Create a timer instance
+@onready var periodic_explosion_timer = Timer.new()
 
 var next_spawn_point_index = 0
 var music_started = false  # Track if music has started
@@ -30,7 +31,7 @@ func _ready() -> void:
 		# Set up the timer to decrement health
 		decrement_timer.one_shot = false
 		decrement_timer.wait_time = 2.0  # Decrement health every 2 seconds
-		decrement_timer.connect("timeout", _decrement_health)
+		decrement_timer.connect("timeout", Callable(self, "_decrement_health").bind(1))
 		add_child(decrement_timer)
 		decrement_timer.start()
 			
@@ -39,13 +40,30 @@ func _ready() -> void:
 		multiplayer.peer_disconnected.connect(delete_player)
 		
 		SignalBus.increase_health.connect(_increment_health)
+		
+		periodic_explosion_timer.one_shot = false
+		periodic_explosion_timer.wait_time = 5
+		periodic_explosion_timer.connect("timeout", Callable(self, "_on_explosion_timeout"))
+		add_child(periodic_explosion_timer)
+		periodic_explosion_timer.start()
+		
 	start_music()
+	
+func _on_explosion_timeout():
+	periodic_explosion_timer.wait_time = int(randf_range(8, 19)) 
+	emit_shake_signal()     # FOR THE SERVER 
+	emit_shake_signal.rpc() # FOR THE PEER
+	_decrement_health(8)
 
-func _decrement_health():
+@rpc("any_peer", "reliable")
+func emit_shake_signal():
+	SignalBus.apply_shake.emit()
+
+func _decrement_health(amount):
 	if multiplayer.is_server():
 		# Get the current health from the health bar, decrement it, and set the new value
 		var current_health = healthbar.health
-		var new_health = current_health - 1
+		var new_health = current_health - amount
 		healthbar._set_health(new_health)
 		# Synchronize health with clients
 		rpc("sync_health", new_health)
