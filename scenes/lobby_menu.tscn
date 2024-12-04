@@ -120,11 +120,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Back
 "
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ExitLobbyButton"]
-layout_mode = 0
-offset_right = 460.0
-offset_bottom = 69.0
-
 [node name="LobbyTitle" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -177,11 +172,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Host"
 
-[node name="TextureRect" type="TextureRect" parent="NotConnectedHBox/HostButton"]
-layout_mode = 0
-offset_right = 243.0
-offset_bottom = 64.0
-
 [node name="JoinButton" type="Button" parent="NotConnectedHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -194,11 +184,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_h87x7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_loyym")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7wf3p")
 text = "Join"
-
-[node name="TextureRect" type="TextureRect" parent="NotConnectedHBox/JoinButton"]
-layout_mode = 0
-offset_right = 237.0
-offset_bottom = 60.0
 
 [node name="HostHBox" type="HBoxContainer" parent="."]
 visible = false
@@ -229,11 +214,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Start
 "
-
-[node name="TextureRect" type="TextureRect" parent="HostHBox/StartButton"]
-layout_mode = 0
-offset_right = 499.0
-offset_bottom = 57.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 1

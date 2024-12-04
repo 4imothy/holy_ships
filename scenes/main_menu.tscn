@@ -114,11 +114,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Options
 "
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OptionsButton"]
-layout_mode = 0
-offset_right = 460.0
-offset_bottom = 69.0
-
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -130,11 +125,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_bv64x")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_t4pd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Credits"
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CreditsButton"]
-layout_mode = 0
-offset_right = 460.0
-offset_bottom = 69.0
 
 [node name="SpaceshipLogo" type="Sprite2D" parent="VBoxContainer"]
 position = Vector2(596, -77)
@@ -170,7 +160,7 @@ vertical_alignment = 1
 position = Vector2(349, 280)
 stream = ExtResource("5_6t7wa")
 volume_db = -15.0
-bus = &"Music"
+bus = &"Sound Effects"
 
 [node name="MenuBackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_wbn7o")
@@ -179,6 +169,4 @@ bus = &"Music"
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/OptionsButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/CreditsButton/TextureRect" to="." method="_on_texture_rect_mouse_entered"]

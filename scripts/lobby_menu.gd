@@ -17,6 +17,7 @@ func _ready() -> void:
 
 ### Button Presses ###
 func _on_host_button_pressed() -> void:
+	beeper.play()
 	not_connected_hbox.hide()
 	status_label.text = "Connection Status: Trying to Host"
 	if not Lobby.create_game():
@@ -28,12 +29,14 @@ func _on_host_button_pressed() -> void:
 
 
 func _on_join_button_pressed() -> void:
+	beeper.play()
 	not_connected_hbox.hide()
 	status_label.text = "Connection Status: Connecting..."
 	if ip_line_edit:
 		Lobby.join_game(ip_line_edit)
 
 func _on_start_button_pressed() -> void:
+	beeper.play()
 	main_menu.start_game()
 
 func _on_exit_lobby_button_pressed() -> void:

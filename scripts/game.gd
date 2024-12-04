@@ -47,7 +47,7 @@ func _ready() -> void:
 		# Set up periodic sporadic explosion timer
 		periodic_explosion_timer.one_shot = false
 		periodic_explosion_timer.wait_time = 5
-		periodic_explosion_timer.connect("timeout", Callable(self, "_on_explosion_timeout"))
+		# periodic_explosion_timer.connect("timeout", Callable(self, "_on_explosion_timeout"))
 		add_child(periodic_explosion_timer)
 		periodic_explosion_timer.start()
 		
