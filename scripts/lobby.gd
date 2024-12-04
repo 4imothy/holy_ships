@@ -2,6 +2,9 @@
 
 extends Node
 
+# TODO I think there is an error when back butten is pressed while hosting
+# the hosting doesn't stop meaning others can't host
+
 signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected

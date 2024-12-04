@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhj40bqllyfm2"]
+[gd_scene load_steps=16 format=3 uid="uid://dgxfe0u63j1o1"]
 
 [ext_resource type="Script" path="res://scripts/cauldron.gd" id="1_0bdca"]
 [ext_resource type="Texture2D" uid="uid://cdbms8epcjxi7" path="res://static/empty_cauldron.png" id="1_hkxeo"]

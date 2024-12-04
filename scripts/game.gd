@@ -30,9 +30,9 @@ func _ready() -> void:
 		# Listeners (Subscribe to Events)			
 		multiplayer.peer_connected.connect(add_player) # Added for late joiners (not sure how it works)
 		multiplayer.peer_disconnected.connect(delete_player)
-		# _start_music()
 		
 		SignalBus.increase_health.connect(_increment_health)
+	start_music()
 
 func _decrement_health():
 	if multiplayer.is_server():
