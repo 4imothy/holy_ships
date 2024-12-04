@@ -14,7 +14,6 @@ func _ready():
 	
 @rpc
 func play_stepped_sound():
-	print('sound')
 	pp_stepped_player.play()
 
 @rpc
