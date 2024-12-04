@@ -70,7 +70,7 @@ shadow_offset = Vector2(5, 5)
 font = ExtResource("3_bthpn")
 font_size = 18
 
-[node name="LobbyMenu" type="Control" node_paths=PackedStringArray("ip_line_edit", "status_label", "not_connected_hbox", "host_hbox")]
+[node name="LobbyMenu" type="Control" node_paths=PackedStringArray("status_label", "not_connected_hbox", "host_hbox")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,7 +78,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qnikp")
-ip_line_edit = NodePath("HBoxContainer2/IPLineEdit")
 status_label = NodePath("StatusLabel")
 not_connected_hbox = NodePath("NotConnectedHBox")
 host_hbox = NodePath("HostHBox")
@@ -252,6 +251,7 @@ grow_vertical = 2
 theme_override_constants/separation = 15
 
 [node name="IPLineEdit" type="LineEdit" parent="HBoxContainer2"]
+visible = false
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 text = "127.0.0.1"
