@@ -4,6 +4,7 @@ extends Node2D
 # Group to identify players
 @export var player_group: String = "Player"  
 @export var splash_sound_player: AudioStreamPlayer2D
+@export var success_sound_player: AudioStreamPlayer2D
 
 # Slot paths
 @onready var SLOT_PATHS = [
@@ -43,8 +44,11 @@ func _ready() -> void:
 	
 	if multiplayer.is_server():
 		SignalBus.splash_sound.connect(play_splash_sound)
+		SignalBus.cauldron_success_sound.connect(play_success_sound)
 	
 	SignalBus.splash_sound.connect(_on_splash_sound)
+	SignalBus.cauldron_success_sound.connect(_on_play_success_sound)
+	
 
 func initialize_slots() -> void:
 	# Randomly assign a bottle type to each slot
@@ -149,6 +153,7 @@ func check_for_matches(sprite: String) -> void:
 	if all_matched:
 		# ALL PLAYERS EXECUTE THE FOLLOWING CODE
 		print("All slots matched! Minigame complete.")
+		SignalBus.cauldron_success_sound.emit()
 		cauldron_complete = true
 		CAULDRON_FILL_TOGGLE.visible = true
 		CAULDRON_STATES[CAULDRON_STATES.size() - 2].visible = true
@@ -161,6 +166,14 @@ func check_for_matches(sprite: String) -> void:
 func play_splash_sound():
 	splash_sound_player.play()
 
+@rpc
+func play_success_sound():
+	success_sound_player.play()
+
 func _on_splash_sound():
 	if multiplayer.is_server():
 		play_splash_sound.rpc()
+	
+func _on_play_success_sound():
+	if multiplayer.is_server():
+		success_sound_player.play()
