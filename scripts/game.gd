@@ -23,25 +23,25 @@ func _ready() -> void:
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
 		AudioServer.set_bus_mute(0, true)
-	elif MUTE_CLIENT:
+	if not multiplayer.is_server() and MUTE_CLIENT:
 		AudioServer.set_bus_mute(0, true)
-	
+
 	if multiplayer.is_server():
 		add_player(Lobby.HOST_ID)
 		for id in multiplayer.get_peers():
-			add_player(id)		
-			
+			add_player(id)
+
 		# Set up the timer to decrement health
 		decrement_timer.one_shot = false
 		decrement_timer.wait_time = 2.0  # Decrement health every 2 seconds
 		decrement_timer.connect("timeout", Callable(self, "_decrement_health").bind(1))
 		add_child(decrement_timer)
 		decrement_timer.start()
-			
-		# Listeners (Subscribe to Events)			
+
+		# Listeners (Subscribe to Events)
 		multiplayer.peer_connected.connect(add_player) # Added for late joiners (not sure how it works)
 		multiplayer.peer_disconnected.connect(delete_player)
-		
+
 		SignalBus.increase_health.connect(_increment_health)
 		
 		# Set up periodic sporadic explosion timer
@@ -101,17 +101,17 @@ func _increment_health(amount):
 @rpc("any_peer", "reliable")
 func sync_health(new_health):
 	healthbar._set_health(new_health)
-	
+
 func _process(delta):
 	return
 	if multiplayer.is_server() and music_started:
 		# Periodically send the music state to keep things in sync
 		rpc("sync_music", music_player.get_playback_position())
-		
+
 func _exit_tree(): # Built in Function
 	if multiplayer.multiplayer_peer == null or not multiplayer.is_server():
 		return
-		
+
 	# Unsubscribe from Events
 	multiplayer.peer_disconnected.connect(delete_player)
 
@@ -122,20 +122,20 @@ func add_player(id):
 	if id == Lobby.HOST_ID:
 		player_instance.position = get_spawn_point()
 	players_container.add_child(player_instance)
-	
+
 func delete_player(id):
 	if not players_container.has_node(str(id)):
 		return
-	
+
 	players_container.get_node(str(id)).queue_free() # Remove from memory (operation is "queued")
-	
+
 func get_spawn_point():
 	var spawn_point = spawn_points[next_spawn_point_index].position
 	next_spawn_point_index = (next_spawn_point_index + 1) % len(spawn_points)
 	return spawn_point
 
 func _on_multiplayer_spawner_spawned(node: Node) -> void:
-	node.position = get_spawn_point()  
+	node.position = get_spawn_point()
 
 ### Music Synchronization Functions ###
 func start_music():
