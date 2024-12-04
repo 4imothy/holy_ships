@@ -2,15 +2,18 @@ extends Control
 
 var beeper = null
 var main_menu_music: AudioStreamPlayer2D
+var music_bus_index
+var sfx_bus_index
 
-var music_bus_index = AudioServer.get_bus_index("Music")
-var sfx_bus_index = AudioServer.get_bus_index("Sound Effects")
+func _ready() -> void:
+	music_bus_index = AudioServer.get_bus_index("Music")
+	sfx_bus_index = AudioServer.get_bus_index("Sound Effects")
+	$VBoxContainer/Music_Slider.value = AudioServer.get_bus_volume_db(music_bus_index)
+	$VBoxContainer/SFX_Slider.value = AudioServer.get_bus_volume_db(sfx_bus_index)
 		
 func _on_exit_options_button_pressed() -> void:
-	queue_free()
-
-func _on_texture_rect_mouse_entered() -> void:
 	beeper.play()
+	queue_free()
 
 # Called when the mute checkbox is toggled
 func _on_mute_toggled(toggled_on: bool) -> void:
