@@ -11,9 +11,16 @@ extends Node2D
 var next_spawn_point_index = 0
 var music_started = false  # Track if music has started
 
+var MUTE_SERVER = false
+var MUTE_CLIENT = false
+
 func _ready() -> void:
 	var health = 90
 	healthbar.init_health(health)
+	if multiplayer.is_server() and MUTE_SERVER:
+		AudioServer.set_bus_mute(0, true)
+	elif MUTE_CLIENT:
+		AudioServer.set_bus_mute(0, true)
 	
 	if multiplayer.is_server():
 		add_player(Lobby.HOST_ID)

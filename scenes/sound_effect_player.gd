@@ -7,11 +7,14 @@ var is_server = false
 func _ready():
 	if multiplayer.is_server():
 		is_server = true
-
+		SignalBus.pp_step.connect(play_stepped_sound)
+		SignalBus.pp_release.connect(play_released_sound)
 	SignalBus.pp_step.connect(_on_pp_stepped)
 	SignalBus.pp_release.connect(_on_pp_released)
+	
 @rpc
 func play_stepped_sound():
+	print('sound')
 	pp_stepped_player.play()
 
 @rpc
