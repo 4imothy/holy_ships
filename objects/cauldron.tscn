@@ -35,7 +35,7 @@ texture = ExtResource("1_hkxeo")
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
-position = Vector2(3.33333, 23.3333)
+position = Vector2(3, 23)
 shape = SubResource("CapsuleShape2D_fuxlp")
 
 [node name="OnStates" type="Node2D" parent="Sprite2D"]

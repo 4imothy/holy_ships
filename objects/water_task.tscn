@@ -2002,7 +2002,7 @@ scale = Vector2(0.820132, 0.730751)
 script = ExtResource("1_4qycx")
 
 [node name="WaterBucket" type="AnimatedSprite2D" parent="."]
-position = Vector2(435.296, 257.27)
+position = Vector2(435, 257)
 scale = Vector2(1.17486, 1.46852)
 sprite_frames = SubResource("SpriteFrames_nm8ra")
 

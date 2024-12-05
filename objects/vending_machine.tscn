@@ -32,7 +32,7 @@ shape = SubResource("RectangleShape2D_8fx40")
 position = Vector2(0, 18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VendingArea"]
-position = Vector2(0, 10.1875)
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_2qa84")
 
 [node name="VendingSoundPlayer" type="AudioStreamPlayer2D" parent="."]

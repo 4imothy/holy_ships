@@ -106,7 +106,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("13_bg705")
 
 [node name="ProgressMarker" type="Sprite2D" parent="CanvasLayer/Progress/LoadingFrame"]
-position = Vector2(-16.3333, -0.333344)
+position = Vector2(-16, 0)
 rotation = 0.767945
 scale = Vector2(0.0166667, 0.0166667)
 texture = ExtResource("14_oo0jy")
