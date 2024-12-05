@@ -6,6 +6,7 @@ extends Area2D
 @export var exit: Node2D
 
 var open_door = false
+var close_door = false
 var rdoor_open = false
 var ldoor_open = false
 var door_open = false
@@ -28,7 +29,7 @@ func open():
 	open_door = true
 
 func close():
-	open_door = false
+	close_door = true
 
 func _process(delta: float):
 	if open_door:
@@ -43,12 +44,21 @@ func _process(delta: float):
 		else:
 			ldoor_open = true
 		if ldoor_open and rdoor_open:
+			open_door = false
 			door_open = true
-	else:
+	elif close_door:
 		if rdoor.position.x > rdoor_original_position.x:
 			rdoor.position.x -= door_speed * delta
+		else:
+			rdoor_open = false
 		if ldoor.position.x < ldoor_original_position.x:
 			ldoor.position.x += door_speed * delta
+		else: 
+			ldoor_open = false
+		if not ldoor_open and not rdoor_open:
+			rdoor.position = rdoor_original_position
+			ldoor.position = ldoor_original_position
+			close_door = false
 		door_open = false
 
 

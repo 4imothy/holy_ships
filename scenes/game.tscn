@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=21 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -14,6 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://cjbplf205o1bn" path="res://static/background/loading_frame.png" id="13_bg705"]
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
+[ext_resource type="AudioStream" uid="uid://c2uuowymlxl5v" path="res://static/sound/effects/explosion.mp3" id="18_f30x5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g53u"]
+shader = ExtResource("6_m1h0i")
+shader_parameter/progress = 0.0
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points", "music_player")]
 script = ExtResource("1_blgyt")
@@ -52,6 +59,7 @@ texture = ExtResource("8_1xfr8")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="---Environment---"]
 stream = ExtResource("10_hlujy")
+bus = &"Music"
 
 [node name="---Players---" type="Node" parent="."]
 
@@ -71,30 +79,8 @@ position = Vector2(568, 363)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" parent="CanvasLayer" instance=ExtResource("11_5311y")]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -400.0
-offset_top = 32.0
-offset_right = 400.0
-offset_bottom = 72.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -181.0
-offset_top = 89.0
-offset_right = 183.0
-offset_bottom = 115.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
-theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 26
-text = "Spaceship Wear"
-horizontal_alignment = 1
-vertical_alignment = 1
+position = Vector2(250, 30)
+scale = Vector2(6, 6)
 
 [node name="Progress" type="Node" parent="CanvasLayer"]
 
@@ -104,7 +90,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("13_bg705")
 
 [node name="ProgressMarker" type="Sprite2D" parent="CanvasLayer/Progress/LoadingFrame"]
-position = Vector2(-16.3333, -0.333344)
+position = Vector2(-16, 0)
 rotation = 0.767945
 scale = Vector2(0.0166667, 0.0166667)
 texture = ExtResource("14_oo0jy")
@@ -157,18 +143,24 @@ text = "Panacea"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player")]
+[node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player", "explosion_player")]
 script = ExtResource("11_ewf1w")
 pp_stepped_player = NodePath("PPStep")
 pp_release_player = NodePath("PPRelease")
+explosion_player = NodePath("Explosion")
 
 [node name="PPStep" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("12_4ynue")
+bus = &"Sound Effects"
 
 [node name="PPRelease" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("13_q2k2x")
+bus = &"Sound Effects"
 
-[node name="LoadingFrame" type="Sprite2D" parent="."]
-texture = ExtResource("13_bg705")
+[node name="Explosion" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
+stream = ExtResource("18_f30x5")
+volume_db = 10.0
+bus = &"Sound Effects"
 
+[connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

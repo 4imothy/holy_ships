@@ -1,45 +1,59 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6opiimt54nue"]
+[gd_scene load_steps=7 format=3 uid="uid://b6opiimt54nue"]
 
 [ext_resource type="Script" path="res://scripts/healthbar.gd" id="1_1ytlx"]
+[ext_resource type="Texture2D" uid="uid://cumsibqt2f63j" path="res://static/health_bar.png" id="2_5km4x"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2hcy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ab11s"]
+bg_color = Color(0.295867, 0.295866, 0.295866, 1)
+shadow_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x883y"]
-bg_color = Color(0.820163, 0.528123, 0, 1)
+bg_color = Color(0.71476, 0.203708, 0.316278, 1)
+shadow_color = Color(0, 0, 0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_722g0"]
-bg_color = Color(0.712267, 0.702011, 0.702008, 1)
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-shadow_color = Color(0, 0, 0, 0.27451)
-shadow_offset = Vector2(0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkgs3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(0, 0, 0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfsex"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rihi"]
+bg_color = Color(0.3789, 0.550107, 0.24153, 1)
 
-[node name="HealthBar" type="ProgressBar"]
-z_index = 1
-offset_right = 800.0
-offset_bottom = 40.0
-theme_override_styles/background = SubResource("StyleBoxEmpty_f2hcy")
-theme_override_styles/fill = SubResource("StyleBoxFlat_x883y")
-value = 60.0
-show_percentage = false
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("2_5km4x")
 script = ExtResource("1_1ytlx")
 
 [node name="DamageBar" type="ProgressBar" parent="."]
 z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -7.5
+offset_right = -8.0
+offset_bottom = -1.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_722g0")
-theme_override_styles/fill = SubResource("StyleBoxFlat_mfsex")
-value = 80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ab11s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x883y")
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -7.5
+offset_right = -8.0
+offset_bottom = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xkgs3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8rihi")
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]

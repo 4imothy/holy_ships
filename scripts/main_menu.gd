@@ -27,23 +27,20 @@ func swap_to_level_container():
 	queue_free()
 	
 func _on_start_button_pressed() -> void:
+	beeper.play()
 	var lobby = lobby_menu.instantiate()
 	lobby.beeper = beeper
 	add_child(lobby)
 
 func _on_options_button_pressed() -> void:
+	beeper.play()
 	var options = options_menu.instantiate()
 	options.beeper = beeper
 	options.main_menu_music = main_menu_music
 	add_child(options)
 
-func _on_exit_button_pressed() -> void:
-	get_tree().quit()
-
-func _on_texture_rect_mouse_entered() -> void:
-	beeper.play()
-
 func _on_credits_button_pressed() -> void:
+	beeper.play()
 	var credits = credits.instantiate()
 	credits.beeper = beeper
 	add_child(credits)

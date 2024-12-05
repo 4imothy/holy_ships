@@ -1,6 +1,5 @@
 extends Node2D
 
-var scaled_direction: Vector2
 var max_drag_distance: float
 var dead_zone: float
 
@@ -21,15 +20,12 @@ func _ready() -> void:
 	max_drag_distance = ring_size.x * ring.scale.x / 3
 	dead_zone = max_drag_distance / 7
 	
-func _process(delta: float):
-	scaled_direction = _scaled_direction(delta)
-	
 func _input(event):
 	if event is InputEventScreenTouch or event is InputEventScreenDrag:
 		if $TouchScreenButton.is_pressed():
 			touch_pos = make_input_local(event).position
 
-func _scaled_direction(delta: float) -> Vector2:
+func scaled_direction(delta: float) -> Vector2:
 	if $TouchScreenButton.is_pressed():
 		if touch_pos.length() <= max_drag_distance:
 			knob.position = touch_pos
@@ -44,12 +40,12 @@ func _scaled_direction(delta: float) -> Vector2:
 		return Vector2(0,0)
 
 func calc_scaled_direction() -> Vector2:
-	var dif = knob.global_position.x - global_position.x
 	var s_dir: Vector2
+	var dif = knob.position.x
 	var dist = abs(dif) 
 	if dist >= dead_zone:
 		s_dir.x = dif / max_drag_distance
-	dif = knob.global_position.y - global_position.y
+	dif = knob.position.y
 	dist = abs(dif)
 	if dist >= dead_zone:
 		s_dir.y = dif / max_drag_distance

@@ -85,11 +85,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_und21")
 text = "Back
 "
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Exit"]
-layout_mode = 0
-offset_right = 454.0
-offset_bottom = 76.0
-
 [node name="OptionsTitle" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -132,5 +127,4 @@ theme_override_fonts/bold_font = ExtResource("3_6yf63")
 bbcode_enabled = true
 
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/Exit/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="meta_clicked" from="RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]

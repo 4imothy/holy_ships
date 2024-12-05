@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgxfe0u63j1o1"]
+[gd_scene load_steps=18 format=3 uid="uid://dgxfe0u63j1o1"]
 
 [ext_resource type="Script" path="res://scripts/cauldron.gd" id="1_0bdca"]
 [ext_resource type="Texture2D" uid="uid://cdbms8epcjxi7" path="res://static/empty_cauldron.png" id="1_hkxeo"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://ci3loucxd0chq" path="res://static/coke_bottle.png" id="9_50r1b"]
 [ext_resource type="Texture2D" uid="uid://b3ruaq8noind8" path="res://static/tea_bottle.png" id="10_18u1v"]
 [ext_resource type="Texture2D" uid="uid://50suehhskebq" path="res://static/check_symbol.png" id="11_hbn1q"]
+[ext_resource type="AudioStream" uid="uid://cx6uxrmi6r3vm" path="res://static/sound/effects/splash_effect.mp3" id="14_ggwoi"]
+[ext_resource type="AudioStream" uid="uid://d70qnqn7efl8" path="res://static/sound/effects/success_sound.mp3" id="15_k7l3a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fuxlp"]
 radius = 73.3333
@@ -21,8 +23,10 @@ height = 146.667
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0u1wi"]
 size = Vector2(143, 92)
 
-[node name="Cauldron" type="Node2D"]
+[node name="Cauldron" type="Node2D" node_paths=PackedStringArray("splash_sound_player", "success_sound_player")]
 script = ExtResource("1_0bdca")
+splash_sound_player = NodePath("SplashPlayer")
+success_sound_player = NodePath("SuccessPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -31,7 +35,7 @@ texture = ExtResource("1_hkxeo")
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
-position = Vector2(3.33333, 23.3333)
+position = Vector2(3, 23)
 shape = SubResource("CapsuleShape2D_fuxlp")
 
 [node name="OnStates" type="Node2D" parent="Sprite2D"]
@@ -143,5 +147,13 @@ texture = ExtResource("10_18u1v")
 position = Vector2(35, 80)
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("11_hbn1q")
+
+[node name="SplashPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_ggwoi")
+volume_db = -2.0
+
+[node name="SuccessPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_k7l3a")
+volume_db = -1.0
 
 [connection signal="area_entered" from="DroppingArea" to="." method="_on_dropping_area_area_entered"]

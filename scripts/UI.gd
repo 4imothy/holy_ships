@@ -16,7 +16,7 @@ func find_fire_node() -> Node2D:
 var rng = RandomNumberGenerator.new()
 
 var shake_strength: float = 0.0
-
+var is_server = false
 # Define the two colors to alternate between
 var color1 = Color(1, 1, 0, 1)
 var color2 = Color(1, 0, 0, 1)
@@ -26,6 +26,7 @@ var is_color1 = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.apply_shake.connect(apply_shake)
 	$WaterTask.visible = false
 	fire.connect("visibility_changed", Callable(self, "_on_fire_visibility_changed"))
 	
@@ -47,6 +48,7 @@ func _on_Timer_timeout():
 		label.modulate = color1
 	is_color1 = !is_color1
 
+@rpc
 func apply_shake():
 	shake_strength = randomStrength
 
@@ -62,3 +64,7 @@ func _process(delta: float) -> void:
 		
 func randomOffset() -> Vector2:
 	return Vector2(rng.randf_range(-shake_strength, shake_strength), rng.randf_range(-shake_strength, shake_strength))
+
+func _on_apply_shake():
+	if is_server:
+		apply_shake.rpc()

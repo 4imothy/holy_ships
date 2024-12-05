@@ -21,7 +21,7 @@ ldoor = NodePath("Door/Left")
 exit = NodePath("Exit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 6)
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_clqfm")
 
 [node name="Door" type="Sprite2D" parent="."]
@@ -48,7 +48,7 @@ z_index = -1
 position = Vector2(4, 0)
 texture = ExtResource("1_uslws")
 region_enabled = true
-region_rect = Rect2(384, 576, 64, 64)
+region_rect = Rect2(385, 576, 64, 64)
 
 [node name="Label" parent="Door/Right" instance=ExtResource("2_cijhw")]
 offset_left = 5.0

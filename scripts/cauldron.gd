@@ -3,6 +3,8 @@ extends Node2D
 ### Local Variables ###
 # Group to identify players
 @export var player_group: String = "Player"  
+@export var splash_sound_player: AudioStreamPlayer2D
+@export var success_sound_player: AudioStreamPlayer2D
 
 # Slot paths
 @onready var SLOT_PATHS = [
@@ -39,6 +41,14 @@ func _ready() -> void:
 	for state in CAULDRON_STATES:
 		state.visible = false
 	CAULDRON_FILL_TOGGLE.visible = false
+	
+	if multiplayer.is_server():
+		SignalBus.splash_sound.connect(play_splash_sound)
+		SignalBus.cauldron_success_sound.connect(play_success_sound)
+	
+	SignalBus.splash_sound.connect(_on_splash_sound)
+	SignalBus.cauldron_success_sound.connect(_on_play_success_sound)
+	
 
 func initialize_slots() -> void:
 	# Randomly assign a bottle type to each slot
@@ -82,8 +92,8 @@ func sync_slot_choices(choices: Array) -> void:
 func _on_dropping_area_area_entered(body: Area2D) -> void:
 	if not cauldron_complete:
 		var player_node = body.get_parent()
-		
 		if player_node.is_in_group(player_group):
+			SignalBus.splash_sound.emit()
 			if player_node.multiplayer.get_unique_id() == player_node.get_multiplayer_authority():
 				if player_node.chosen_sprite != "":
 					append_to_list(player_node.chosen_sprite)
@@ -92,6 +102,7 @@ func _on_dropping_area_area_entered(body: Area2D) -> void:
 	else:
 		var player_node = body.get_parent()
 		if player_node.is_in_group(player_group):
+			SignalBus.splash_sound.emit()
 			if player_node.multiplayer.get_unique_id() == player_node.get_multiplayer_authority():
 				if player_node.chosen_sprite != "":
 					if player_node.has_method("toggle_off_chosen_sprite"):
@@ -142,6 +153,7 @@ func check_for_matches(sprite: String) -> void:
 	if all_matched:
 		# ALL PLAYERS EXECUTE THE FOLLOWING CODE
 		print("All slots matched! Minigame complete.")
+		SignalBus.cauldron_success_sound.emit()
 		cauldron_complete = true
 		CAULDRON_FILL_TOGGLE.visible = true
 		CAULDRON_STATES[CAULDRON_STATES.size() - 2].visible = true
@@ -149,3 +161,19 @@ func check_for_matches(sprite: String) -> void:
 		
 		if multiplayer.is_server():
 			SignalBus.increase_health.emit(20)
+			
+@rpc
+func play_splash_sound():
+	splash_sound_player.play()
+
+@rpc
+func play_success_sound():
+	success_sound_player.play()
+
+func _on_splash_sound():
+	if multiplayer.is_server():
+		play_splash_sound.rpc()
+	
+func _on_play_success_sound():
+	if multiplayer.is_server():
+		success_sound_player.play()
