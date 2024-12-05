@@ -58,7 +58,7 @@ func _process(delta: float):
 		if not ldoor_open and not rdoor_open:
 			rdoor.position = rdoor_original_position
 			ldoor.position = ldoor_original_position
-			close_door = true
+			close_door = false
 		door_open = false
 
 
