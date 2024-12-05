@@ -20,7 +20,6 @@ var is_server = false
 # Define the two colors to alternate between
 var color1 = Color(1, 1, 0, 1)
 var color2 = Color(1, 0, 0, 1)
-
 # Track the current color
 var is_color1 = true
 

@@ -150,7 +150,7 @@ texture = ExtResource("11_hbn1q")
 
 [node name="SplashPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_ggwoi")
-volume_db = -2.0
+volume_db = -5.0
 
 [node name="SuccessPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_k7l3a")
