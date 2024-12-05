@@ -93,18 +93,18 @@ func _on_dropping_area_area_entered(body: Area2D) -> void:
 	if not cauldron_complete:
 		var player_node = body.get_parent()
 		if player_node.is_in_group(player_group):
-			SignalBus.splash_sound.emit()
 			if player_node.multiplayer.get_unique_id() == player_node.get_multiplayer_authority():
 				if player_node.chosen_sprite != "":
+					SignalBus.splash_sound.emit()
 					append_to_list(player_node.chosen_sprite)
 					if player_node.has_method("toggle_off_chosen_sprite"):
 						player_node.toggle_off_chosen_sprite()
 	else:
 		var player_node = body.get_parent()
 		if player_node.is_in_group(player_group):
-			SignalBus.splash_sound.emit()
 			if player_node.multiplayer.get_unique_id() == player_node.get_multiplayer_authority():
 				if player_node.chosen_sprite != "":
+					SignalBus.splash_sound.emit()
 					if player_node.has_method("toggle_off_chosen_sprite"):
 						player_node.toggle_off_chosen_sprite()
 				
@@ -173,7 +173,11 @@ func play_success_sound():
 func _on_splash_sound():
 	if multiplayer.is_server():
 		play_splash_sound.rpc()
+	else:
+		play_splash_sound()
+		play_splash_sound.rpc()
 	
 func _on_play_success_sound():
 	if multiplayer.is_server():
 		success_sound_player.play()
+		
