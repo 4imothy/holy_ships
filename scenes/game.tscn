@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=16 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -15,8 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
 [ext_resource type="AudioStream" uid="uid://c2uuowymlxl5v" path="res://static/sound/effects/explosion.mp3" id="18_f30x5"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points", "music_player")]
 script = ExtResource("1_blgyt")
@@ -95,10 +93,10 @@ texture = ExtResource("14_oo0jy")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -574.0
-offset_top = 582.0
-offset_right = -376.0
-offset_bottom = 608.0
+offset_left = -493.0
+offset_top = 553.0
+offset_right = -295.0
+offset_bottom = 579.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
@@ -111,14 +109,14 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -373.0
-offset_top = 620.0
-offset_right = -338.0
-offset_bottom = 627.0
+offset_left = -298.0
+offset_top = 627.0
+offset_right = -263.0
+offset_bottom = 634.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 11
 text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -127,14 +125,14 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -212.0
-offset_top = 619.0
-offset_right = -163.0
-offset_bottom = 626.0
+offset_left = -140.0
+offset_top = 626.0
+offset_right = -63.0
+offset_bottom = 637.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 11
 text = "Panacea"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -158,5 +156,4 @@ stream = ExtResource("18_f30x5")
 volume_db = 10.0
 bus = &"Sound Effects"
 
-[connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
