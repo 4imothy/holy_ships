@@ -15,6 +15,8 @@ const HOST_ID = 1
 
 var players = {}
 
+var server_peer
+
 var player_info = {"name": "Name"}
 
 func _ready():
@@ -25,17 +27,24 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnceted)
 
 func create_game():
-	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(PORT, MAX_CONNECTIONS)
+	server_peer = ENetMultiplayerPeer.new()
+	var error = server_peer.create_server(PORT, MAX_CONNECTIONS)
 	if error:
 		print(error)
 		return false
 	
-	multiplayer.multiplayer_peer = peer
+	multiplayer.multiplayer_peer = server_peer
 	
 	players[HOST_ID] = player_info
 	player_connected.emit(HOST_ID, player_info)
 	return true
+	
+func stop_game() -> void:
+	if multiplayer.multiplayer_peer != null:
+		server_peer.close()
+		multiplayer.multiplayer_peer = null
+		server_peer = null
+	players.clear()
 	
 func join_game(address):
 	var peer = ENetMultiplayerPeer.new()

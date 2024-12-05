@@ -10,6 +10,8 @@ extends Node
 var beeper = null
 var ip_line_edit = "127.0.0.1"
 
+var hosting = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	multiplayer.connection_failed.connect(_on_connection_failed)
@@ -20,12 +22,13 @@ func _on_host_button_pressed() -> void:
 	beeper.play()
 	not_connected_hbox.hide()
 	status_label.text = "Connection Status: Trying to Host"
-	if not Lobby.create_game():
-		not_connected_hbox.show()
-		status_label.text = "Connection Status: Failed to Host"
-	else:
+	if Lobby.create_game():
+		hosting = true
 		host_hbox.show()
 		status_label.text = "Connection Status: Hosting!"
+	else:
+		not_connected_hbox.show()
+		status_label.text = "Connection Status: Failed to Host"
 
 
 func _on_join_button_pressed() -> void:
@@ -40,6 +43,8 @@ func _on_start_button_pressed() -> void:
 	main_menu.start_game()
 
 func _on_exit_lobby_button_pressed() -> void:
+	if hosting:
+		Lobby.stop_game()
 	beeper.play()
 	queue_free()
 	
