@@ -1,11 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://dcqleymus211v"]
+[gd_scene load_steps=25 format=3 uid="uid://dcqleymus211v"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_88tep"]
-[ext_resource type="PackedScene" uid="uid://ckkx27mb7wlv5" path="res://objects/UI.tscn" id="2_trmls"]
+[ext_resource type="PackedScene" uid="uid://cdwlxjwbhoaep" path="res://objects/UI.tscn" id="2_trmls"]
 [ext_resource type="Texture2D" uid="uid://c2ihhw0fputjx" path="res://static/astronaut.png" id="2_xrwcj"]
 [ext_resource type="Texture2D" uid="uid://b3ruaq8noind8" path="res://static/tea_bottle.png" id="4_u8d44"]
 [ext_resource type="Texture2D" uid="uid://ci3loucxd0chq" path="res://static/coke_bottle.png" id="5_tc6xd"]
 [ext_resource type="Texture2D" uid="uid://dqju4e2qlj0q" path="res://static/water_bottle.png" id="6_y5rg6"]
+[ext_resource type="Texture2D" uid="uid://b8sld3hhsayjy" path="res://static/full_bucket.png" id="7_fjiy7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gmv3n"]
 
@@ -140,6 +141,9 @@ properties/5/replication_mode = 1
 properties/6/path = NodePath("CurrentItem/CokeBottle:visible")
 properties/6/spawn = true
 properties/6/replication_mode = 1
+properties/7/path = NodePath("FullBucket:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
@@ -187,3 +191,9 @@ visible = false
 position = Vector2(0, -35)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("5_tc6xd")
+
+[node name="FullBucket" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, -36)
+scale = Vector2(0.183557, 0.197282)
+texture = ExtResource("7_fjiy7")

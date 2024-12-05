@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpe3io8im56su"]
+
+[ext_resource type="Script" path="res://scripts/water_dispensor.gd" id="1_3ya46"]
+[ext_resource type="Texture2D" uid="uid://4f5s7au2r4iy" path="res://static/dispenser.png" id="1_v2em6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g373w"]
+size = Vector2(29, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gng54"]
+size = Vector2(34, 32)
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_3ya46")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v2em6")
+region_enabled = true
+region_rect = Rect2(98, 11, 28, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -6.5)
+shape = SubResource("RectangleShape2D_g373w")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_gng54")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

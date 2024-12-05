@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmns0oppbg75d"]
+
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="1_ytprt"]
+
+[node name="FireMessage" type="Label"]
+offset_right = 134.0
+offset_bottom = 23.0
+rotation = 0.00184598
+theme_override_fonts/font = ExtResource("1_ytprt")
+text = "Take out Fire!"

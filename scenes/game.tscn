@@ -1,11 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=15 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
-[ext_resource type="PackedScene" uid="uid://brfvy70xweir5" path="res://objects/fire.tscn" id="4_l4ty5"]
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://objects/map.tscn" id="4_tlabt"]
-[ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
-[ext_resource type="Shader" path="res://objects/fire.gdshader" id="6_m1h0i"]
 [ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://static/TransparentSpaceBackground.png" id="8_1xfr8"]
 [ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://static/background/SpaceBackground3.png" id="8_c3vgs"]
 [ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="8_r1lig"]
@@ -17,12 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://cjbplf205o1bn" path="res://static/background/loading_frame.png" id="13_bg705"]
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g53u"]
-shader = ExtResource("6_m1h0i")
-shader_parameter/progress = 0.0
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points", "music_player")]
 script = ExtResource("1_blgyt")
@@ -36,19 +27,6 @@ music_player = NodePath("---Environment---/BackgroundMusic")
 [node name="Map" parent="---Environment---" instance=ExtResource("4_tlabt")]
 z_index = -1
 position = Vector2(550, 350)
-
-[node name="fire" parent="---Environment---" instance=ExtResource("4_l4ty5")]
-material = SubResource("ShaderMaterial_52d86")
-position = Vector2(-380, 223)
-rotation = -1.5709
-scale = Vector2(1.30555, 1.3479)
-autoplay = "default"
-frame_progress = 0.130795
-script = ExtResource("5_roxxf")
-shader_material = SubResource("ShaderMaterial_2g53u")
-
-[node name="Timer" type="Timer" parent="---Environment---/fire"]
-wait_time = 5.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="---Environment---"]
 
@@ -193,5 +171,4 @@ stream = ExtResource("13_q2k2x")
 [node name="LoadingFrame" type="Sprite2D" parent="."]
 texture = ExtResource("13_bg705")
 
-[connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

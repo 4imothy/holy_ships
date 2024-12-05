@@ -11,6 +11,7 @@ const PLAYER_SPEED: int = 300
 # For Inventory
 @onready var CurrentItemHolder = $CurrentItem
 @onready var items = $CurrentItem.get_children()
+@onready var bucket = $FullBucket
 var item_sprites = []
 var chosen_sprite: String = "" 
 
@@ -100,4 +101,13 @@ func toggle_off_chosen_sprite() -> void:
 		sprite.visible = false
 	
 	chosen_sprite = ""
+
+func toggle_bucket_on() -> void:
+	if multiplayer.multiplayer_peer == null:
+		return
+	if owner_id != multiplayer.get_unique_id():
+		return
+	bucket.visible = true
+	
+		
 	
