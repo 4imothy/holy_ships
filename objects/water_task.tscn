@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://cfnjf0vp16e0u"]
+[gd_scene load_steps=20 format=4 uid="uid://cfnjf0vp16e0u"]
 
 [ext_resource type="Script" path="res://scripts/water_task.gd" id="1_4qycx"]
 [ext_resource type="Texture2D" uid="uid://dr2d4kig5vn7x" path="res://static/buckets.png" id="2_rigxq"]
 [ext_resource type="Texture2D" uid="uid://dgwfgb3ustxot" path="res://static/map_tileset.png" id="3_4ql7u"]
 [ext_resource type="Texture2D" uid="uid://b63gl3wkbfbde" path="res://static/PBP-V2.png" id="4_4m4gx"]
+[ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="5_t1swl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klp4m"]
 atlas = ExtResource("2_rigxq")
@@ -2023,3 +2024,13 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_hux5c")
 theme_override_styles/hover = SubResource("StyleBoxTexture_u0a65")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_o61v4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_yxwfa")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 515.771
+offset_top = 463.906
+offset_right = 719.771
+offset_bottom = 497.906
+theme_override_fonts/font = ExtResource("5_t1swl")
+theme_override_font_sizes/font_size = 34
+text = "(Hold)
+"
