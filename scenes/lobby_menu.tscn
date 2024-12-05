@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4a4uyq7puli" path="res://static/background/menu_background.jpg" id="2_2a0on"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="3_bthpn"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgeep"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_16uj1"]
 texture = ExtResource("2_2a0on")
 modulate_color = Color(0.351563, 0.351563, 0.351563, 1)
 
@@ -89,8 +89,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1.00249)
-theme_override_styles/panel = SubResource("StyleBoxTexture_lgeep")
+theme_override_styles/panel = SubResource("StyleBoxTexture_16uj1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -100,9 +99,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -226.0
-offset_top = 239.0
+offset_top = 125.0
 offset_right = 228.0
-offset_bottom = 305.0
+offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -243,8 +242,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 60.0
-offset_bottom = 60.0
+offset_top = 45.0
+offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Connection Status: ..."

@@ -46,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bc2pa")
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +66,7 @@ anchor_bottom = 0.5
 offset_left = -226.0
 offset_top = -124.0
 offset_right = 228.0
-offset_bottom = 119.0
+offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -103,12 +103,8 @@ offset_right = 70.0
 offset_bottom = 31.0
 color = Color(0.72549, 0.560784, 0.709804, 0.345098)
 
-[node name="ExitOptionsButton" type="Button" parent="."]
+[node name="ExitOptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-offset_left = 350.0
-offset_top = 409.0
-offset_right = 804.0
-offset_bottom = 461.0
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_gv07s")
@@ -172,4 +168,4 @@ Good luck, have fun, and work together!
 [connection signal="value_changed" from="VBoxContainer/Music_Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SFX_Slider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/Mute" to="." method="_on_mute_toggled"]
-[connection signal="pressed" from="ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]
