@@ -30,7 +30,6 @@ func create_game():
 	server_peer = ENetMultiplayerPeer.new()
 	var error = server_peer.create_server(PORT, MAX_CONNECTIONS)
 	if error:
-		print(error)
 		return false
 	
 	multiplayer.multiplayer_peer = server_peer
@@ -40,11 +39,13 @@ func create_game():
 	return true
 	
 func stop_game() -> void:
-	if multiplayer.multiplayer_peer != null:
+	if multiplayer.multiplayer_peer != null and server_peer != null:
+		for id in multiplayer.get_peers():
+			multiplayer.disconnect_peer(id)
 		server_peer.close()
 		multiplayer.multiplayer_peer = null
 		server_peer = null
-	players.clear()
+		players.clear()
 	
 func join_game(address):
 	var peer = ENetMultiplayerPeer.new()
@@ -58,7 +59,6 @@ func join_game(address):
 	
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
-	pass
 	
 @rpc("any_peer", "reliable")
 func _register_player(new_player_info):
@@ -86,4 +86,3 @@ func _on_server_disconnceted():
 # For Debugging
 #func _process(delta):
 	#print(players)
-	

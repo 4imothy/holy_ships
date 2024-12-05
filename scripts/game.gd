@@ -19,7 +19,7 @@ var MUTE_SERVER = false
 var MUTE_CLIENT = false
 
 func _ready() -> void:
-	var health = 90
+	var health = 1
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
 		AudioServer.set_bus_mute(0, true)
@@ -85,35 +85,18 @@ func _decrement_health(amount):
 		# Get the current health from the health bar, decrement it, and set the new value
 		var current_health = healthbar.health
 		var new_health = current_health - amount
-		healthbar._set_health(new_health)
-		# Synchronize health with clients
-		rpc("sync_health", new_health)
+		sync_health.rpc(new_health)
 
 func _increment_health(amount):
 	if multiplayer.is_server():
 		# Get the current health from the health bar, decrement it, and set the new value
 		var current_health = healthbar.health
 		var new_health = current_health + amount
-		healthbar._set_health(new_health)
-		# Synchronize health with clients
-		rpc("sync_health", new_health)
+		sync_health.rpc(new_health)
 
-@rpc("any_peer", "reliable")
+@rpc("call_local", "any_peer", "reliable")
 func sync_health(new_health):
-	healthbar._set_health(new_health)
-
-func _process(delta):
-	return
-	if multiplayer.is_server() and music_started:
-		# Periodically send the music state to keep things in sync
-		rpc("sync_music", music_player.get_playback_position())
-
-func _exit_tree(): # Built in Function
-	if multiplayer.multiplayer_peer == null or not multiplayer.is_server():
-		return
-
-	# Unsubscribe from Events
-	multiplayer.peer_disconnected.connect(delete_player)
+	healthbar.set_health(new_health)
 
 ### Player Management Functions ###
 func add_player(id):

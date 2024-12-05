@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="3_aqv0u"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="4_rf6vh"]
 [ext_resource type="PackedScene" uid="uid://bxofw8l14noc7" path="res://scenes/credits.tscn" id="4_sfqjc"]
-[ext_resource type="PackedScene" uid="uid://cy4aexa3idkox" path="res://scenes/game_container.tscn" id="4_wc5hr"]
+[ext_resource type="PackedScene" uid="uid://cy4aexa3idkox" path="res://scenes/game_container.tscn" id="5_0v6sk"]
 [ext_resource type="AudioStream" uid="uid://lcbev3lmqlql" path="res://static/sound/short_beep.mp3" id="5_6t7wa"]
 [ext_resource type="AudioStream" uid="uid://byj4f61hxqxhf" path="res://static/sound/main_menu_music_hs.mp3" id="6_wbn7o"]
 
@@ -57,7 +57,7 @@ main_menu_music = NodePath("MenuBackgroundMusic")
 options_menu = ExtResource("2_sks7e")
 lobby_menu = ExtResource("3_57ui8")
 credits = ExtResource("4_sfqjc")
-game_container = ExtResource("4_wc5hr")
+game_container = ExtResource("5_0v6sk")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

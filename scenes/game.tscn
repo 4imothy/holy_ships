@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=22 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
+[ext_resource type="PackedScene" uid="uid://dbe6iuv4ffkjk" path="res://scenes/game_end.tscn" id="3_ppklj"]
 [ext_resource type="PackedScene" uid="uid://brfvy70xweir5" path="res://objects/fire.tscn" id="4_l4ty5"]
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://objects/map.tscn" id="4_tlabt"]
 [ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
@@ -31,6 +32,7 @@ player_scene = ExtResource("3_2g0rx")
 players_container = NodePath("---Players---/PlayersContainer")
 spawn_points = [NodePath("---Players---/SpawnPoint_0"), NodePath("---Players---/SpawnPoint_1")]
 music_player = NodePath("---Environment---/BackgroundMusic")
+end_game_video = ExtResource("3_ppklj")
 
 [node name="---Environment---" type="Node" parent="."]
 

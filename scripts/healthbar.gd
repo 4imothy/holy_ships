@@ -5,7 +5,7 @@ extends Sprite2D
 @onready var health_bar = $HealthBar
 
 
-var health = 0 : set = _set_health
+var health = 0
 
 func init_health(_health):
 	health = _health
@@ -14,14 +14,14 @@ func init_health(_health):
 	damage_bar.max_value = health
 	damage_bar.value - health
 	
-func _set_health(new_health):
+func set_health(new_health):
 	var prev_health = health
 	health = min(health_bar.max_value, new_health)
 	health_bar.value = health
 	
 	if health <= 0:
 		health = 0
-		print("GAME OVER")
+		SignalBus.end_game.emit(false)
 		return
 		
 	if health < prev_health:

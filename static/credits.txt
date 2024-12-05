@@ -15,3 +15,7 @@ Menu Music: [url=https://pixabay.com/music/video-games-8-bit-retro-game-music-23
 Game Music: [url=https://pixabay.com/music/video-games-8-bit-space-123218/]Purrsahfef[/url]
 
 Health Bar: [url=https://adwitr.itch.io/pixel-health-bar-asset-pack-2/]adwitr[/url]
+
+End Game Success Video: [url=https://pixabay.com/videos/space-space-flight-spaceship-216033/]UniverseUnique[/url]
+
+End Game Failure Video: [url=https://pixabay.com/videos/space-universe-explosion-energy-171682//]olenchic[/url]

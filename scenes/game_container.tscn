@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy4aexa3idkox"]
+[gd_scene load_steps=4 format=3 uid="uid://cy4aexa3idkox"]
 
 [ext_resource type="Script" path="res://scripts/game_container.gd" id="1_t7pnu"]
-[ext_resource type="PackedScene" uid="uid://164y6euup4fn" path="res://scenes/game.tscn" id="2_lwsmx"]
+[ext_resource type="PackedScene" uid="uid://164y6euup4fn" path="res://scenes/game.tscn" id="2_jgirn"]
+[ext_resource type="PackedScene" uid="uid://dbe6iuv4ffkjk" path="res://scenes/game_end.tscn" id="3_0ciul"]
 
 [node name="GameContainer" type="Node2D"]
 script = ExtResource("1_t7pnu")
-game = ExtResource("2_lwsmx")
+game = ExtResource("2_jgirn")
+end_game_video = ExtResource("3_0ciul")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/game.tscn")
