@@ -12,3 +12,4 @@ signal end_game(success: bool)
 signal alert_player
 
 signal set_warning_text(mes)
+signal stop_warning_text()

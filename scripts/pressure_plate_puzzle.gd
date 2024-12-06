@@ -25,24 +25,26 @@ var TARGET_IN_A_ROW: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if multiplayer.get_unique_id() == Lobby.HOST_ID:
-		start_game(5)
-	
+		start_game.call_deferred(5)
+
 
 func start_game(num_in_a_row: int) -> void:
 	if multiplayer.get_unique_id() == Lobby.HOST_ID:
 		TARGET_IN_A_ROW = num_in_a_row
+		SignalBus.set_warning_text.emit('System Malfunction!')
 		computer.set_gate(1)
 		game_started = true
-	
+
 func stepped_on(name: String) -> void:
 	if multiplayer.get_unique_id() == Lobby.HOST_ID:
 		if int(name) == should_be_pressed:
 			cur_in_a_row += 1
 			if cur_in_a_row == TARGET_IN_A_ROW:
 				computer.set_done()
+				SignalBus.stop_warning_text.emit()
 				game_completed.emit()
 				SignalBus.increase_health.emit(50)
-			else: 
+			else:
 				generate_target()
 		else:
 			cur_in_a_row = 0

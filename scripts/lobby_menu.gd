@@ -17,7 +17,7 @@ var delta_time = 0.0
 var udp_port = 6969
 
 var beeper = null
-var RUN_LOCAL = true
+var RUN_LOCAL = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
