@@ -15,7 +15,7 @@ var progress_dist_to_travel_total = 32
 @onready var game_finish_tracker = $GameFinishTracker
 
 
-const GAME_LENGTH_SECONDS = 65
+const GAME_LENGTH_SECONDS = 180
 
 var progress = 0
 
@@ -26,7 +26,7 @@ var MUTE_SERVER = false
 var MUTE_CLIENT = false
 
 func _ready() -> void:
-	var health = 100
+	var health = 200
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
 		AudioServer.set_bus_mute(0, true)
@@ -54,7 +54,7 @@ func _ready() -> void:
 		# Set up periodic sporadic explosion timer
 		periodic_explosion_timer.one_shot = false
 		periodic_explosion_timer.wait_time = 5
-		# periodic_explosion_timer.connect("timeout", Callable(self, "_on_explosion_timeout"))
+		periodic_explosion_timer.connect("timeout", Callable(self, "_on_explosion_timeout"))
 		add_child(periodic_explosion_timer)
 		periodic_explosion_timer.start()
 		
