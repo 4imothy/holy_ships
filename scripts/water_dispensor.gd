@@ -32,7 +32,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 					rpc("set_fire_visibility", false)
 					print('fire vis is false')
 					SignalBus.fire_put_out.emit()
-					SignalBus.stop_warning_text.emit()
 					print('computer setting done')
 					computer.set_done()
 				var bucket = game_node.get_node("WaterBucket")

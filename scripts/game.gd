@@ -29,6 +29,8 @@ var MUTE_CLIENT = false
 
 @rpc('any_peer')
 func fire_put_out() -> void:
+	SignalBus.stop_warning_text.emit()
+	print(multiplayer.get_unique_id())
 	print('in fire put out')
 	computer.set_done()
 	var pp_timer = Timer.new()
@@ -39,6 +41,7 @@ func fire_put_out() -> void:
 	pp_timer.start() 
 	
 func _on_fire_put_out() -> void:
+	print(multiplayer.get_unique_id())
 	fire_put_out()
 	fire_put_out.rpc()
 	
@@ -46,7 +49,7 @@ func start_pp_game() -> void:
 	pp_game.start_game(5)
 
 func _ready() -> void:
-	SignalBus.fire_put_out.connect(fire_put_out)
+	SignalBus.fire_put_out.connect(_on_fire_put_out)
 	var health = 680
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
