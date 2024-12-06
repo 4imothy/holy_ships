@@ -8,7 +8,7 @@ extends Control
 @export var credits: PackedScene
 @export var game_container: PackedScene
 
-const MUTE_AUDIO = false
+const MUTE_AUDIO = true
 
 func _init():
 	if MUTE_AUDIO:
