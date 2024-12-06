@@ -19,7 +19,7 @@ var MUTE_SERVER = false
 var MUTE_CLIENT = false
 
 func _ready() -> void:
-	var health = 1
+	var health = 90
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
 		AudioServer.set_bus_mute(0, true)

@@ -3,10 +3,8 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
 [ext_resource type="PackedScene" uid="uid://dbe6iuv4ffkjk" path="res://scenes/game_end.tscn" id="3_ppklj"]
-[ext_resource type="PackedScene" uid="uid://brfvy70xweir5" path="res://objects/fire.tscn" id="4_l4ty5"]
+
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://objects/map.tscn" id="4_tlabt"]
-[ext_resource type="Script" path="res://scripts/fire.gd" id="5_roxxf"]
-[ext_resource type="Shader" path="res://objects/fire.gdshader" id="6_m1h0i"]
 [ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://static/TransparentSpaceBackground.png" id="8_1xfr8"]
 [ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://static/background/SpaceBackground3.png" id="8_c3vgs"]
 [ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="8_r1lig"]
@@ -19,12 +17,6 @@
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
 [ext_resource type="AudioStream" uid="uid://c2uuowymlxl5v" path="res://static/sound/effects/explosion.mp3" id="18_f30x5"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_52d86"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g53u"]
-shader = ExtResource("6_m1h0i")
-shader_parameter/progress = 0.0
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points", "music_player")]
 script = ExtResource("1_blgyt")
@@ -39,19 +31,6 @@ end_game_video = ExtResource("3_ppklj")
 [node name="Map" parent="---Environment---" instance=ExtResource("4_tlabt")]
 z_index = -1
 position = Vector2(550, 350)
-
-[node name="fire" parent="---Environment---" instance=ExtResource("4_l4ty5")]
-material = SubResource("ShaderMaterial_52d86")
-position = Vector2(-380, 223)
-rotation = -1.5709
-scale = Vector2(1.30555, 1.3479)
-autoplay = "default"
-frame_progress = 0.130795
-script = ExtResource("5_roxxf")
-shader_material = SubResource("ShaderMaterial_2g53u")
-
-[node name="Timer" type="Timer" parent="---Environment---/fire"]
-wait_time = 5.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="---Environment---"]
 
@@ -117,10 +96,10 @@ texture = ExtResource("14_oo0jy")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -574.0
-offset_top = 582.0
-offset_right = -376.0
-offset_bottom = 608.0
+offset_left = -493.0
+offset_top = 553.0
+offset_right = -295.0
+offset_bottom = 579.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
@@ -133,14 +112,14 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -373.0
-offset_top = 620.0
-offset_right = -338.0
-offset_bottom = 627.0
+offset_left = -298.0
+offset_top = 627.0
+offset_right = -263.0
+offset_bottom = 634.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 11
 text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -149,14 +128,14 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -212.0
-offset_top = 619.0
-offset_right = -163.0
-offset_bottom = 626.0
+offset_left = -140.0
+offset_top = 626.0
+offset_right = -63.0
+offset_bottom = 637.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 11
 text = "Panacea"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -180,5 +159,4 @@ stream = ExtResource("18_f30x5")
 volume_db = 10.0
 bus = &"Sound Effects"
 
-[connection signal="timeout" from="---Environment---/fire/Timer" to="---Environment---/fire" method="_on_timer_timeout"]
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

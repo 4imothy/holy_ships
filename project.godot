@@ -30,6 +30,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="godot_first"
 
+[global_group]
+
+Fire=""
+
 [input]
 
 shake={
