@@ -37,7 +37,7 @@ func stepped_on(name: String) -> void:
 				computer.set_done()
 				SignalBus.stop_warning_text.emit()
 				game_completed.emit()
-				SignalBus.increase_health.emit(50)
+				SignalBus.increase_health.emit(150)
 			else:
 				generate_target()
 		else:

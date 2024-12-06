@@ -47,7 +47,7 @@ func start_pp_game() -> void:
 
 func _ready() -> void:
 	SignalBus.fire_put_out.connect(fire_put_out)
-	var health = 420
+	var health = 680
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
 		AudioServer.set_bus_mute(0, true)
