@@ -53,6 +53,10 @@ func stop_game() -> void:
 		multiplayer.multiplayer_peer = null
 		server_peer = null
 		players.clear()
+		
+func leave_game() -> void:
+	if multiplayer.multiplayer_peer != null:
+		multiplayer.multiplayer_peer.close()
 	
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)

@@ -22,6 +22,7 @@ var RUN_LOCAL = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	multiplayer.connection_failed.connect(_on_connection_failed)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	
 func _process(delta: float) -> void:
@@ -50,6 +51,7 @@ func _process(delta: float) -> void:
 	elif is_client:
 		delta_time += delta
 		if delta_time >= 2.0:
+			print('sending')
 			delta_time = 0.0
 			if not udp_server_found:
 				udp_client.put_packet("Valid Request".to_utf8_buffer())
@@ -59,8 +61,11 @@ func _process(delta: float) -> void:
 			Lobby.join_game(server_address_to_connect_to.get_string_from_utf8())
 
 @rpc('any_peer', 'reliable')
-func show_start() -> void:
-	host_hbox.show()
+func show_start(show) -> void:
+	if show:
+		host_hbox.show()
+	else:
+		host_hbox.hide()
 
 ### Button Presses ###
 func _on_host_button_pressed() -> void:
@@ -71,7 +76,9 @@ func _on_host_button_pressed() -> void:
 		status_label.text = "Connection Status: Hosting!"
 		is_server = true
 		udp_server = UDPServer.new()
-		udp_server.listen(udp_port, '0.0.0.0')
+		var res = udp_server.listen(udp_port, '0.0.0.0')
+		if res != OK:
+			print('can\'t listen')
 	else:
 		not_connected_hbox.show()
 		status_label.text = "Connection Status: Failed to Host"
@@ -93,6 +100,9 @@ func _on_start_button_pressed() -> void:
 func _on_exit_lobby_button_pressed() -> void:
 	if is_server:
 		Lobby.stop_game()
+		udp_server.stop()
+	if is_client:
+		Lobby.leave_game()
 	beeper.play()
 	queue_free()
 	
@@ -103,9 +113,15 @@ func _on_connection_failed():
 	
 func _on_connected_to_server():
 	status_label.text = "Connection Status: Connected!"
-	show_start.rpc()
+	show_start.rpc(true)
 	
 # TODO change all buttons to touchscreen buttons 
 # no hovering on mobile phones so remove that
 func _on_texture_rect_mouse_entered() -> void:
 	beeper.play()
+	
+func _on_peer_disconnected(id) -> void:
+	if id != Lobby.HOST_ID:
+		show_start(false)
+	else:
+		_on_exit_lobby_button_pressed()
