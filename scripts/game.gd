@@ -8,7 +8,15 @@ extends Node2D
 @onready var healthbar = $CanvasLayer/HealthBar
 @onready var decrement_timer = Timer.new()  # Create a timer instance
 @onready var periodic_explosion_timer = Timer.new()
-@onready var progress_timer = Timer.new() # Every time this hits 0, increment progress
+@onready var progress_tracker = $ProgressTracker
+@onready var progress_icon = $CanvasLayer/Progress/LoadingFrame/ProgressMarker
+var progress_dist_to_travel_total = 32
+const NUM_PROGRESS_TRACKER_MOVEMENTS = 1000
+
+@onready var game_finish_tracker = $GameFinishTracker
+
+
+const GAME_LENGTH_SECONDS = 180
 
 var progress = 0
 
@@ -19,7 +27,7 @@ var MUTE_SERVER = false
 var MUTE_CLIENT = false
 
 func _ready() -> void:
-	var health = 90
+	var health = 100
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
 		AudioServer.set_bus_mute(0, true)
@@ -52,23 +60,16 @@ func _ready() -> void:
 		periodic_explosion_timer.start()
 		
 		# Set up progress timer
-		progress_timer.one_shot = false
-		progress_timer.wait_time = 35
-		progress_timer.connect("timeout", Callable(self, "_on_progress_timeout"))
-		add_child(progress_timer)
-		progress_timer.start()
-		
-		### TODO: _on_progress_timeout TO INCREMENT progress INT VAR
-		### TODO: progress INT VAR update moves the icon over in the bottom left corner
-		### TODO: progress = 4 means we trigger the end game successfully
-			### STRETCH TODO: CHANGE THE MUSIC, AND THE SPEED OF DECLINE OR SOMETHING
-		### TODO: then we spit back to main menu after final cutscene, end multiplayer session
-		### TODO: IF OUR DECREMENT HEALTH HITS 0 OR BELOW, WE NEED ENDGAME SCENE TO PLAY
-		### TODO: then we spit back to main menu after final cutscene, end multiplayer session
-		
-		
-		
+		game_finish_tracker.wait_time = GAME_LENGTH_SECONDS
+		game_finish_tracker.start()
+		progress_tracker.wait_time = float(GAME_LENGTH_SECONDS) / progress_dist_to_travel_total
+		progress_tracker.start()
+				
 	start_music()
+	
+func _on_progress_tracker_timeout() -> void:
+	if not progress_icon.position.x >= progress_dist_to_travel_total / 2:
+		progress_icon.position.x += 1
 	
 func _on_explosion_timeout():
 	periodic_explosion_timer.wait_time = int(randf_range(8, 19)) 
@@ -124,3 +125,8 @@ func _on_multiplayer_spawner_spawned(node: Node) -> void:
 func start_music():
 	music_player.play()
 	music_started = true
+
+
+func _on_game_finish_tracker_timeout() -> void:
+	decrement_timer.stop()
+	SignalBus.end_game.emit(true)

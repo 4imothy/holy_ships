@@ -1,9 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=16 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
-[ext_resource type="PackedScene" uid="uid://dbe6iuv4ffkjk" path="res://scenes/game_end.tscn" id="3_ppklj"]
-
 [ext_resource type="PackedScene" uid="uid://duniemp01a8h3" path="res://objects/map.tscn" id="4_tlabt"]
 [ext_resource type="Texture2D" uid="uid://1nau7h6p3jyq" path="res://static/TransparentSpaceBackground.png" id="8_1xfr8"]
 [ext_resource type="Texture2D" uid="uid://kt3rx44m20tb" path="res://static/background/SpaceBackground3.png" id="8_c3vgs"]
@@ -24,7 +22,6 @@ player_scene = ExtResource("3_2g0rx")
 players_container = NodePath("---Players---/PlayersContainer")
 spawn_points = [NodePath("---Players---/SpawnPoint_0"), NodePath("---Players---/SpawnPoint_1")]
 music_player = NodePath("---Environment---/BackgroundMusic")
-end_game_video = ExtResource("3_ppklj")
 
 [node name="---Environment---" type="Node" parent="."]
 
@@ -79,10 +76,10 @@ position = Vector2(568, 363)
 position = Vector2(250, 30)
 scale = Vector2(6, 6)
 
-[node name="Progress" type="Node" parent="CanvasLayer"]
+[node name="Progress" type="Node2D" parent="CanvasLayer"]
+position = Vector2(850, 30)
 
 [node name="LoadingFrame" type="Sprite2D" parent="CanvasLayer/Progress"]
-position = Vector2(303, 593)
 scale = Vector2(5, 5)
 texture = ExtResource("13_bg705")
 
@@ -93,13 +90,12 @@ scale = Vector2(0.0166667, 0.0166667)
 texture = ExtResource("14_oo0jy")
 
 [node name="ProgressLabel" type="Label" parent="CanvasLayer/Progress"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -493.0
-offset_top = 553.0
-offset_right = -295.0
-offset_bottom = 579.0
+offset_right = 198.0
+offset_bottom = 22.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
@@ -112,14 +108,14 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -298.0
-offset_top = 627.0
-offset_right = -263.0
-offset_bottom = 634.0
+offset_left = -117.0
+offset_top = 30.0
+offset_right = -42.0
+offset_bottom = 45.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 15
 text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -128,17 +124,21 @@ vertical_alignment = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -140.0
-offset_top = 626.0
-offset_right = -63.0
-offset_bottom = 637.0
+offset_left = 54.0
+offset_top = 31.0
+offset_right = 114.0
+offset_bottom = 46.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.911426, 0.905669, 0.886084, 1)
 theme_override_fonts/font = ExtResource("12_samud")
-theme_override_font_sizes/font_size = 11
-text = "Panacea"
+theme_override_font_sizes/font_size = 15
+text = "Home"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GameFinishTracker" type="Timer" parent="."]
+
+[node name="ProgressTracker" type="Timer" parent="."]
 
 [node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player", "explosion_player")]
 script = ExtResource("11_ewf1w")
@@ -160,3 +160,5 @@ volume_db = 10.0
 bus = &"Sound Effects"
 
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
+[connection signal="timeout" from="GameFinishTracker" to="." method="_on_game_finish_tracker_timeout"]
+[connection signal="timeout" from="ProgressTracker" to="." method="_on_progress_tracker_timeout"]
