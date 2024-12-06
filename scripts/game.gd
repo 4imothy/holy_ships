@@ -11,7 +11,6 @@ extends Node2D
 @onready var progress_tracker = $ProgressTracker
 @onready var progress_icon = $CanvasLayer/Progress/LoadingFrame/ProgressMarker
 var progress_dist_to_travel_total = 32
-const NUM_PROGRESS_TRACKER_MOVEMENTS = 1000
 
 @onready var game_finish_tracker = $GameFinishTracker
 

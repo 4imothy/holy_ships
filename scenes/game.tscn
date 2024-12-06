@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=17 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -15,6 +15,11 @@
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
 [ext_resource type="AudioStream" uid="uid://c2uuowymlxl5v" path="res://static/sound/effects/explosion.mp3" id="18_f30x5"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tcepj"]
+properties/0/path = NodePath("LoadingFrame/ProgressMarker:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("players_container", "spawn_points", "music_player")]
 script = ExtResource("1_blgyt")
@@ -135,6 +140,9 @@ theme_override_font_sizes/font_size = 15
 text = "Home"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="CanvasLayer/Progress"]
+replication_config = SubResource("SceneReplicationConfig_tcepj")
 
 [node name="GameFinishTracker" type="Timer" parent="."]
 
