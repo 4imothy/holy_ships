@@ -2,9 +2,6 @@
 
 extends Node
 
-# TODO I think there is an error when back butten is pressed while hosting
-# the hosting doesn't stop meaning others can't host
-
 signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
@@ -27,7 +24,6 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnceted)
 					
 func create_game():
-	print('create')
 	server_peer = ENetMultiplayerPeer.new()
 	var error = server_peer.create_server(PORT, MAX_CONNECTIONS)
 	if error:
@@ -41,7 +37,6 @@ func create_game():
 	return true
 	
 func join_game(address: String):
-	print(address)
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_client(address, PORT)
 	if error:

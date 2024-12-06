@@ -1,6 +1,5 @@
 extends Node
 
-#@export var ip_line_edit: LineEdit
 @export var status_label: Label
 @export var not_connected_hbox: HBoxContainer
 @export var host_hbox: HBoxContainer
@@ -14,7 +13,6 @@ var is_client = false
 var udp_server = null
 var udp_client = null
 var udp_server_found = false
-var udp_requests = 3
 var delta_time = 0.0
 var udp_port = 6969
 
@@ -46,6 +44,8 @@ func _process(delta: float) -> void:
 			if RUN_LOCAL:
 				udp_peer.put_packet(LOCAL_HOST.to_utf8_buffer())
 			else:
+				print('sending')
+				print(first_ipv4)
 				udp_peer.put_packet(first_ipv4.to_utf8_buffer())
 	elif is_client:
 		delta_time += delta
@@ -53,7 +53,6 @@ func _process(delta: float) -> void:
 			delta_time = 0.0
 			if not udp_server_found:
 				udp_client.put_packet("Valid Request".to_utf8_buffer())
-				udp_requests -= 1
 		if udp_client.get_available_packet_count() > 0:
 			udp_server_found = true
 			var server_address_to_connect_to = udp_client.get_packet()
@@ -69,7 +68,6 @@ func _on_host_button_pressed() -> void:
 		host_hbox.show()
 		status_label.text = "Connection Status: Hosting!"
 		is_server = true
-		print(IP.get_local_addresses())
 		udp_server = UDPServer.new()
 		udp_server.listen(udp_port, '0.0.0.0')
 	else:
