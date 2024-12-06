@@ -10,29 +10,29 @@ var is_color1 = true
 var is_server = false
 	
 func set_warning_text(mes):
-	print('here')
-	text = mes
-	timer.connect("timeout", Callable(self, "_play_alert_sound"))
-	
 	if is_server:
+		text = mes
 		timer.start()
+		modulate = color1
 	
-	timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
-	timer.start()
-	modulate = color1
+func stop_warning_text():
+	if is_server:
+		text = ''
+		timer.stop()
 
 func _ready() -> void:	
+	is_server = multiplayer.get_unique_id() == Lobby.HOST_ID
 	SignalBus.set_warning_text.connect(set_warning_text)
+	SignalBus.stop_warning_text.connect(stop_warning_text)
 	timer.wait_time = alert_interval
 	timer.one_shot = false
+	timer.timeout.connect(_on_Timer_timeout)
+	timer.timeout.connect(_play_alert_sound)
 
 func _play_alert_sound() -> void:
-	if is_server:  # Ensure only the server emits the signal
-		print("Emitting alert_player signal from the server")
-		SignalBus.alert_player.emit()
+	SignalBus.alert_player.emit()
 
 func _on_Timer_timeout():
-	# Toggle the color
 	if is_color1:
 		modulate = color2
 	else:
