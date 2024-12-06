@@ -42,10 +42,6 @@ func _ready() -> void:
 		state.visible = false
 	CAULDRON_FILL_TOGGLE.visible = false
 	
-	if multiplayer.is_server():
-		SignalBus.splash_sound.connect(play_splash_sound)
-		SignalBus.cauldron_success_sound.connect(play_success_sound)
-	
 	SignalBus.splash_sound.connect(_on_splash_sound)
 	SignalBus.cauldron_success_sound.connect(_on_play_success_sound)
 	
@@ -162,22 +158,18 @@ func check_for_matches(sprite: String) -> void:
 		if multiplayer.is_server():
 			SignalBus.increase_health.emit(20)
 			
-@rpc
+@rpc('call_local', 'any_peer', 'reliable')
 func play_splash_sound():
 	splash_sound_player.play()
 
-@rpc
+@rpc('call_local', 'any_peer', 'reliable')
 func play_success_sound():
 	success_sound_player.play()
 
+# server muted can't here client drop
+# client muted can't here client
 func _on_splash_sound():
-	if multiplayer.is_server():
-		play_splash_sound.rpc()
-	else:
-		play_splash_sound()
-		play_splash_sound.rpc()
+	play_splash_sound.rpc()
 	
 func _on_play_success_sound():
-	if multiplayer.is_server():
-		success_sound_player.play()
-		
+	play_success_sound.rpc()
