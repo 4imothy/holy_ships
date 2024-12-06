@@ -27,3 +27,5 @@ text = "Engine Fire!"
 script = ExtResource("5_v453g")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AlertTimer" type="Timer" parent="."]

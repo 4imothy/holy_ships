@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cjbplf205o1bn" path="res://static/background/loading_frame.png" id="13_bg705"]
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
+[ext_resource type="AudioStream" uid="uid://v6kd3bucrbay" path="res://static/sound/effects/beep-warning-6387.mp3" id="16_0luup"]
 [ext_resource type="AudioStream" uid="uid://c2uuowymlxl5v" path="res://static/sound/effects/explosion.mp3" id="18_f30x5"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tcepj"]
@@ -148,11 +149,19 @@ replication_config = SubResource("SceneReplicationConfig_tcepj")
 
 [node name="ProgressTracker" type="Timer" parent="."]
 
-[node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player", "explosion_player")]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="CanvasLayer/Progress"]
+replication_config = SubResource("SceneReplicationConfig_tcepj")
+
+[node name="GameFinishTracker" type="Timer" parent="."]
+
+[node name="ProgressTracker" type="Timer" parent="."]
+
+[node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player", "explosion_player", "alert_player")]
 script = ExtResource("11_ewf1w")
 pp_stepped_player = NodePath("PPStep")
 pp_release_player = NodePath("PPRelease")
 explosion_player = NodePath("Explosion")
+alert_player = NodePath("Alert")
 
 [node name="PPStep" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("12_4ynue")
@@ -166,6 +175,11 @@ bus = &"Sound Effects"
 stream = ExtResource("18_f30x5")
 volume_db = 10.0
 bus = &"Sound Effects"
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
+stream = ExtResource("16_0luup")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="timeout" from="GameFinishTracker" to="." method="_on_game_finish_tracker_timeout"]
