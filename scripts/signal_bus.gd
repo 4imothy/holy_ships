@@ -9,3 +9,5 @@ signal apply_shake
 signal increase_health(amount_to_increase)
 signal end_game(success: bool)
 signal alert_player
+
+signal set_warning_text(mes)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=20 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://b6opiimt54nue" path="res://objects/healthbar.tscn" id="11_5311y"]
 [ext_resource type="Script" path="res://scripts/sound_effect_player.gd" id="11_ewf1w"]
 [ext_resource type="AudioStream" uid="uid://coavngkrhi0ra" path="res://static/sound/effects/pp_step.wav" id="12_4ynue"]
+[ext_resource type="PackedScene" uid="uid://c4sg0t3i8upin" path="res://objects/fire_message.tscn" id="12_05ief"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="12_samud"]
 [ext_resource type="Texture2D" uid="uid://cjbplf205o1bn" path="res://static/background/loading_frame.png" id="13_bg705"]
+[ext_resource type="Script" path="res://objects/fire_message.gd" id="13_nnuuf"]
 [ext_resource type="AudioStream" uid="uid://cpiarmkjeg1xr" path="res://static/sound/effects/pp_release.wav" id="13_q2k2x"]
 [ext_resource type="Texture2D" uid="uid://bufjb6pcgtv1d" path="res://static/background/spaceship_logo.png" id="14_oo0jy"]
 [ext_resource type="AudioStream" uid="uid://v6kd3bucrbay" path="res://static/sound/effects/beep-warning-6387.mp3" id="16_0luup"]
@@ -82,6 +84,16 @@ position = Vector2(568, 363)
 position = Vector2(250, 30)
 scale = Vector2(6, 6)
 
+[node name="WarningMessage" parent="CanvasLayer" instance=ExtResource("12_05ief")]
+offset_left = 50.0
+offset_top = 80.0
+offset_right = 274.0
+offset_bottom = 103.0
+text = ""
+script = ExtResource("13_nnuuf")
+
+[node name="Timer" type="Timer" parent="CanvasLayer/WarningMessage"]
+
 [node name="Progress" type="Node2D" parent="CanvasLayer"]
 position = Vector2(850, 30)
 
@@ -145,16 +157,9 @@ vertical_alignment = 1
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="CanvasLayer/Progress"]
 replication_config = SubResource("SceneReplicationConfig_tcepj")
 
-[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="CanvasLayer/Progress"]
-replication_config = SubResource("SceneReplicationConfig_tcepj")
-
 [node name="GameFinishTracker" type="Timer" parent="."]
 
 [node name="ProgressTracker" type="Timer" parent="."]
-
-[node name="GameFinishTracker2" type="Timer" parent="."]
-
-[node name="ProgressTracker2" type="Timer" parent="."]
 
 [node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player", "explosion_player", "alert_player")]
 script = ExtResource("11_ewf1w")
@@ -179,7 +184,6 @@ bus = &"Sound Effects"
 [node name="Alert" type="AudioStreamPlayer2D" parent="SoundEffectPlayer"]
 stream = ExtResource("16_0luup")
 volume_db = -5.0
-autoplay = true
 
 [connection signal="spawned" from="---Players---/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="timeout" from="GameFinishTracker" to="." method="_on_game_finish_tracker_timeout"]

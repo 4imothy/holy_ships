@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckkx27mb7wlv5"]
+[gd_scene load_steps=4 format=3 uid="uid://ckkx27mb7wlv5"]
 
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_hk8xl"]
 [ext_resource type="PackedScene" uid="uid://djsuct8txu1nx" path="res://objects/joystick.tscn" id="1_tpdl1"]
 [ext_resource type="PackedScene" uid="uid://cfnjf0vp16e0u" path="res://objects/water_task.tscn" id="3_7ajl2"]
-[ext_resource type="PackedScene" path="res://objects/fire_message.tscn" id="4_rmvc7"]
 
 [node name="UI" type="Camera2D"]
 zoom = Vector2(1.5, 1.5)
@@ -16,14 +15,3 @@ scale = Vector2(0.5, 0.5)
 z_index = 200
 position = Vector2(-284, -131)
 scale = Vector2(0.660133, 0.570751)
-
-[node name="WarningMessage" parent="." instance=ExtResource("4_rmvc7")]
-offset_left = -326.0
-offset_top = -157.0
-offset_right = -102.0
-offset_bottom = -134.0
-text = ""
-
-[node name="Timer" type="Timer" parent="."]
-
-[node name="AlertTimer" type="Timer" parent="."]
