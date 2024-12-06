@@ -26,7 +26,7 @@ var MUTE_SERVER = false
 var MUTE_CLIENT = false
 
 func _ready() -> void:
-	var health = 200
+	var health = 300
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
 		AudioServer.set_bus_mute(0, true)
@@ -40,7 +40,7 @@ func _ready() -> void:
 
 		# Set up the timer to decrement health
 		decrement_timer.one_shot = false
-		decrement_timer.wait_time = 2.0  # Decrement health every 2 seconds
+		decrement_timer.wait_time = 1.0  # Decrement health every 2 seconds
 		decrement_timer.connect("timeout", Callable(self, "_decrement_health").bind(1))
 		add_child(decrement_timer)
 		decrement_timer.start()
@@ -50,6 +50,8 @@ func _ready() -> void:
 		multiplayer.peer_disconnected.connect(delete_player)
 
 		SignalBus.increase_health.connect(_increment_health)
+		
+		SignalBus.decrease_health.connect(_decrement_health)
 		
 		# Set up periodic sporadic explosion timer
 		periodic_explosion_timer.one_shot = false
