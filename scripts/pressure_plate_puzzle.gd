@@ -25,7 +25,7 @@ var TARGET_IN_A_ROW: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if multiplayer.get_unique_id() == Lobby.HOST_ID:
-		start_game(2)
+		start_game(5)
 	
 
 func start_game(num_in_a_row: int) -> void:
@@ -41,6 +41,7 @@ func stepped_on(name: String) -> void:
 			if cur_in_a_row == TARGET_IN_A_ROW:
 				computer.set_done()
 				game_completed.emit()
+				SignalBus.increase_health.emit(50)
 			else: 
 				generate_target()
 		else:
