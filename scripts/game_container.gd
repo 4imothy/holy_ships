@@ -22,5 +22,7 @@ func end_game_fr(success: bool) -> void:
 
 
 func end_game(success: bool) -> void:
-	if multiplayer.is_server():
+	if multiplayer.get_peers().size() == 0:
+		end_game_fr(success)
+	elif multiplayer.is_server():
 		end_game_fr.rpc(success) # host calls peer, peer calls host, host ends game

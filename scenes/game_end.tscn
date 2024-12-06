@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbe6iuv4ffkjk"]
+[gd_scene load_steps=7 format=3 uid="uid://cow1b0a8jgrmc"]
 
 [ext_resource type="Script" path="res://scripts/game_end.gd" id="1_5gsh1"]
 [ext_resource type="VideoStream" path="res://static/end_game_failed.ogv" id="1_k31gq"]
+[ext_resource type="AudioStream" uid="uid://62oah8p8jii0" path="res://static/sound/effects/ship_explosion.wav" id="3_gd3mp"]
 [ext_resource type="FontFile" uid="uid://dka1g6k5vpcco" path="res://static/8bit-Font/PressStart2P-vaV7.ttf" id="3_wbko3"]
 [ext_resource type="VideoStream" path="res://static/end_game_success.ogv" id="4_5eu17"]
+[ext_resource type="AudioStream" uid="uid://c3uhfdp76deu5" path="res://static/sound/effects/ship_travelling.wav" id="5_nyxld"]
 
 [node name="GameEnd" type="Control"]
 layout_mode = 3
@@ -33,6 +35,10 @@ offset_bottom = 650.0
 stream = ExtResource("1_k31gq")
 expand = true
 
+[node name="Sound" type="AudioStreamPlayer2D" parent="AspectRatioContainer/Failure"]
+stream = ExtResource("3_gd3mp")
+bus = &"Sound Effects"
+
 [node name="Success" type="Node2D" parent="AspectRatioContainer"]
 
 [node name="Video" type="VideoStreamPlayer" parent="AspectRatioContainer/Success"]
@@ -41,6 +47,11 @@ offset_right = 1077.52
 offset_bottom = 650.0
 stream = ExtResource("4_5eu17")
 expand = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="AspectRatioContainer/Success"]
+position = Vector2(-77.525, 0)
+stream = ExtResource("5_nyxld")
+bus = &"Sound Effects"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer"]
 layout_mode = 2

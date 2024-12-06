@@ -1,7 +1,9 @@
 extends Control
 
 @onready var success_video = $AspectRatioContainer/Success/Video
+@onready var success_sound = $AspectRatioContainer/Success/Sound
 @onready var failure_video = $AspectRatioContainer/Failure/Video
+@onready var failure_sound = $AspectRatioContainer/Failure/Sound
 @onready var label = $AspectRatioContainer/VBoxContainer/CenterContainer/Label
 
 const main_menu_path = 'res://scenes/main_menu.tscn'
@@ -21,10 +23,12 @@ func end_game(success: bool) -> void:
 
 func show_failure() -> void:
 	failure_video.play()
+	failure_sound.play()
 	label.text = 'failure'
 
 func show_success() -> void:
 	success_video.play()
+	success_sound.play()
 	label.text = 'success'
 
 func back_to_main_menu() -> void:
