@@ -15,7 +15,7 @@ var progress_dist_to_travel_total = 32
 @onready var game_finish_tracker = $GameFinishTracker
 
 
-const GAME_LENGTH_SECONDS = 180
+const GAME_LENGTH_SECONDS = 65
 
 var progress = 0
 

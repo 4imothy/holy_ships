@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://164y6euup4fn"]
+[gd_scene load_steps=18 format=3 uid="uid://164y6euup4fn"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_blgyt"]
 [ext_resource type="PackedScene" uid="uid://dcqleymus211v" path="res://objects/player.tscn" id="3_2g0rx"]
@@ -145,16 +145,16 @@ vertical_alignment = 1
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="CanvasLayer/Progress"]
 replication_config = SubResource("SceneReplicationConfig_tcepj")
 
-[node name="GameFinishTracker" type="Timer" parent="."]
-
-[node name="ProgressTracker" type="Timer" parent="."]
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="CanvasLayer/Progress"]
+[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="CanvasLayer/Progress"]
 replication_config = SubResource("SceneReplicationConfig_tcepj")
 
 [node name="GameFinishTracker" type="Timer" parent="."]
 
 [node name="ProgressTracker" type="Timer" parent="."]
+
+[node name="GameFinishTracker2" type="Timer" parent="."]
+
+[node name="ProgressTracker2" type="Timer" parent="."]
 
 [node name="SoundEffectPlayer" type="Node" parent="." node_paths=PackedStringArray("pp_stepped_player", "pp_release_player", "explosion_player", "alert_player")]
 script = ExtResource("11_ewf1w")

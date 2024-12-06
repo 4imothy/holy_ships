@@ -13,7 +13,11 @@ var door_open = false
 const door_speed: float = 100.0
 var target_offset: float = 20
 
-var left_exit = false
+var left_exit = true
+
+var went_through = false
+var in_exit_area = false
+var in_enter_area = false
 
 var rdoor_original_position: Vector2
 var ldoor_original_position: Vector2
@@ -63,17 +67,25 @@ func _process(delta: float):
 
 
 func _on_area_entered(area: Area2D) -> void:
+	in_enter_area = true
 	if !door_open or !area.is_in_group('feet'):
 		return
 	left_exit = false
+	bottom_to_top(area)
+	
+func bottom_to_top(area) -> void:
 	area.get_parent().global_position = exit.global_position
 
-
-func _on_exit_area_entered(area: Area2D) -> void:
-	if !left_exit or !door_open or !area.is_in_group('feet'):
-		return
+func top_to_bottom(area) -> void:
 	area.get_parent().global_position = Vector2(global_position.x, global_position.y + 32)
 
+func _on_exit_area_entered(area: Area2D) -> void:
+	in_exit_area = true
+	if !left_exit or !door_open or !area.is_in_group('feet'):
+		return
+	top_to_bottom(area)
+	
 
 func _on_exit_area_exited(area: Area2D) -> void:
+	in_exit_area = false
 	left_exit = true

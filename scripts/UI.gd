@@ -5,7 +5,7 @@ extends Camera2D
 @export var alert_interval: float = 3.0  # Interval for the alert sound playback (in seconds)
 
 @onready var timer = $Timer
-@onready var label = $FireMessage
+@onready var label = $WarningMessage
 
 func find_fire_node() -> Node2D:
 	var fires = get_tree().get_nodes_in_group("Fire")
@@ -23,12 +23,14 @@ var is_color1 = true  # Track the current color
 
 var is_server = false
 
+func fire_game() -> void:
+	label.text = 'Engine Fire!'
+
 func _ready() -> void:
 	is_server = multiplayer.is_server()  # Check if this is the server
 	SignalBus.apply_shake.connect(apply_shake)
 	$WaterTask.visible = false
 	fire.connect("visibility_changed", Callable(self, "_on_fire_visibility_changed"))
-	_on_fire_visibility_changed()
 	
 	timer.wait_time = alert_interval
 	timer.one_shot = false
