@@ -58,6 +58,9 @@ func _process(delta: float) -> void:
 			var server_address_to_connect_to = udp_client.get_packet()
 			Lobby.join_game(server_address_to_connect_to.get_string_from_utf8())
 
+@rpc('any_peer', 'reliable')
+func show_start() -> void:
+	host_hbox.show()
 
 ### Button Presses ###
 func _on_host_button_pressed() -> void:
@@ -65,7 +68,6 @@ func _on_host_button_pressed() -> void:
 	not_connected_hbox.hide()
 	status_label.text = "Connection Status: Trying to Host"
 	if Lobby.create_game():
-		host_hbox.show()
 		status_label.text = "Connection Status: Hosting!"
 		is_server = true
 		udp_server = UDPServer.new()
@@ -101,6 +103,7 @@ func _on_connection_failed():
 	
 func _on_connected_to_server():
 	status_label.text = "Connection Status: Connected!"
+	show_start.rpc()
 	
 # TODO change all buttons to touchscreen buttons 
 # no hovering on mobile phones so remove that
