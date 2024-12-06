@@ -22,12 +22,6 @@ var should_be_pressed: int = -1
 var cur_in_a_row: int = 0
 var TARGET_IN_A_ROW: int
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if multiplayer.get_unique_id() == Lobby.HOST_ID:
-		start_game.call_deferred(5)
-
-
 func start_game(num_in_a_row: int) -> void:
 	if multiplayer.get_unique_id() == Lobby.HOST_ID:
 		TARGET_IN_A_ROW = num_in_a_row

@@ -13,3 +13,5 @@ signal alert_player
 
 signal set_warning_text(mes)
 signal stop_warning_text()
+
+signal fire_put_out

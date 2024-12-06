@@ -10,16 +10,14 @@ var is_color1 = true
 var is_server = false
 	
 func set_warning_text(mes):
-	if is_server:
-		text = mes
-		_play_alert_sound()
-		timer.start()
-		modulate = color1
+	text = mes
+	_play_alert_sound()
+	timer.start()
+	modulate = color1
 	
 func stop_warning_text():
-	if is_server:
-		text = ''
-		timer.stop()
+	text = ''
+	timer.stop()
 
 func _ready() -> void:	
 	is_server = multiplayer.get_unique_id() == Lobby.HOST_ID

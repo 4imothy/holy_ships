@@ -3,8 +3,15 @@ extends CharacterBody2D
 @onready var decrement_timer = Timer.new() 
 @onready var isComplete = false;
 
+@onready var computer = $'../Computer'
+
+func set_text() -> void:
+	SignalBus.set_warning_text.emit('Fire Started!')
+
 func _ready() -> void:
 	decrement_timer.one_shot = false
+	set_text.call_deferred()
+	computer.set_gate(3)
 	decrement_timer.wait_time = 3.0  # Decrement health every 2 seconds
 	decrement_timer.connect("timeout", Callable(self, "_decrement_health").bind(8))
 	add_child(decrement_timer)
@@ -23,6 +30,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				if fire_sprite:
 					set_fire_visibility(false)
 					rpc("set_fire_visibility", false)
+					print('fire vis is false')
+					SignalBus.fire_put_out.emit()
+					SignalBus.stop_warning_text.emit()
+					print('computer setting done')
+					computer.set_done()
 				var bucket = game_node.get_node("WaterBucket")
 				if bucket:
 					bucket.is_full = false

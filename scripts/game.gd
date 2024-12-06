@@ -12,8 +12,10 @@ extends Node2D
 @onready var progress_icon = $CanvasLayer/Progress/LoadingFrame/ProgressMarker
 var progress_dist_to_travel_total = 32
 
-@onready var game_finish_tracker = $GameFinishTracker
+@onready var pp_game = $"---Environment---/Map/PressurePlatePuzzle"
 
+@onready var game_finish_tracker = $GameFinishTracker
+@onready var computer = $"---Environment---/Map/Computer"
 
 const GAME_LENGTH_SECONDS = 180
 
@@ -25,7 +27,26 @@ var music_started = false  # Track if music has started
 var MUTE_SERVER = false
 var MUTE_CLIENT = false
 
+@rpc('any_peer')
+func fire_put_out() -> void:
+	print('in fire put out')
+	computer.set_done()
+	var pp_timer = Timer.new()
+	pp_timer.one_shot = true
+	pp_timer.wait_time = 5.0
+	add_child(pp_timer)
+	pp_timer.timeout.connect(start_pp_game)
+	pp_timer.start() 
+	
+func _on_fire_put_out() -> void:
+	fire_put_out()
+	fire_put_out.rpc()
+	
+func start_pp_game() -> void:
+	pp_game.start_game(5)
+
 func _ready() -> void:
+	SignalBus.fire_put_out.connect(fire_put_out)
 	var health = 420
 	healthbar.init_health(health)
 	if multiplayer.is_server() and MUTE_SERVER:
