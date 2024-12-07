@@ -1,3 +1,7 @@
+### Team
+
+![team](https://github.com/4imothy/holy_ships/blob/main/static/team.jpeg?raw=true)
+
 ### Art Asset Attribution (Thank you all!)
 
 Water Bucket Button:
