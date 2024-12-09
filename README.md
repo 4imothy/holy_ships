@@ -6,7 +6,7 @@
 1. Install the Godot game engine
 2. Open project
 3. (DEBUG/DEVELOPER MODE RUN) To run two instances on one machine to simulate multiplayer open the Debug settings menu and under "Customize Run Instances", enable multiple instances and set the number of instances to two. Run the game, have one instance be host and the other join the host, after successful connection the host will have a start button displayed, press start to run the game.
-4. (ACTUAL RUN) Complete steps 1 & 2 on 2 different machines. Ensure they are connected to the same wifi network. One can host and one can join. (You may have to ensure wifi permissions/firewalls won't block the connection, we've had great luck with connected devices to mobile hotspots)
+4. (ACTUAL RUN) Complete steps 1 & 2 on 2 different machines. Ensure they are connected to the same wifi network. One can host and one can join. (You may have to ensure wifi permissions/firewalls won't block the connection, we've had great luck with connected devices to a single mobile hotspot to run this game)
 
 ### Art Asset Attribution (Thank you all!)
 
