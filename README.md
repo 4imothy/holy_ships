@@ -2,6 +2,9 @@
 
 ![team](https://github.com/4imothy/holy_ships/blob/main/static/team.jpeg?raw=true)
 
+### Presentation/Slidedeck
+https://docs.google.com/presentation/d/1hJNW4h15W5o5YDROj2YPiLeNBMCorea9M_FFQEGdl2Q/edit?usp=sharing
+
 ### Steps To Run:
 1. Install the Godot game engine
 2. Open project
